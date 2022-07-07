@@ -21,7 +21,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "UserLocations")
-public class UserLocation {
+public class Location {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

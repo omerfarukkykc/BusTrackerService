@@ -13,7 +13,7 @@ import com.lepric.btservice.ModelHelper.LocationHelper;
 import com.lepric.btservice.exception.ResourceNotFoundException;
 import com.lepric.btservice.model.Rol;
 import com.lepric.btservice.model.User;
-import com.lepric.btservice.model.UserLocation;
+import com.lepric.btservice.model.Location;
 import com.lepric.btservice.repository.UserRepository;
 import com.lepric.btservice.service.UserService;
 
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService{
     //Add New User
     @Override
     public User AddUser(User user) {
-        user.setLocation(new UserLocation());
+        user.setLocation(new Location());
         user.getLocation().setLocation(new Point<G2D>(g(0,0),WGS84));
         return userRepository.save(user);
     }

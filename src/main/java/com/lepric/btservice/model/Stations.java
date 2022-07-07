@@ -14,21 +14,20 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Busses")
-public class Busses {
-      
+@Table(name = "Stations")
+public class Stations {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "busID")
-    private long busID;
+    @Column(name = "stationID")
+    private long stationID;
 
-    @Column(name = "plate",nullable = false,unique = true)
-    private String plate;
+    @Column(name = "stationName")
+    private String stationName;
 
-    @Column(name = "brand",nullable = false,unique = true)
-    private String brand;
-    
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "locationID",nullable = false,unique = true,updatable = false)
     private Location location;
+
+    @Column(name = "stationScope")
+    private float stationScope;
 }

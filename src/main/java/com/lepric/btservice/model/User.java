@@ -54,7 +54,7 @@ public class User {
     
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "locationID",nullable = false,unique = true,updatable = false)
-    private UserLocation location;
+    private Location location;
 
     @ManyToMany
     private List<Rol> rols;
