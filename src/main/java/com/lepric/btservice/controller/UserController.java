@@ -2,7 +2,6 @@ package com.lepric.btservice.controller;
 
 import java.util.List;
 
-import com.lepric.btservice.ModelHelper.LocationHelper;
 import com.lepric.btservice.model.Rol;
 import com.lepric.btservice.model.User;
 import com.lepric.btservice.service.UserService;
@@ -57,17 +56,7 @@ public class UserController {
         return new ResponseEntity<User>(userService.UpdateUser(employee, userID), HttpStatus.OK);
     }
 
-    //Update User Location by userID
-    @PutMapping("/location/{userID}")
-    public ResponseEntity<LocationHelper> UpdateUserLocation(@PathVariable("userID") long userID, @RequestBody LocationHelper location) {
-        return new ResponseEntity<LocationHelper>(userService.UpdateUserLocation(location,userID),HttpStatus.OK) ;
-    }
-
-    //Get User location by userID
-    @GetMapping("/location/{userID}")
-    public ResponseEntity<LocationHelper> GetUserLocation(@PathVariable("userID") long userID) {
-        return new ResponseEntity<LocationHelper>(userService.GetUserLocation(userID),HttpStatus.OK) ;
-    }
+   
 
     //Get User Rol
     @GetMapping("/rols/{userID}")
