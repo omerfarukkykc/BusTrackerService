@@ -20,6 +20,7 @@ import com.lepric.btservice.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService{
+    
     private UserRepository userRepository;
     public UserServiceImpl(UserRepository userRepository) {
         super();
@@ -105,6 +106,13 @@ public class UserServiceImpl implements UserService{
             () -> new ResourceNotFoundException("User", "ID", userID)
         );
         return dbUser.getRols();
+    }
+
+
+    @Override
+    public boolean ChangePassword(long userID, String newPassword) {
+        //not supported yet
+        return false;
     }
 
 
