@@ -110,8 +110,14 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
-    public boolean ChangePassword(long userID, String newPassword) {
-        //not supported yet
+    public boolean ChangePassword(long userID,String oldPassword, String newPassword) {
+        User dbUser =  userRepository.findById(userID).orElseThrow(
+            () -> new ResourceNotFoundException("User", "ID", userID)
+        );
+        if(oldPassword == dbUser.getPassword()){
+            dbUser.setPassword(newPassword);
+        }
+        userRepository.save(dbUser);
         return false;
     }
 

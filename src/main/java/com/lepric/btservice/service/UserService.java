@@ -12,7 +12,7 @@ public interface UserService {
     User GetUser(long userID);
     List<User> GetUsers();
     boolean DeleteUser(long userID);
-    boolean ChangePassword(long userID, String newPassword);
+    boolean ChangePassword(long userID,String oldPassword, String newPassword);
 
     LocationHelper UpdateUserLocation(LocationHelper location,Long userID);
     LocationHelper GetUserLocation(Long userID);
