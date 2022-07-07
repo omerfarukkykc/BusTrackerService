@@ -13,25 +13,25 @@ import org.geolatte.geom.codec.Wkt;
 import lombok.Data;
 
 @Data
-public class LocationHelper {
+public class LocationModelHelper {
     private float latitude;
     private float longitude;
     private LocalDateTime updated_at;
 
-    public LocationHelper() {
+    public LocationModelHelper() {
     }
-    public LocationHelper(float latitude, float longitude) {
+    public LocationModelHelper(float latitude, float longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
-    public LocationHelper(float latitude, float longitude, LocalDateTime updated_at) {
+    public LocationModelHelper(float latitude, float longitude, LocalDateTime updated_at) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.updated_at = updated_at;
     }
 
-    public LocationHelper(Point<G2D> point,LocalDateTime updatedAt) {
+    public LocationModelHelper(Point<G2D> point,LocalDateTime updatedAt) {
         String wkt = Wkt.toWkt(point);
         Pattern pattern = Pattern.compile("(?<=\\()(.*?)(?=\\))");
         pattern.matcher(wkt)

@@ -9,7 +9,8 @@ import org.geolatte.geom.G2D;
 import org.geolatte.geom.Point;
 import org.springframework.stereotype.Service;
 
-import com.lepric.btservice.ModelHelper.LocationHelper;
+import com.lepric.btservice.ModelHelper.LocationModelHelper;
+import com.lepric.btservice.ModelHelper.UpdatePasswordModelHelper;
 import com.lepric.btservice.exception.ResourceNotFoundException;
 import com.lepric.btservice.model.Rol;
 import com.lepric.btservice.model.User;
@@ -81,22 +82,22 @@ public class UserServiceImpl implements UserService{
 
     //Update user location
     @Override
-    public LocationHelper UpdateUserLocation(LocationHelper location, Long userID) {
+    public LocationModelHelper UpdateUserLocation(LocationModelHelper location, Long userID) {
         User dbUser =  userRepository.findById(userID).orElseThrow(
             () -> new ResourceNotFoundException("User", "ID", userID)
         );
         dbUser.getLocation().setLocation(new Point<G2D>(g(location.getLatitude(),location.getLongitude()),WGS84));
         userRepository.save(dbUser);
-        return new LocationHelper(dbUser.getLocation().getLocation(),dbUser.getLocation().getUpdatedAt());
+        return new LocationModelHelper(dbUser.getLocation().getLocation(),dbUser.getLocation().getUpdatedAt());
     }
 
     //Get User Location
     @Override
-    public LocationHelper GetUserLocation(Long userID) {
+    public LocationModelHelper GetUserLocation(Long userID) {
         User dbUser =  userRepository.findById(userID).orElseThrow(
             () -> new ResourceNotFoundException("User", "ID", userID)
         );
-        return new LocationHelper(dbUser.getLocation().getLocation(),dbUser.getLocation().getUpdatedAt());
+        return new LocationModelHelper(dbUser.getLocation().getLocation(),dbUser.getLocation().getUpdatedAt());
     }
 
     //Get User Rols
@@ -110,15 +111,19 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
-    public boolean ChangePassword(long userID,String oldPassword, String newPassword) {
+    public boolean ChangePassword(long userID,UpdatePasswordModelHelper upmh) {
         User dbUser =  userRepository.findById(userID).orElseThrow(
             () -> new ResourceNotFoundException("User", "ID", userID)
         );
-        if(oldPassword == dbUser.getPassword()){
-            dbUser.setPassword(newPassword);
+        if(!upmh.getOldPassword().equals(dbUser.getPassword())){
+            return false;
         }
+        if(!upmh.getNewPassword().equals(upmh.getNewPasswordAgain())){
+            return false;
+        }
+        dbUser.setPassword(upmh.getNewPassword());
         userRepository.save(dbUser);
-        return false;
+        return true;
     }
 
 

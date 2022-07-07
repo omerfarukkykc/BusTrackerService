@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lepric.btservice.ModelHelper.LocationHelper;
+import com.lepric.btservice.ModelHelper.LocationModelHelper;
 import com.lepric.btservice.service.BusService;
 import com.lepric.btservice.service.UserService;
 
@@ -26,19 +26,19 @@ public class LocationController {
 
      //Update User Location by userID
     @PutMapping("user/{userID}")
-    public ResponseEntity<LocationHelper> UpdateUserLocation(@PathVariable("userID") long userID, @RequestBody LocationHelper location) {
-        return new ResponseEntity<LocationHelper>(userService.UpdateUserLocation(location,userID),HttpStatus.OK) ;
+    public ResponseEntity<LocationModelHelper> UpdateUserLocation(@PathVariable("userID") long userID, @RequestBody LocationModelHelper location) {
+        return new ResponseEntity<LocationModelHelper>(userService.UpdateUserLocation(location,userID),HttpStatus.OK) ;
     }
 
     //Get User location by userID
     @GetMapping("user/{userID}")
-    public ResponseEntity<LocationHelper> GetUserLocation(@PathVariable("userID") long userID) {
-        return new ResponseEntity<LocationHelper>(userService.GetUserLocation(userID),HttpStatus.OK) ;
+    public ResponseEntity<LocationModelHelper> GetUserLocation(@PathVariable("userID") long userID) {
+        return new ResponseEntity<LocationModelHelper>(userService.GetUserLocation(userID),HttpStatus.OK) ;
     }
 
     //Get Bus location by busID
     @GetMapping("bus/{busID}")
-    public ResponseEntity<LocationHelper> getBusLocaiton(@PathVariable("busID") long busID) {
-        return new ResponseEntity<LocationHelper>(busService.getBusLocation(busID),HttpStatus.OK) ;
+    public ResponseEntity<LocationModelHelper> getBusLocaiton(@PathVariable("busID") long busID) {
+        return new ResponseEntity<LocationModelHelper>(busService.getBusLocation(busID),HttpStatus.OK) ;
     }
 }

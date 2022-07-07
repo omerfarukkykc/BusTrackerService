@@ -2,6 +2,7 @@ package com.lepric.btservice.controller;
 
 import java.util.List;
 
+import com.lepric.btservice.ModelHelper.UpdatePasswordModelHelper;
 import com.lepric.btservice.model.Rol;
 import com.lepric.btservice.model.User;
 import com.lepric.btservice.service.UserService;
@@ -39,21 +40,25 @@ public class UserController {
 
     //Get All Users 
     @GetMapping()
-    public ResponseEntity<List<User>> getEmployees() {
+    public ResponseEntity<List<User>> getUsers() {
         return new ResponseEntity<>(userService.GetUsers(), HttpStatus.OK);
     }
     
     //Delete User by userID
     @DeleteMapping("{userID}")
-    public ResponseEntity<String> deleteEmployee(@PathVariable("userID") long userID) {
+    public ResponseEntity<String> deleteUser(@PathVariable("userID") long userID) {
         userService.DeleteUser(userID);
         return new ResponseEntity<String>("User successfully deleted.",HttpStatus.OK);
     }
 
     //Update User PUT
     @PutMapping("{userID}")
-    public ResponseEntity<User> updateEmployee(@PathVariable("userID") long userID, @RequestBody User employee) {
+    public ResponseEntity<User> updateUser(@PathVariable("userID") long userID, @RequestBody User employee) {
         return new ResponseEntity<User>(userService.UpdateUser(employee, userID), HttpStatus.OK);
+    }
+    @PutMapping("/updatePassword/{userID}")
+    public ResponseEntity<Boolean> updateUserPassword(@PathVariable("userID") long userID, @RequestBody UpdatePasswordModelHelper updatePassword) {
+        return new ResponseEntity<Boolean>(userService.ChangePassword(userID,updatePassword), HttpStatus.OK);
     }
 
    

@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.lepric.btservice.ModelHelper.LocationHelper;
+import com.lepric.btservice.ModelHelper.LocationModelHelper;
 import com.lepric.btservice.exception.ResourceNotFoundException;
 import com.lepric.btservice.model.Bus;
 import com.lepric.btservice.repository.BusRepository;
@@ -18,10 +18,10 @@ public class BusServiceImpl implements BusService{
         this.busRepository = busRepository;
     }
     @Override
-    public LocationHelper getBusLocation(long busID) {
+    public LocationModelHelper getBusLocation(long busID) {
         Bus bus =  busRepository.findById(busID).orElseThrow(
             () -> new ResourceNotFoundException("Bus", "ID", busID));
-        return new LocationHelper(bus.getLocation().getLocation(),bus.getLocation().getUpdatedAt());
+        return new LocationModelHelper(bus.getLocation().getLocation(),bus.getLocation().getUpdatedAt());
     }
     @Override
     public boolean Deletebus(long busID) {
@@ -40,6 +40,11 @@ public class BusServiceImpl implements BusService{
     }
     @Override
     public Bus UpdateBus(Bus bus, long busID) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    @Override
+    public Bus Addbus(Bus bus) {
         // TODO Auto-generated method stub
         return null;
     }
