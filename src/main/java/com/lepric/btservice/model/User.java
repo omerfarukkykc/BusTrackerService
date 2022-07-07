@@ -56,6 +56,10 @@ public class User {
     @JoinColumn(name = "locationID",nullable = false,unique = true,updatable = false)
     private Location location;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "alarmID")
+    private List<Alarms> alarms;
+
     @ManyToMany
     private List<Rol> rols;
 
