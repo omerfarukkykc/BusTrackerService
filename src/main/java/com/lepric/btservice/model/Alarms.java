@@ -32,10 +32,10 @@ public class Alarms {
     
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "busID",nullable = false)
-    private Busses bus;
+    private Bus bus;
     
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "stationID",nullable = false)
-    private Stations station;
+    private Station station;
     
 }

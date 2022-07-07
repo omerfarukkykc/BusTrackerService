@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lepric.btservice.model.Busses;
+import com.lepric.btservice.model.Bus;
 import com.lepric.btservice.service.BusService;
 
 
@@ -27,20 +27,20 @@ public class BusController {
     BusService busService;
      //Create a new bus
      @PostMapping()
-     public ResponseEntity<Busses> Addbus(@RequestBody bus bus) {
-         return new ResponseEntity<Busses>(busService.Addbus(bus), HttpStatus.OK);
+     public ResponseEntity<Bus> Addbus(@RequestBody Bus bus) {
+         return new ResponseEntity<Bus>(busService.Addbus(bus), HttpStatus.OK);
      }
  
      // Get bus by busID
      @GetMapping("{busID}")
-     public ResponseEntity<Busses> Getbus(@PathVariable("busID") long busID) {
-         return new ResponseEntity<Busses>(busService.Getbus(busID), HttpStatus.OK);
+     public ResponseEntity<Bus> Getbus(@PathVariable("busID") long busID) {
+         return new ResponseEntity<Bus>(busService.Getbus(busID), HttpStatus.OK);
      }
  
      //Get All buss 
      @GetMapping()
-     public ResponseEntity<List<Busses>> getEmployees() {
-         return new ResponseEntity<List<Busses>>(busService.Getbusses(), HttpStatus.OK);
+     public ResponseEntity<List<Bus>> getEmployees() {
+         return new ResponseEntity<List<Bus>>(busService.Getbusses(), HttpStatus.OK);
      }
      
      //Delete bus by busID
@@ -52,7 +52,7 @@ public class BusController {
  
      //Update bus PUT
      @PutMapping("{busID}")
-     public ResponseEntity<Busses> updateEmployee(@PathVariable("busID") long busID, @RequestBody Busses bus) {
-         return new ResponseEntity<Busses>(busService.UpdateBus(bus, busID), HttpStatus.OK);
+     public ResponseEntity<Bus> updateEmployee(@PathVariable("busID") long busID, @RequestBody Bus bus) {
+         return new ResponseEntity<Bus>(busService.UpdateBus(bus, busID), HttpStatus.OK);
      }
 }

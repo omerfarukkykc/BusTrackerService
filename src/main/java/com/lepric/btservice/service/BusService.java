@@ -3,16 +3,16 @@ package com.lepric.btservice.service;
 import java.util.List;
 
 import com.lepric.btservice.ModelHelper.LocationHelper;
-import com.lepric.btservice.model.Busses;
+import com.lepric.btservice.model.Bus;
 
 public interface BusService {
     LocationHelper getBusLocation(long busID);
 
     boolean Deletebus(long busID);
 
-    Busses Getbus(long busID);
+    Bus Getbus(long busID);
 
-    List<Busses> Getbusses();
+    List<Bus> Getbusses();
 
-    Busses UpdateBus(Busses bus, long busID);
+    Bus UpdateBus(Bus bus, long busID);
 }
