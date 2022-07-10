@@ -72,7 +72,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public boolean DeleteUser(long id) {
         userRepository.findById(id).orElseThrow(
-            () -> new ResourceNotFoundException("Employee", "ID", id)
+            () -> new ResourceNotFoundException("User", "ID", id)
         );
         userRepository.deleteById(id);
         return true;
