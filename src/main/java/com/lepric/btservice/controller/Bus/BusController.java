@@ -1,4 +1,4 @@
-package com.lepric.btservice.controller;
+package com.lepric.btservice.controller.Bus;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ import com.lepric.btservice.service.BusService;
 
 
 @RestController
-@RequestMapping("/bus")
+@RequestMapping("/busses")
 public class BusController {
     
     @Autowired
@@ -28,28 +28,27 @@ public class BusController {
      //Create a new bus
      @PostMapping()
      public ResponseEntity<Bus> Addbus(@RequestBody Bus bus) {
-         return new ResponseEntity<Bus>(busService.Addbus(bus), HttpStatus.OK);
+         return new ResponseEntity<Bus>(busService.AddBus(bus), HttpStatus.OK);
      }
  
      // Get bus by busID
      @GetMapping("{busID}")
      public ResponseEntity<Bus> Getbus(@PathVariable("busID") long busID) {
-         return new ResponseEntity<Bus>(busService.Getbus(busID), HttpStatus.OK);
+         return new ResponseEntity<Bus>(busService.GetBus(busID), HttpStatus.OK);
      }
  
      //Get All buss 
      @GetMapping()
      public ResponseEntity<List<Bus>> getEmployees() {
-         return new ResponseEntity<List<Bus>>(busService.Getbusses(), HttpStatus.OK);
+         return new ResponseEntity<List<Bus>>(busService.GetBusses(), HttpStatus.OK);
      }
      
      //Delete bus by busID
      @DeleteMapping("{busID}")
      public ResponseEntity<String> deleteEmployee(@PathVariable("busID") long busID) {
-         busService.Deletebus(busID);
+         busService.DeleteBus(busID);
          return new ResponseEntity<String>("bus successfully deleted.",HttpStatus.OK);
      }
- 
      //Update bus PUT
      @PutMapping("{busID}")
      public ResponseEntity<Bus> updateEmployee(@PathVariable("busID") long busID, @RequestBody Bus bus) {

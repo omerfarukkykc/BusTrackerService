@@ -1,9 +1,8 @@
-package com.lepric.btservice.controller;
+package com.lepric.btservice.controller.User;
 
 import java.util.List;
 
 import com.lepric.btservice.ModelHelper.UpdatePasswordModelHelper;
-import com.lepric.btservice.model.Rol;
 import com.lepric.btservice.model.User;
 import com.lepric.btservice.service.UserService;
 
@@ -50,7 +49,6 @@ public class UserController {
         userService.DeleteUser(userID);
         return new ResponseEntity<String>("User successfully deleted.",HttpStatus.OK);
     }
-
     //Update User PUT
     @PutMapping("{userID}")
     public ResponseEntity<User> updateUser(@PathVariable("userID") long userID, @RequestBody User employee) {
@@ -61,11 +59,4 @@ public class UserController {
         return new ResponseEntity<Boolean>(userService.ChangePassword(userID,updatePassword), HttpStatus.OK);
     }
 
-   
-
-    //Get User Rol
-    @GetMapping("/rols/{userID}")
-    public ResponseEntity<Rol> GetUserRol(@PathVariable("userID") long userID){
-        return new ResponseEntity<Rol>(HttpStatus.OK);
-    }
 }

@@ -10,19 +10,23 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Entity
 @Data
 @Table(name = "BusModels")
-public class BusModels {
+public class BusModel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "modelID")
+    @JsonIgnore
     private long modeldID;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "brandID",nullable = false,unique = true,updatable = false)
+    @JoinColumn(name = "brandID",nullable = false)
     private BusModelBrands brand;
 
     @Column(name = "modelName",nullable = false)
