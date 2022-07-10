@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lepric.btservice.ModelHelper.BusModelHelper;
 import com.lepric.btservice.model.Bus;
 import com.lepric.btservice.service.BusService;
 
@@ -27,8 +28,10 @@ public class BusController {
     BusService busService;
      //Create a new bus
      @PostMapping()
-     public ResponseEntity<Bus> Addbus(@RequestBody Bus bus) {
-         return new ResponseEntity<Bus>(busService.AddBus(bus), HttpStatus.OK);
+     public ResponseEntity<Bus> Addbus(@RequestBody BusModelHelper bus) {
+        Bus dbBus = new Bus();
+        
+        return new ResponseEntity<Bus>(busService.AddBus(dbBus), HttpStatus.OK);
      }
  
      // Get bus by busID

@@ -30,7 +30,7 @@ public class LocationServiceImpl implements LocationService{
         );
         dbUser.getLocation().setLocation(new Point<G2D>(g(location.getLatitude(),location.getLongitude()),WGS84));
         userRepository.save(dbUser);
-        return new LocationModelHelper(dbUser.getLocation().getLocation(),dbUser.getLocation().getUpdatedAt());
+        return new LocationModelHelper(dbUser);
     }
 
     //Get User Location
@@ -39,7 +39,7 @@ public class LocationServiceImpl implements LocationService{
         User dbUser =  userRepository.findById(userID).orElseThrow(
             () -> new ResourceNotFoundException("User", "ID", userID)
         );
-        return new LocationModelHelper(dbUser.getLocation().getLocation(),dbUser.getLocation().getUpdatedAt());
+        return new LocationModelHelper(dbUser);
     }
     @Override
     public LocationModelHelper UpdateBusLocation(LocationModelHelper location, Long busID) {
@@ -47,13 +47,13 @@ public class LocationServiceImpl implements LocationService{
             () -> new ResourceNotFoundException("Bus", "ID", busID));
         bus.getLocation().setLocation(new Point<G2D>(g(location.getLatitude(),location.getLongitude()),WGS84));
         busRepository.save(bus);
-        return new LocationModelHelper(bus.getLocation().getLocation(),bus.getLocation().getUpdatedAt());
+        return new LocationModelHelper(bus);
     }
 
     @Override
     public LocationModelHelper getBusLocation(Long busID) {
         Bus bus =  busRepository.findById(busID).orElseThrow(
             () -> new ResourceNotFoundException("Bus", "ID", busID));
-        return new LocationModelHelper(bus.getLocation().getLocation(),bus.getLocation().getUpdatedAt());
+        return new LocationModelHelper(bus);
     }
 }

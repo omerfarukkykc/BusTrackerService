@@ -12,6 +12,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.lepric.btservice.ModelHelper.BusModelHelper;
 
 import lombok.Data;
 
@@ -20,6 +21,9 @@ import lombok.Data;
 @Table(name = "Busses")
 public class Bus {
       
+    
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "busID")
