@@ -19,6 +19,7 @@ import lombok.Data;
 @Table(name = "BusModels")
 public class BusModel {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "modelID")

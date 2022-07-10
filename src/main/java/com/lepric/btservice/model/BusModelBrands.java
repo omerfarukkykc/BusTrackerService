@@ -17,9 +17,9 @@ import lombok.Data;
 public class BusModelBrands {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "modelID")
+    @Column(name = "brandID")
     @JsonIgnore
-    private long modelID;
+    private long brandID;
 
     
     @Column(name = "brandName")

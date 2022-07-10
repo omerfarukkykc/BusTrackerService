@@ -12,7 +12,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.lepric.btservice.ModelHelper.BusModelHelper;
 
 import lombok.Data;
 
@@ -42,4 +41,13 @@ public class Bus {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "locationID",nullable = false,unique = true,updatable = false)
     private Location location;
+
+
+
+    public Bus() {
+        BusModelBrands busModelBrands = new BusModelBrands();
+        BusModel busModel = new BusModel();
+        busModel.setBrand(busModelBrands);
+        this.setModel(busModel);
+    }
 }
