@@ -1,4 +1,4 @@
-package com.lepric.btservice.controller;
+package com.lepric.btservice.controller.Location;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
