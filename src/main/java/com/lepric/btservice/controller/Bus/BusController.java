@@ -27,32 +27,33 @@ public class BusController {
     @Autowired
     BusService busService;
      //Create a new bus
-     @PostMapping()
-     public ResponseEntity<BusModelHelper> Addbus(@RequestBody BusModelHelper bus) {
-        return new ResponseEntity<BusModelHelper>(busService.AddBus(bus), HttpStatus.OK);
-     }
- 
+    @PostMapping()
+    public ResponseEntity<Bus> Addbus(@RequestBody BusModelHelper bus) {
+        
+        return new ResponseEntity<Bus>(busService.AddBus(bus), HttpStatus.OK);
+    }
+
      // Get bus by busID
-     @GetMapping("{busID}")
-     public ResponseEntity<BusModelHelper> Getbus(@PathVariable("busID") long busID) {
-         return new ResponseEntity<BusModelHelper>(busService.GetBus(busID), HttpStatus.OK);
-     }
- 
+    @GetMapping("{busID}")
+    public ResponseEntity<Bus> Getbus(@PathVariable("busID") long busID) {
+        return new ResponseEntity<Bus>(busService.GetBus(busID), HttpStatus.OK);
+    }
      //Get All buss 
-     @GetMapping()
-     public ResponseEntity<List<BusModelHelper>> getBusses() {
-         return new ResponseEntity<List<BusModelHelper>>(busService.GetBusses(), HttpStatus.OK);
-     }
-     
+    @GetMapping()
+    public ResponseEntity<List<Bus>> getBusses() {
+        return new ResponseEntity<List<Bus>>(busService.GetBusses(), HttpStatus.OK);
+    }
+    
      //Delete bus by busID
-     @DeleteMapping("{busID}")
-     public ResponseEntity<String> deleteBus(@PathVariable("busID") long busID) {
-         busService.DeleteBus(busID);
-         return new ResponseEntity<String>("bus successfully deleted.",HttpStatus.OK);
-     }
+    @DeleteMapping("{busID}")
+    public ResponseEntity<String> deleteBus(@PathVariable("busID") long busID) {
+        busService.DeleteBus(busID);
+        return new ResponseEntity<String>("bus successfully deleted.",HttpStatus.OK);
+    }
      //Update bus PUT
-     @PutMapping("{busID}")
-     public ResponseEntity<BusModelHelper> updateBus(@PathVariable("busID") long busID, @RequestBody Bus bus) {
-         return new ResponseEntity<BusModelHelper>(busService.UpdateBus(bus, busID), HttpStatus.OK);
-     }
+    @PutMapping("{busID}")
+    public ResponseEntity<Bus> updateBus(@PathVariable("busID") long busID, @RequestBody BusModelHelper bus) {
+
+        return new ResponseEntity<Bus>(busService.UpdateBus(bus, busID), HttpStatus.OK);
+    }
 }

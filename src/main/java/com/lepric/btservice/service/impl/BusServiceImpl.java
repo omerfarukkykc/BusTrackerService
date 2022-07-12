@@ -14,11 +14,11 @@ import org.springframework.stereotype.Service;
 import com.lepric.btservice.ModelHelper.BusModelHelper;
 import com.lepric.btservice.exception.ResourceNotFoundException;
 import com.lepric.btservice.model.Bus;
-import com.lepric.btservice.model.BusModel;
-import com.lepric.btservice.model.BusModelBrands;
+import com.lepric.btservice.model.BusBrand;
+import com.lepric.btservice.model.BusBrandModel;
 import com.lepric.btservice.model.Location;
-import com.lepric.btservice.repository.BusModelBrandsRepository;
-import com.lepric.btservice.repository.BusModelRepository;
+import com.lepric.btservice.repository.BusBrandsRepository;
+import com.lepric.btservice.repository.BusBrandModelRepository;
 import com.lepric.btservice.repository.BusRepository;
 import com.lepric.btservice.service.BusService;
 
@@ -29,10 +29,10 @@ public class BusServiceImpl implements BusService{
     private BusRepository busRepository;
     
     @Autowired
-    private BusModelRepository busModelRepository;
+    private BusBrandModelRepository busBrandModelRepository;
 
     @Autowired
-    private BusModelBrandsRepository busModelBrandsRepository;
+    private BusBrandsRepository busBrandRepository;
     
     
     @Override
@@ -43,49 +43,52 @@ public class BusServiceImpl implements BusService{
         return true;
     }
     @Override
-    public BusModelHelper GetBus(long busID) {
+    public Bus GetBus(long busID) {
         Bus bus = busRepository.findById(busID).orElseThrow(
             () -> new ResourceNotFoundException("Bus", "ID", busID));
-        return new BusModelHelper(bus);    
+        return bus;    
     }
     @Override
-    public List<BusModelHelper> GetBusses() {
-        List<BusModelHelper> result = new ArrayList<BusModelHelper>();
-        busRepository.findAll().forEach(item->{
-            result.add(new BusModelHelper(item));
-        });
-        return result;
+    public List<Bus> GetBusses() {
+        return busRepository.findAll();
     }
     @Override
-    public BusModelHelper UpdateBus(Bus bus, long busID) {
+    public Bus UpdateBus(BusModelHelper busHelper, long busID) {
         Bus dbBus =  busRepository.findById(busID).orElseThrow(
             () -> new ResourceNotFoundException("Bus", "ID", busID));
-        if(dbBus.getPlate() != null)    
-            dbBus.setPlate(bus.getPlate());
-        if(dbBus.getModel() != null)
-            dbBus.setModel(bus.getModel());  
-        return new BusModelHelper(busRepository.save(dbBus));
+        if(busHelper.getPlate() != null)    
+            dbBus.setPlate(busHelper.getPlate());
+        if(busHelper.getBrandID() != 0)
+            dbBus.setBrand(busBrandRepository.getById(busHelper.getBrandID()));
+        if(busHelper.getModelID() != 0)
+            dbBus.setModel(busBrandModelRepository.getById(busHelper.getModelID()));
+        return busRepository.save(dbBus);
     }
     @Override
-    public BusModelHelper AddBus(BusModelHelper busHelper) {
+    public Bus AddBus(BusModelHelper busHelper) {
         Bus bus = busHelper.toBus();
+        bus.setBrand(busBrandRepository.getById(busHelper.getBrandID()));
+        bus.setModel(busBrandModelRepository.getById(busHelper.getModelID()));
         bus.setLocation(new Location());
         bus.getLocation().setLocation(new Point<G2D>(g(0,0),WGS84));
-        return new BusModelHelper(busRepository.save(bus));
+        return busRepository.save(bus);
     }
 
     @Override
-    public List<BusModel> getModels() {
-        return busModelRepository.findAll();
+    public List<BusBrand> getBrands() {
+        return busBrandRepository.findAll();
     }
 
     @Override
-    public List<BusModelBrands> getModelBrands() {
-        return busModelBrandsRepository.findAll();
+    public List<BusBrandModel> getBrandModels(long brandID) {
+        BusBrand brand = busBrandRepository.findById(brandID).orElseThrow(
+            () -> new ResourceNotFoundException("Brand", "ID", brandID));
+        return brand.getModels();
     }
     @Override
-    public BusModel addModel(BusModel busModel) {
-        
+    public BusBrand addModel(BusBrand busModel) {
+         // TODO Auto-generated method stub
+         return null;
     }
     @Override
     public boolean deleteModel() {

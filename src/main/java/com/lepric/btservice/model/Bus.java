@@ -1,5 +1,8 @@
 package com.lepric.btservice.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,23 +34,19 @@ public class Bus {
     @Column(name = "plate",nullable = false,unique = true)
     private String plate;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "modelID",nullable = false)
-    private BusModel model;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "brandID")
+    private BusBrand brand;
 
-    
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "modelID")
+    private BusBrandModel model;
     
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "locationID",nullable = false,unique = true,updatable = false)
     private Location location;
 
+    
 
-
-    public Bus() {
-        BusModelBrands busModelBrands = new BusModelBrands();
-        BusModel busModel = new BusModel();
-        busModel.setBrand(busModelBrands);
-        this.setModel(busModel);
-    }
 }
