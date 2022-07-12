@@ -1,6 +1,5 @@
 package com.lepric.btservice.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.geolatte.geom.builder.DSL.*;
