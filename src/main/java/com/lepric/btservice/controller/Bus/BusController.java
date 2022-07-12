@@ -40,8 +40,8 @@ public class BusController {
  
      //Get All buss 
      @GetMapping()
-     public ResponseEntity<List<Bus>> getBusses() {
-         return new ResponseEntity<List<Bus>>(busService.GetBusses(), HttpStatus.OK);
+     public ResponseEntity<List<BusModelHelper>> getBusses() {
+         return new ResponseEntity<List<BusModelHelper>>(busService.GetBusses(), HttpStatus.OK);
      }
      
      //Delete bus by busID

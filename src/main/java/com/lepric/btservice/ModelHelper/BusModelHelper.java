@@ -1,8 +1,6 @@
 package com.lepric.btservice.ModelHelper;
 
 import com.lepric.btservice.model.Bus;
-import com.lepric.btservice.model.BusModel;
-import com.lepric.btservice.model.BusModelBrands;
 
 import lombok.Data;
 

@@ -1,11 +1,11 @@
 package com.lepric.btservice.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.geolatte.geom.builder.DSL.*;
 import static org.geolatte.geom.crs.CoordinateReferenceSystems.WGS84;
 
-import org.aspectj.internal.lang.annotation.ajcDeclareAnnotation;
 import org.geolatte.geom.G2D;
 import org.geolatte.geom.Point;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,8 +49,12 @@ public class BusServiceImpl implements BusService{
         return new BusModelHelper(bus);    
     }
     @Override
-    public List<Bus> GetBusses() {
-        return busRepository.findAll();
+    public List<BusModelHelper> GetBusses() {
+        List<BusModelHelper> result = new ArrayList<BusModelHelper>();
+        busRepository.findAll().forEach(item->{
+            result.add(new BusModelHelper(item));
+        });
+        return result;
     }
     @Override
     public BusModelHelper UpdateBus(Bus bus, long busID) {
@@ -78,6 +82,20 @@ public class BusServiceImpl implements BusService{
     @Override
     public List<BusModelBrands> getModelBrands() {
         return busModelBrandsRepository.findAll();
+    }
+    @Override
+    public BusModel addModel(BusModel busModel) {
+        
+    }
+    @Override
+    public boolean deleteModel() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+    @Override
+    public boolean updateModel() {
+        // TODO Auto-generated method stub
+        return false;
     }
     
 }

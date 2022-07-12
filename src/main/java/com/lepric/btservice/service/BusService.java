@@ -14,7 +14,7 @@ public interface BusService {
 
     BusModelHelper GetBus(long busID);
 
-    List<Bus> GetBusses();
+    List<BusModelHelper> GetBusses();
 
     BusModelHelper UpdateBus(Bus bus, long busID);
 
@@ -22,6 +22,10 @@ public interface BusService {
 
     
     List<BusModel> getModels();
+    BusModel addModel(BusModel busModel);
+    boolean deleteModel();
+    boolean updateModel();
+
 
     List<BusModelBrands> getModelBrands();
     
