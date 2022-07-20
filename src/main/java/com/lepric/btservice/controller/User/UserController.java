@@ -2,8 +2,8 @@ package com.lepric.btservice.controller.User;
 
 import java.util.List;
 
-import com.lepric.btservice.ModelHelper.UpdatePasswordModelHelper;
 import com.lepric.btservice.model.User;
+import com.lepric.btservice.payload.response.UpdatePasswordModelHelper;
 import com.lepric.btservice.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;

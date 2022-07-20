@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lepric.btservice.ModelHelper.BusModelHelper;
 import com.lepric.btservice.model.Bus;
+import com.lepric.btservice.payload.response.BusModelHelper;
 import com.lepric.btservice.service.BusService;
 
 

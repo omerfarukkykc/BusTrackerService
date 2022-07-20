@@ -1,7 +1,7 @@
 package com.lepric.btservice.service;
 
 
-import com.lepric.btservice.ModelHelper.LocationModelHelper;
+import com.lepric.btservice.payload.response.LocationModelHelper;
 
 
 

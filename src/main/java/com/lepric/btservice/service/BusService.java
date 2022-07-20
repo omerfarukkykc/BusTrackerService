@@ -2,10 +2,10 @@ package com.lepric.btservice.service;
 
 import java.util.List;
 
-import com.lepric.btservice.ModelHelper.BusModelHelper;
 import com.lepric.btservice.model.Bus;
 import com.lepric.btservice.model.BusBrand;
 import com.lepric.btservice.model.BusBrandModel;
+import com.lepric.btservice.payload.response.BusModelHelper;
 
 public interface BusService {
 

@@ -1,4 +1,4 @@
-package com.lepric.btservice.ModelHelper;
+package com.lepric.btservice.payload.response;
 
 import lombok.Data;
 

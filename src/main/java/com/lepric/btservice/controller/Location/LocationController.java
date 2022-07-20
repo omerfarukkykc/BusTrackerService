@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lepric.btservice.ModelHelper.LocationModelHelper;
+import com.lepric.btservice.payload.response.LocationModelHelper;
 import com.lepric.btservice.service.LocationService;
 
 @RestController

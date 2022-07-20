@@ -8,10 +8,10 @@ import static org.geolatte.geom.crs.CoordinateReferenceSystems.WGS84;
 import org.geolatte.geom.G2D;
 import org.geolatte.geom.Point;
 
-import com.lepric.btservice.ModelHelper.LocationModelHelper;
 import com.lepric.btservice.exception.ResourceNotFoundException;
 import com.lepric.btservice.model.Bus;
 import com.lepric.btservice.model.User;
+import com.lepric.btservice.payload.response.LocationModelHelper;
 import com.lepric.btservice.repository.BusRepository;
 import com.lepric.btservice.repository.UserRepository;
 import com.lepric.btservice.service.LocationService;

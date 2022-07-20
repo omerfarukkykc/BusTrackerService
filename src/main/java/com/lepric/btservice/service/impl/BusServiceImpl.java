@@ -10,12 +10,12 @@ import org.geolatte.geom.Point;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.lepric.btservice.ModelHelper.BusModelHelper;
 import com.lepric.btservice.exception.ResourceNotFoundException;
 import com.lepric.btservice.model.Bus;
 import com.lepric.btservice.model.BusBrand;
 import com.lepric.btservice.model.BusBrandModel;
 import com.lepric.btservice.model.Location;
+import com.lepric.btservice.payload.response.BusModelHelper;
 import com.lepric.btservice.repository.BusBrandsRepository;
 import com.lepric.btservice.repository.BusBrandModelRepository;
 import com.lepric.btservice.repository.BusRepository;
