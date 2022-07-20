@@ -3,6 +3,8 @@ package com.lepric.btservice.controller.Auth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lepric.btservice.payload.request.AuthRequest;
+import com.lepric.btservice.service.UserService;
 import com.lepric.btservice.util.JwtUtil;
 
 
@@ -22,10 +25,13 @@ public class AuthenticateController {
     private JwtUtil jwtUtil;
     @Autowired
     private AuthenticationManager authenticationManager;
-
+    @Autowired
+    private UserService userService;
     @GetMapping("/")
     public String welcome() {
-        return "Welcome to javatechie !!";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        return authentication.getName();   
     }
 
     @PostMapping("/authenticate")
@@ -37,6 +43,6 @@ public class AuthenticateController {
         } catch (Exception ex) {
             throw new Exception("inavalid username/password");
         }
-        return jwtUtil.generateToken(authRequest.getUserName());
+        return jwtUtil.generateToken(userService.GetUser(authRequest.getUserName()));
     }
 }

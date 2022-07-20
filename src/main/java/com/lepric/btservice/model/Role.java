@@ -2,6 +2,7 @@ package com.lepric.btservice.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,18 +17,18 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "Rols")
-public class Rol {
+public class Role {
    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "rolID")
-    private long rolID;
+    @Column(name = "roleID")
+    private long roleID;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.MERGE)
     private List<User> users;
 
     @Column(name = "rolName", nullable = false,length = 40)
-    private String rolName;
+    private String roleName;
 
     @Column(name = "editRotations", nullable = false)
     private boolean editRotations;

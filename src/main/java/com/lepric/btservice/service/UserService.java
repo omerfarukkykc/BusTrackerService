@@ -1,6 +1,6 @@
 package com.lepric.btservice.service;
 
-import com.lepric.btservice.model.Rol;
+import com.lepric.btservice.model.Role;
 import com.lepric.btservice.model.User;
 import com.lepric.btservice.payload.response.UpdatePasswordModelHelper;
 
@@ -13,8 +13,9 @@ public interface UserService {
     List<User> GetUsers();
     boolean DeleteUser(long userID);
     boolean ChangePassword(long userID,UpdatePasswordModelHelper upmh);
+    User GetUser(String email);
 
 
-    List<Rol> GetUserRols(long userID);
+    List<Role> GetUserRols(long userID);
 
 }

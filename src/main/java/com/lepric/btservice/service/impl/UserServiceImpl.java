@@ -14,7 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.lepric.btservice.exception.ResourceNotFoundException;
-import com.lepric.btservice.model.Rol;
+import com.lepric.btservice.model.Role;
 import com.lepric.btservice.model.User;
 import com.lepric.btservice.payload.response.UpdatePasswordModelHelper;
 import com.lepric.btservice.model.Location;
@@ -87,7 +87,7 @@ public class UserServiceImpl implements UserService ,UserDetailsService{
 
     //Get User Rols
     @Override
-    public List<Rol> GetUserRols(long userID) {
+    public List<Role> GetUserRols(long userID) {
         User dbUser =  userRepository.findById(userID).orElseThrow(
             () -> new ResourceNotFoundException("User", "ID", userID)
         );
@@ -111,11 +111,24 @@ public class UserServiceImpl implements UserService ,UserDetailsService{
         return true;
     }
 
+    
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(username);
+        User user = userRepository.findByEmail(username).orElseThrow(
+            () -> new ResourceNotFoundException("User", "email", username)
+        );;
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), new ArrayList<>());
+    }
+
+
+    @Override
+    public User GetUser(String email) {
+        return userRepository.findByEmail(email).orElseThrow(
+            () -> new ResourceNotFoundException("User", "email", email)
+        );
+        
     }
 
 

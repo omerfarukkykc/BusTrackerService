@@ -60,8 +60,8 @@ public class User {
     @JoinColumn(name = "alarmID")
     private List<Alarms> alarms;
 
-    @ManyToMany
-    private List<Rol> rols;
+    @ManyToMany(cascade = CascadeType.MERGE)
+    private List<Role> rols;
 
     @OneToMany(mappedBy = "apiRole")
     List<ApiUserRols> ApiUserRols;

@@ -26,7 +26,7 @@ public class UserController {
     private UserService userService;
 
     //Create a new user
-    @PostMapping()
+    @PostMapping("/register")
     public ResponseEntity<User> AddUser(@RequestBody User user) {
         return new ResponseEntity<User>(userService.AddUser(user), HttpStatus.OK);
     }
