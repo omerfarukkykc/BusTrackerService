@@ -2,17 +2,14 @@ package com.lepric.btservice;
 
 import javax.annotation.PostConstruct;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.lepric.btservice.model.User;
-import com.lepric.btservice.service.UserService;
 
 @SpringBootApplication
 public class BtserviceApplication {
-	@Autowired
-    private UserService userService;
+	//@Autowired
+    //private UserService userService;
 
     @PostConstruct
     public void initUsers() {

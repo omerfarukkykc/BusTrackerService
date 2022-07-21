@@ -1,40 +1,26 @@
 
 package com.lepric.btservice;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
+import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.apache.tomcat.util.json.JSONParser;
-import org.apache.tomcat.util.json.ParseException;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.json.GsonJsonParser;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
 
-import com.fasterxml.jackson.core.exc.StreamReadException;
-import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lepric.btservice.exception.ResourceNotFoundException;
 import com.lepric.btservice.model.City;
-import com.lepric.btservice.model.District;
 import com.lepric.btservice.model.Privilege;
 import com.lepric.btservice.model.Role;
 import com.lepric.btservice.model.User;
+import com.lepric.btservice.repository.CityRepository;
 import com.lepric.btservice.repository.PrivilegeRepository;
 import com.lepric.btservice.repository.RoleRepository;
 import com.lepric.btservice.service.UserService;
@@ -53,6 +39,9 @@ public class SetupDataLoader implements
 
     @Autowired
     private PrivilegeRepository privilegeRepository;
+
+    @Autowired
+    private CityRepository cityRepository;
     
     @Override
     @Transactional
@@ -87,40 +76,20 @@ public class SetupDataLoader implements
         user.setRols(Arrays.asList(adminRole));
         user.setEnabled(true);
         userService.AddUser(user);
-
+        createCityAndDistrict();
         
         alreadySetup = true;
     }
+
+    @Transactional
     void createCityAndDistrict(){
-        //Todo Json okuma işlemi düzeltilecek veya alternatif yol aranacak.
-
-
-        List<City> citiesList =new ArrayList<City>();
-        try (Reader reader = new FileReader(ResourceUtils.getFile("classpath:data/city-district.json"))) {
-            
-            JSONParser alldata = new JSONParser(reader);
-            JSONObject cities = (JSONObject) alldata.parse();
-            JSONArray citieArray = (JSONArray)cities.get("data");
-            Iterator<String> iterator = citieArray.iterator();
-            while (iterator.hasNext()) {
-                JSONParser citiyData = new JSONParser(iterator.next());
-                JSONObject cityObject = (JSONObject) citiyData.parse();
-                City city = new City();
-                List<District> districtsList = new ArrayList<District>();
-                city.setDistricts(districtsList);
-                city.setCityName((String)cityObject.get("cityName"));
-                JSONArray districtsObject = (JSONArray)cityObject.get("districts");
-                Iterator<String> distiterator = districtsObject.iterator();
-                while (distiterator.hasNext()) {
-                    District district = new District();
-                    district.setDistrictName(distiterator.next());
-                    districtsList.add(district);
-                }
-                citiesList.add(city);
-            }
-
-
-        } catch (IOException | ParseException e) {
+        try{
+            Path path = ResourceUtils.getFile("classpath:data/city-district.json").toPath();
+            String str = Files.readString(path);
+            ObjectMapper om = new ObjectMapper();
+            City[] root = om.readValue(str, City[].class);
+            cityRepository.saveAll(List.of(root));
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

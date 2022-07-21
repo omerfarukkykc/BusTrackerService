@@ -20,7 +20,6 @@ import com.lepric.btservice.model.Role;
 import com.lepric.btservice.model.User;
 import com.lepric.btservice.payload.response.UpdatePasswordModelHelper;
 import com.lepric.btservice.model.Location;
-import com.lepric.btservice.model.Privilege;
 import com.lepric.btservice.repository.UserRepository;
 import com.lepric.btservice.service.UserService;
 
