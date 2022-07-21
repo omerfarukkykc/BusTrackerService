@@ -46,13 +46,12 @@ public class JwtUtil {
         Map<String, Object> claims = new HashMap<>();
         claims.put("Firstname", user.getFirstname());
         claims.put("Lastname", user.getLastname());
-        claims.put("Rols", user.getRols());
         return createToken(claims, user.getEmail());
     }
 
     private String createToken(Map<String, Object> claims, String subject) {
 
-        return Jwts.builder().setPayload("payload")
+        return Jwts.builder()
         .setClaims(claims)
         .setSubject(subject)
         .setIssuedAt(new Date(System.currentTimeMillis()))

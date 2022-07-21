@@ -7,32 +7,37 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.transaction.Transactional;
+import static org.geolatte.geom.builder.DSL.*;
+import static org.geolatte.geom.crs.CoordinateReferenceSystems.WGS84;
 
+import org.geolatte.geom.G2D;
+import org.geolatte.geom.Point;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lepric.btservice.exception.ResourceNotFoundException;
 import com.lepric.btservice.model.City;
+import com.lepric.btservice.model.Location;
 import com.lepric.btservice.model.Privilege;
 import com.lepric.btservice.model.Role;
 import com.lepric.btservice.model.User;
 import com.lepric.btservice.repository.CityRepository;
 import com.lepric.btservice.repository.PrivilegeRepository;
 import com.lepric.btservice.repository.RoleRepository;
-import com.lepric.btservice.service.UserService;
+import com.lepric.btservice.repository.UserRepository;
 
 @Component
 public class SetupDataLoader implements
     ApplicationListener<ContextRefreshedEvent> {
     
-    boolean alreadySetup = false;
+    boolean alreadySetup = true;
 
     @Autowired
-    private UserService userService;
+    private UserRepository userRepository;
  
     @Autowired
     private RoleRepository roleRepository;
@@ -42,7 +47,8 @@ public class SetupDataLoader implements
 
     @Autowired
     private CityRepository cityRepository;
-    
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @Override
     @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -64,20 +70,31 @@ public class SetupDataLoader implements
         createRoleIfNotFound("ROLE_USER", userPrivileges);
         createRoleIfNotFound("ROLE_DEALER", dealerPrivileges);
         createRoleIfNotFound("ROLE_MOD", modPrivileges);
-
-        Role adminRole = roleRepository.findByRoleName("ROLE_ADMIN").orElseThrow(
-            () -> new ResourceNotFoundException("Role", "Role Name", "ROLE_ADMIN")
-        );
-        User user = new User();
-        user.setFirstname("Ömer Faruk");
-        user.setLastname("Kayıkcı");
-        user.setPassword("123456");
-        user.setEmail("omer.twd@gmail.com");
-        user.setRols(Arrays.asList(adminRole));
-        user.setEnabled(true);
-        userService.AddUser(user);
-        createCityAndDistrict();
+        Role adminRole = roleRepository.findByRoleName("ROLE_ADMIN");
+        User admin = new User();
+        admin.setFirstname("Ömer Faruk");
+        admin.setLastname("Kayıkcı");
+        admin.setEmail("omer.twd@gmail.com");
+        admin.setRoles(Arrays.asList(adminRole));
+        admin.setEnabled(true);
+        admin.setLocation(new Location());
+        admin.getLocation().setLocation(new Point<G2D>(g(0, 0), WGS84));
+        admin.setPassword(passwordEncoder.encode("123456"));
+        userRepository.save(admin);
         
+        Role userRole = roleRepository.findByRoleName("ROLE_USER");
+        User user = new User();
+        user.setFirstname("Test User");
+        user.setLastname("Test");
+        user.setEmail("test@gmail.com");
+        user.setRoles(Arrays.asList(userRole));
+        user.setEnabled(true);
+        user.setLocation(new Location());
+        user.getLocation().setLocation(new Point<G2D>(g(0, 0), WGS84));
+        user.setPassword(passwordEncoder.encode("123456"));
+        userRepository.save(user);
+        
+        createCityAndDistrict();
         alreadySetup = true;
     }
 

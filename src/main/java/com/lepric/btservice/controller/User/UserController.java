@@ -1,6 +1,10 @@
 package com.lepric.btservice.controller.User;
 
+import java.util.Collection;
 import java.util.List;
+
+import javax.annotation.security.RolesAllowed;
+import javax.servlet.http.HttpServletRequest;
 
 import com.lepric.btservice.model.User;
 import com.lepric.btservice.payload.response.UpdatePasswordModelHelper;
@@ -9,6 +13,7 @@ import com.lepric.btservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,20 +44,23 @@ public class UserController {
 
     //Get All Users 
     @GetMapping()
-    public ResponseEntity<List<User>> getUsers() {
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public ResponseEntity<List<User>> getUsers(HttpServletRequest request) {        
         return new ResponseEntity<>(userService.GetUsers(), HttpStatus.OK);
     }
     
     //Delete User by userID
     @DeleteMapping("{userID}")
+    //@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('EDIT_ROTATIONS')")
     public ResponseEntity<String> deleteUser(@PathVariable("userID") long userID) {
         userService.DeleteUser(userID);
         return new ResponseEntity<String>("User successfully deleted.",HttpStatus.OK);
     }
     //Update User PUT
     @PutMapping("{userID}")
-    public ResponseEntity<User> updateUser(@PathVariable("userID") long userID, @RequestBody User employee) {
-        return new ResponseEntity<User>(userService.UpdateUser(employee, userID), HttpStatus.OK);
+    public ResponseEntity<User> updateUser(@PathVariable("userID") long userID, @RequestBody User user) {
+        return new ResponseEntity<User>(userService.UpdateUser(user, userID), HttpStatus.OK);
     }
     @PutMapping("/updatePassword/{userID}")
     public ResponseEntity<Boolean> updateUserPassword(@PathVariable("userID") long userID, @RequestBody UpdatePasswordModelHelper updatePassword) {

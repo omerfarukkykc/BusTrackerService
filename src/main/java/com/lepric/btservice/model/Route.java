@@ -1,44 +1,51 @@
-
 package com.lepric.btservice.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import org.geolatte.geom.*;
-
+import org.geolatte.geom.Polygon;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.geolatte.geom.G2D;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "UserLocation")
-public class Location {
+@Table(name = "Route")
+public class Route {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "locationID")
-    private long locationID;
+    @Column(name = "routeID")
+    private long routeID;
     
     @UpdateTimestamp
     @Column(name = "updated_at", updatable = true, nullable = false)
     private LocalDateTime updatedAt;
     
-    @JsonIgnore
-    @Column(columnDefinition = "location") 
-    private Point<G2D> location;
+    @Column(name = "routeName", columnDefinition = "POLYGON") 
+    private String routeName;
 
-    /* 
-    @Column(columnDefinition = "POLYGON") // this type is known by MySQL
-    private LineString route;
-    */
-    
+    @JsonIgnore
+    @Column(name = "route", columnDefinition = "POLYGON") 
+    private Polygon<G2D> route;
+
+    @JoinColumn(name = "stationID")
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Station> stations;
+
+
 }
