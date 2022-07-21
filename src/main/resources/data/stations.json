@@ -1,0 +1,1172 @@
+[
+    {
+        "stationId": 0,
+        "description": null,
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": null,
+        "longitude": null,
+        "panelId": null
+    },
+    {
+        "stationId": 1,
+        "description": "İlk Durak",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "40.99501857008773",
+        "longitude": "28.641635445785493",
+        "panelId": null
+    },
+    {
+        "stationId": 2,
+        "description": "Son Durak",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": null,
+        "longitude": null,
+        "panelId": null
+    },
+    {
+        "stationId": 3,
+        "description": "AKBANK ÖNÜ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.63308549508948",
+        "longitude": "32.33856186623575",
+        "panelId": null
+    },
+    {
+        "stationId": 4,
+        "description": "HENDEK YANI",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.63025565383186",
+        "longitude": "32.34747107853889",
+        "panelId": null
+    },
+    {
+        "stationId": 5,
+        "description": "ESENTEPE",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.62602831639",
+        "longitude": "32.35513312020305",
+        "panelId": null
+    },
+    {
+        "stationId": 6,
+        "description": "YENİ MAHALLE",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.624",
+        "longitude": "32.3594",
+        "panelId": null
+    },
+    {
+        "stationId": 7,
+        "description": "POTBAŞI",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6135",
+        "longitude": "32.3707",
+        "panelId": null
+    },
+    {
+        "stationId": 8,
+        "description": "ÇAYIRLAR",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6236",
+        "longitude": "32.3697",
+        "panelId": null
+    },
+    {
+        "stationId": 9,
+        "description": "ESKİ TERMİNAL DURAĞI GİRİŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6378",
+        "longitude": "32.3347",
+        "panelId": null
+    },
+    {
+        "stationId": 10,
+        "description": "ORDU YERİ(cezaevi)",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6407",
+        "longitude": "32.3437",
+        "panelId": null
+    },
+    {
+        "stationId": 11,
+        "description": "MAVİKENT MARTI SİTESİ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6442",
+        "longitude": "32.3585",
+        "panelId": null
+    },
+    {
+        "stationId": 12,
+        "description": "CEZAEVİ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6453",
+        "longitude": "32.3704",
+        "panelId": null
+    },
+    {
+        "stationId": 13,
+        "description": "ÇAM ALTI",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6461",
+        "longitude": "32.3798",
+        "panelId": null
+    },
+    {
+        "stationId": 14,
+        "description": "AKPINAR YOLU",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6442",
+        "longitude": "32.388",
+        "panelId": null
+    },
+    {
+        "stationId": 15,
+        "description": "ÖZEL İDARE DURAĞI GİRİŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6224",
+        "longitude": "32.3366",
+        "panelId": null
+    },
+    {
+        "stationId": 16,
+        "description": "ÖZEL İDARE DURAĞI ÇIKIŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6223",
+        "longitude": "32.3367",
+        "panelId": null
+    },
+    {
+        "stationId": 17,
+        "description": "KARAKÖY",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.617572428443765",
+        "longitude": "32.3397375509262",
+        "panelId": null
+    },
+    {
+        "stationId": 18,
+        "description": "AĞDACI(Eski)",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.610491978301894",
+        "longitude": "32.33942045184381",
+        "panelId": null
+    },
+    {
+        "stationId": 19,
+        "description": "ÜNİVERSİTE DURAĞI GİRİŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6015",
+        "longitude": "32.3467",
+        "panelId": null
+    },
+    {
+        "stationId": 20,
+        "description": "ÜNİVERSİTE DURAĞI ÇIKIŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6015",
+        "longitude": "32.3464",
+        "panelId": null
+    },
+    {
+        "stationId": 21,
+        "description": "VALİ KONAĞI",
+        "stationType": null,
+        "altitude": "",
+        "isActive": 1,
+        "latitude": "41.6333848490855",
+        "longitude": "32.32323376",
+        "panelId": 21
+    },
+    {
+        "stationId": 22,
+        "description": "ÇAMLIK CAMİİ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6327",
+        "longitude": "32.3184",
+        "panelId": null
+    },
+    {
+        "stationId": 23,
+        "description": "KANLITÜRBE TEPESİ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6325",
+        "longitude": "32.3154",
+        "panelId": null
+    },
+    {
+        "stationId": 24,
+        "description": "ÇATMACA",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6271",
+        "longitude": "32.3235",
+        "panelId": 24
+    },
+    {
+        "stationId": 25,
+        "description": "EMNİYET",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6271",
+        "longitude": "32.3221",
+        "panelId": 25
+    },
+    {
+        "stationId": 26,
+        "description": "YILDIZKENT",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6268",
+        "longitude": "32.3162",
+        "panelId": null
+    },
+    {
+        "stationId": 27,
+        "description": "SSK HASTANESİ DURAĞI GİRİŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6265",
+        "longitude": "32.3112",
+        "panelId": null
+    },
+    {
+        "stationId": 28,
+        "description": "SSK HASTANESİ DURAĞI ÇIKIŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6263",
+        "longitude": "32.3128",
+        "panelId": null
+    },
+    {
+        "stationId": 29,
+        "description": "POLİS EVİ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6144",
+        "longitude": "32.3233",
+        "panelId": null
+    },
+    {
+        "stationId": 30,
+        "description": "POLİS LOJMANLARI",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.5882",
+        "longitude": "32.3234",
+        "panelId": null
+    },
+    {
+        "stationId": 31,
+        "description": "TERMİNAL GİRİŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.57612052233581",
+        "longitude": "32.32434775924685",
+        "panelId": null
+    },
+    {
+        "stationId": 32,
+        "description": "ÇAKIRÖMER AĞA",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.5739",
+        "longitude": "32.2863",
+        "panelId": null
+    },
+    {
+        "stationId": 33,
+        "description": "KANLITÜRBE",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6308",
+        "longitude": "32.3159",
+        "panelId": null
+    },
+    {
+        "stationId": 34,
+        "description": "KAVALLAR",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6242",
+        "longitude": "32.3078",
+        "panelId": null
+    },
+    {
+        "stationId": 35,
+        "description": "ORDUYERİ(toki)",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6408",
+        "longitude": "32.3435",
+        "panelId": null
+    },
+    {
+        "stationId": 36,
+        "description": "JANDARMA KOMUTANLIĞI",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6465",
+        "longitude": "32.3356",
+        "panelId": null
+    },
+    {
+        "stationId": 37,
+        "description": "ÖĞRETMENLER SİTESİ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.648",
+        "longitude": "32.3341",
+        "panelId": null
+    },
+    {
+        "stationId": 38,
+        "description": "TOKİ C10",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.654011820928986",
+        "longitude": "32.333671836805365",
+        "panelId": null
+    },
+    {
+        "stationId": 39,
+        "description": "TOKİ 2.ETAP",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.650800340700854",
+        "longitude": "32.32941440129275",
+        "panelId": null
+    },
+    {
+        "stationId": 40,
+        "description": "ASMA KÖPRÜ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6341",
+        "longitude": "32.3319",
+        "panelId": null
+    },
+    {
+        "stationId": 41,
+        "description": "ORDUYERİ(dostkent-erkam)",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": null,
+        "longitude": null,
+        "panelId": null
+    },
+    {
+        "stationId": 42,
+        "description": "DOSTKENT",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6442",
+        "longitude": "32.3354",
+        "panelId": null
+    },
+    {
+        "stationId": 43,
+        "description": "ERKAM SİTESİ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.64464993921619",
+        "longitude": "32.347289735126424",
+        "panelId": null
+    },
+    {
+        "stationId": 44,
+        "description": "İMAMHATİP",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6194",
+        "longitude": "32.3486",
+        "panelId": null
+    },
+    {
+        "stationId": 45,
+        "description": "ESKİ TERMİNAL DURAĞI ÇIKIŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.63778774384867",
+        "longitude": "32.334429096889494",
+        "panelId": null
+    },
+    {
+        "stationId": 46,
+        "description": "DEVLET HASTANESİ DURAĞI GİRİŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.628",
+        "longitude": "32.3551",
+        "panelId": null
+    },
+    {
+        "stationId": 47,
+        "description": "DEVLET HASTANESİ DURAĞI ÇIKIŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6277",
+        "longitude": "32.3558",
+        "panelId": null
+    },
+    {
+        "stationId": 48,
+        "description": "KASAPOĞLU",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.5672",
+        "longitude": "32.3359",
+        "panelId": null
+    },
+    {
+        "stationId": 49,
+        "description": "ULUS DURAĞI",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6311",
+        "longitude": "32.3474",
+        "panelId": null
+    },
+    {
+        "stationId": 50,
+        "description": "MENEKŞE",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6351",
+        "longitude": "32.351",
+        "panelId": null
+    },
+    {
+        "stationId": 51,
+        "description": "GÜLKENT LALEKENT",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6378",
+        "longitude": "32.3529",
+        "panelId": null
+    },
+    {
+        "stationId": 52,
+        "description": "KARAÇAY",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6574",
+        "longitude": "32.3559",
+        "panelId": null
+    },
+    {
+        "stationId": 53,
+        "description": "İGİCİLER",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6157",
+        "longitude": "32.3137",
+        "panelId": null
+    },
+    {
+        "stationId": 54,
+        "description": "SOFUOĞLU",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6061",
+        "longitude": "32.3081",
+        "panelId": null
+    },
+    {
+        "stationId": 55,
+        "description": "ŞİREMİR ÇAVUŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6051",
+        "longitude": "32.3188",
+        "panelId": null
+    },
+    {
+        "stationId": 56,
+        "description": "48 EVLER",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6208",
+        "longitude": "32.352",
+        "panelId": null
+    },
+    {
+        "stationId": 57,
+        "description": "ESENTEPE",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.624079450135405",
+        "longitude": "32.35471131167412",
+        "panelId": null
+    },
+    {
+        "stationId": 58,
+        "description": "ÖZEL İDARE",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6226",
+        "longitude": "32.3366",
+        "panelId": null
+    },
+    {
+        "stationId": 59,
+        "description": "ANA DURAK HAT BAŞLANGIÇ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6303",
+        "longitude": "32.3368",
+        "panelId": null
+    },
+    {
+        "stationId": 60,
+        "description": "HAT BAŞLANGIÇ BİTİŞ(KÖPRÜ)",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.62947582520126",
+        "longitude": "32.33753502703321",
+        "panelId": null
+    },
+    {
+        "stationId": 61,
+        "description": "HAT BAŞLANGIÇ BİTİŞ(YUKARI)",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6318",
+        "longitude": "32.3367",
+        "panelId": null
+    },
+    {
+        "stationId": 62,
+        "description": "ANA DURAK HAT BAŞLANGIÇ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6249",
+        "longitude": "32.3354",
+        "panelId": null
+    },
+    {
+        "stationId": 63,
+        "description": "ANA DURAK",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.63025589419274",
+        "longitude": "32.33609865889548",
+        "panelId": null
+    },
+    {
+        "stationId": 64,
+        "description": "2. ANA DURAK",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6302",
+        "longitude": "32.3356",
+        "panelId": null
+    },
+    {
+        "stationId": 65,
+        "description": "AĞDACI",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6131",
+        "longitude": "32.3495",
+        "panelId": null
+    },
+    {
+        "stationId": 66,
+        "description": "HAT BAŞLANGIÇ TEST",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.0629",
+        "longitude": "32.0336",
+        "panelId": null
+    },
+    {
+        "stationId": 67,
+        "description": "Hat Başlangıç test ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.629337586941375",
+        "longitude": "32.33707573814388",
+        "panelId": null
+    },
+    {
+        "stationId": 68,
+        "description": "SSK HASTANE TEST1",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6263",
+        "longitude": "32.3122",
+        "panelId": null
+    },
+    {
+        "stationId": 69,
+        "description": "bayramoğlu durağı",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6272",
+        "longitude": "32.3248",
+        "panelId": null
+    },
+    {
+        "stationId": 70,
+        "description": "ÜNİVERSİTE DURAĞI ÇIKIŞ-AĞDACI",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6019",
+        "longitude": "32.3469",
+        "panelId": null
+    },
+    {
+        "stationId": 71,
+        "description": "TERMİNAL-ÇIKIŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.5753",
+        "longitude": "32.3251",
+        "panelId": null
+    },
+    {
+        "stationId": 72,
+        "description": "2. ANA DURAK NET",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.63",
+        "longitude": "32.336",
+        "panelId": null
+    },
+    {
+        "stationId": 73,
+        "description": "DİŞ HASTANESİ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6264",
+        "longitude": "32.3562",
+        "panelId": null
+    },
+    {
+        "stationId": 74,
+        "description": "AKTIP",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6276",
+        "longitude": "32.3261",
+        "panelId": null
+    },
+    {
+        "stationId": 75,
+        "description": "DİLEK MARKET",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6196",
+        "longitude": "32.3225",
+        "panelId": null
+    },
+    {
+        "stationId": 76,
+        "description": "K.Y.K",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.5724",
+        "longitude": "32.3234",
+        "panelId": null
+    },
+    {
+        "stationId": 77,
+        "description": "KAMPÜS ÇIKIŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.549",
+        "longitude": "32.2917",
+        "panelId": null
+    },
+    {
+        "stationId": 78,
+        "description": "EKONOMİ DURAK",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.63314726148953",
+        "longitude": "32.33418759912803",
+        "panelId": null
+    },
+    {
+        "stationId": 79,
+        "description": "MİRAY PANSİYON",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6396",
+        "longitude": "32.3427",
+        "panelId": null
+    },
+    {
+        "stationId": 80,
+        "description": "ÖNDEROL İNŞAAT",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6299",
+        "longitude": "32.336",
+        "panelId": null
+    },
+    {
+        "stationId": 81,
+        "description": "HACI İBRAHİM PAŞA",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.5596",
+        "longitude": "32.3084",
+        "panelId": null
+    },
+    {
+        "stationId": 82,
+        "description": "ÇİMENTO",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6378",
+        "longitude": "32.3092",
+        "panelId": null
+    },
+    {
+        "stationId": 83,
+        "description": "BOĞAZ KAVŞAK",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6708",
+        "longitude": "32.257",
+        "panelId": null
+    },
+    {
+        "stationId": 84,
+        "description": "İNKUMU GİRİŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6634",
+        "longitude": "32.2212",
+        "panelId": null
+    },
+    {
+        "stationId": 85,
+        "description": "İNKUMU SOL GİRİŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6582",
+        "longitude": "32.2144",
+        "panelId": null
+    },
+    {
+        "stationId": 86,
+        "description": "İNKUMU SOL ÇIKIŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6635",
+        "longitude": "32.2222",
+        "panelId": null
+    },
+    {
+        "stationId": 87,
+        "description": "İNKUMU SAĞ DÖNÜŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6727",
+        "longitude": "32.2302",
+        "panelId": null
+    },
+    {
+        "stationId": 88,
+        "description": "İNKUMU ÇIKIŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6632",
+        "longitude": "32.2217",
+        "panelId": null
+    },
+    {
+        "stationId": 89,
+        "description": "GÜRGENPINARI DÖNÜŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6498",
+        "longitude": "32.2794",
+        "panelId": null
+    },
+    {
+        "stationId": 90,
+        "description": "ÇINARLIK EĞİTİM DÖNÜŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6368",
+        "longitude": "32.3145",
+        "panelId": null
+    },
+    {
+        "stationId": 91,
+        "description": "ANA İNKUMU DURAK ÇIKIŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.631751",
+        "longitude": "32.3339048",
+        "panelId": null
+    },
+    {
+        "stationId": 92,
+        "description": "BOĞAZ KÖPRÜSÜ GİRİŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6741",
+        "longitude": "32.2494",
+        "panelId": null
+    },
+    {
+        "stationId": 93,
+        "description": "BOĞAZ KÖPRÜSÜ GİRİŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6699",
+        "longitude": "32.2602",
+        "panelId": null
+    },
+    {
+        "stationId": 94,
+        "description": "BARTIN LİMANI ÇIKIŞI",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6844",
+        "longitude": "32.2326",
+        "panelId": null
+    },
+    {
+        "stationId": 95,
+        "description": "BOĞAZ MAHALLESİ GİRİŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6728",
+        "longitude": "32.2497",
+        "panelId": null
+    },
+    {
+        "stationId": 96,
+        "description": "BOĞAZ MAHALLESİ ÇIKIŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6626",
+        "longitude": "32.2455",
+        "panelId": null
+    },
+    {
+        "stationId": 97,
+        "description": "KARASU GİRİŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6632",
+        "longitude": "32.2477",
+        "panelId": null
+    },
+    {
+        "stationId": 98,
+        "description": "KARASU ÇIKIŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6474",
+        "longitude": "32.2342",
+        "panelId": null
+    },
+    {
+        "stationId": 99,
+        "description": "YALI DURAK",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6373",
+        "longitude": "32.3341",
+        "panelId": null
+    },
+    {
+        "stationId": 100,
+        "description": "ANA İNKUMU DURAK GİRİŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.63464370963996",
+        "longitude": "32.330746732123465",
+        "panelId": null
+    },
+    {
+        "stationId": 101,
+        "description": "HİSAR DURAK",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6336",
+        "longitude": "32.1816",
+        "panelId": null
+    },
+    {
+        "stationId": 102,
+        "description": "YAYLACIK DÖNÜŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6294",
+        "longitude": "32.1923",
+        "panelId": null
+    },
+    {
+        "stationId": 103,
+        "description": "ESENYURT GİRİŞİ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.5488",
+        "longitude": "32.267",
+        "panelId": null
+    },
+    {
+        "stationId": 104,
+        "description": "AKMANLAR YENİ KAHVE",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.546",
+        "longitude": "32.2379",
+        "panelId": null
+    },
+    {
+        "stationId": 105,
+        "description": "DOLAŞIKLAR ÇIKIŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.5369",
+        "longitude": "32.2212",
+        "panelId": null
+    },
+    {
+        "stationId": 106,
+        "description": "AKMANLAR ÇIKIŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.547",
+        "longitude": "32.2255",
+        "panelId": null
+    },
+    {
+        "stationId": 107,
+        "description": "ANA DURAK ÇIKIŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6303",
+        "longitude": "32.3369",
+        "panelId": null
+    },
+    {
+        "stationId": 108,
+        "description": "EMNİYET MÜDÜRLÜĞÜ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6266",
+        "longitude": "32.3216",
+        "panelId": null
+    },
+    {
+        "stationId": 109,
+        "description": "MEHMET RIFAT EFENDİ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6123",
+        "longitude": "32.3225",
+        "panelId": null
+    },
+    {
+        "stationId": 110,
+        "description": "ÇEŞMİ CİHAN KYK",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.5719",
+        "longitude": "32.3234",
+        "panelId": null
+    },
+    {
+        "stationId": 111,
+        "description": "HACI İBRAHİM PAŞA",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.5603",
+        "longitude": "32.3091",
+        "panelId": null
+    },
+    {
+        "stationId": 112,
+        "description": "KAMPÜS ÇIKIŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.549",
+        "longitude": "32.2915",
+        "panelId": null
+    },
+    {
+        "stationId": 113,
+        "description": "NİZAMİYE ÇIKIŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.5545",
+        "longitude": "32.2911",
+        "panelId": null
+    },
+    {
+        "stationId": 114,
+        "description": "BALCIOĞLU",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.6124",
+        "longitude": "32.3236",
+        "panelId": null
+    },
+    {
+        "stationId": 115,
+        "description": "ENES OTO GEÇİŞ",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.627",
+        "longitude": "32.3236",
+        "panelId": null
+    },
+    {
+        "stationId": 116,
+        "description": "POLİS NOKTASI",
+        "stationType": null,
+        "altitude": null,
+        "isActive": 1,
+        "latitude": "41.5727",
+        "longitude": "32.3236",
+        "panelId": null
+    }
+]

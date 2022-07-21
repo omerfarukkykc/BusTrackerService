@@ -1,3 +1,4 @@
+/* 
 package com.lepric.btservice.model;
 
 import java.io.Serializable;
@@ -31,8 +32,9 @@ public class ApiUserRols implements Serializable{
     @ManyToOne
     @MapsId("apiRole")
     @JoinColumn(name = "apiRolID")
-    ApiRol apiRole;
+    ApiRole apiRole;
 
     @Column(name = "apiAccessToken",length = 40,unique = true,nullable = true)
     String apiAccessToken;
 }
+*/

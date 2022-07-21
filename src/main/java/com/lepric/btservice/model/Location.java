@@ -36,9 +36,7 @@ public class Location {
     @Column(columnDefinition = "location") 
     private Point<G2D> location;
 
-    /* 
-    @Column(columnDefinition = "POLYGON") // this type is known by MySQL
-    private LineString route;
-    */
-    
+    @Column(name = "isActive") 
+    private boolean isActive;
+
 }

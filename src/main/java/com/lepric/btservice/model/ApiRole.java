@@ -1,3 +1,4 @@
+/*
 package com.lepric.btservice.model;
 
 import java.util.List;
@@ -15,7 +16,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "ApiRol")
-public class ApiRol {
+public class ApiRole {
    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,3 +50,4 @@ public class ApiRol {
     private boolean loadBalanceHimSelf;
 
 }
+ */

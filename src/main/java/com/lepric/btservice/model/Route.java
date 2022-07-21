@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.geolatte.geom.Polygon;
@@ -46,6 +47,10 @@ public class Route {
     @JoinColumn(name = "stationID")
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Station> stations;
+
+    @JoinColumn(name = "busID")
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Bus> busses;
 
 
 }

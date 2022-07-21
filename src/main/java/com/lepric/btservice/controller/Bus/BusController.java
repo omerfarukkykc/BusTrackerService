@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lepric.btservice.model.Bus;
+import com.lepric.btservice.model.BusBrand;
+import com.lepric.btservice.model.BusBrandModel;
 import com.lepric.btservice.payload.response.BusModelHelper;
 import com.lepric.btservice.service.BusService;
 
@@ -55,5 +57,15 @@ public class BusController {
     public ResponseEntity<Bus> updateBus(@PathVariable("busID") long busID, @RequestBody BusModelHelper bus) {
 
         return new ResponseEntity<Bus>(busService.UpdateBus(bus, busID), HttpStatus.OK);
+    }
+    
+    
+    @GetMapping("/brands")
+    public ResponseEntity<List<BusBrand>> getBrands() {
+        return new ResponseEntity<List<BusBrand>>(busService.getBrands(), HttpStatus.OK);
+    }
+    @GetMapping("/brands/{brandID}")
+    public ResponseEntity<List<BusBrandModel>> getBrandsModels(@PathVariable long brandID) {
+        return new ResponseEntity<List<BusBrandModel>>(busService.getBrandModels(brandID), HttpStatus.OK);
     }
 }

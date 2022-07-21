@@ -1,0 +1,92 @@
+[
+    {
+        "kod": "ALADAĞI",
+        "aciklama": "ALADAGI",
+        "hatNo": 4,
+        "hatKodAciklama": "ALADAĞI | ALADAGI"
+    },
+    {
+        "kod": "ÇATMACA-SSK HASTANESİ",
+        "aciklama": "CATMACA-SSK HASTANESI",
+        "hatNo": 5,
+        "hatKodAciklama": "ÇATMACA-SSK HASTANESİ | CATMACA-SSK HASTANESI"
+    },
+    {
+        "kod": "DEVLET HASTANESİ",
+        "aciklama": "DEVLET HASTANESI",
+        "hatNo": 11,
+        "hatKodAciklama": "DEVLET HASTANESİ | DEVLET HASTANESI"
+    },
+    {
+        "kod": "DOSTKENT-ERKAM SİTESİ",
+        "aciklama": "DOSTKENT-ERKAM SITESI",
+        "hatNo": 9,
+        "hatKodAciklama": "DOSTKENT-ERKAM SİTESİ | DOSTKENT-ERKAM SITESI"
+    },
+    {
+        "kod": "ESENTEPE-48 EVLER",
+        "aciklama": "ESENTEPE-48 EVLER",
+        "hatNo": 15,
+        "hatKodAciklama": "ESENTEPE-48 EVLER | ESENTEPE-48 EVLER"
+    },
+    {
+        "kod": "GÜLKENT-KARAÇAY",
+        "aciklama": "GULKENT-KARACAY",
+        "hatNo": 13,
+        "hatKodAciklama": "GÜLKENT-KARAÇAY | GULKENT-KARACAY"
+    },
+    {
+        "kod": "İMAMHATİP-AĞDACI",
+        "aciklama": "IMAMHATIP-AGDACI",
+        "hatNo": 10,
+        "hatKodAciklama": "İMAMHATİP-AĞDACI | IMAMHATIP-AGDACI"
+    },
+    {
+        "kod": "KANLITÜRBE-KAVALLAR",
+        "aciklama": "KANLITURBE-KAVALLAR",
+        "hatNo": 7,
+        "hatKodAciklama": "KANLITÜRBE-KAVALLAR | KANLITURBE-KAVALLAR"
+    },
+    {
+        "kod": "KASAPOĞLU",
+        "aciklama": "KASAPOGLU",
+        "hatNo": 12,
+        "hatKodAciklama": "KASAPOĞLU | KASAPOGLU"
+    },
+    {
+        "kod": "KAYNARCA-TOKİ",
+        "aciklama": "KAYNARCA-TOKI",
+        "hatNo": 8,
+        "hatKodAciklama": "KAYNARCA-TOKİ | KAYNARCA-TOKI"
+    },
+    {
+        "kod": "ORDUYERİ-CEZAEVİ",
+        "aciklama": "ORDUYERI-CEZAEVI",
+        "hatNo": 2,
+        "hatKodAciklama": "ORDUYERİ-CEZAEVİ | ORDUYERI-CEZAEVI"
+    },
+    {
+        "kod": "ŞİREMİŞ-ÇAVUŞ KÖYÜ",
+        "aciklama": "SIREMIS-CAVUS KOYU",
+        "hatNo": 14,
+        "hatKodAciklama": "ŞİREMİŞ-ÇAVUŞ KÖYÜ | SIREMIS-CAVUS KOYU"
+    },
+    {
+        "kod": "ÜNİVERSİTE",
+        "aciklama": "UNIVERSITE",
+        "hatNo": 3,
+        "hatKodAciklama": "ÜNİVERSİTE | UNIVERSITE"
+    },
+    {
+        "kod": "YENİ  TERMİNAL",
+        "aciklama": "YENI TERMINAL",
+        "hatNo": 6,
+        "hatKodAciklama": "YENİ  TERMİNAL | YENI TERMINAL"
+    },
+    {
+        "kod": "YENİMAHALLE-ÇAYIRLAR",
+        "aciklama": "YENIMAHALLE-CAYIRLAR",
+        "hatNo": 1,
+        "hatKodAciklama": "YENİMAHALLE-ÇAYIRLAR | YENIMAHALLE-CAYIRLAR"
+    }
+]

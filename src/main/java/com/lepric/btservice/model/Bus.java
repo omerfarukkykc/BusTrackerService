@@ -20,9 +20,6 @@ import lombok.Data;
 @Entity
 @Table(name = "Bus")
 public class Bus {
-      
-    
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,6 +42,7 @@ public class Bus {
     @JoinColumn(name = "locationID",nullable = false,unique = true,updatable = false)
     private Location location;
 
-    
-
+    @JoinColumn(name = "routeID")
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Route route;
 }

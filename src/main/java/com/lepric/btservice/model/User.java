@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -68,6 +69,16 @@ public class User {
     @ManyToMany(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     private List<Role> roles;
 
+    @JoinColumn(name = "cityID")
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private City city;
+
+    @JoinColumn(name = "districtID")
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private District district;
+    
+    /*
     @OneToMany(mappedBy = "apiRole")
     List<ApiUserRols> ApiUserRols;
+     */
 }
