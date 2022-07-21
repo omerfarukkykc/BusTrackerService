@@ -8,9 +8,11 @@ import static org.geolatte.geom.builder.DSL.*;
 import static org.geolatte.geom.crs.CoordinateReferenceSystems.WGS84;
 import org.geolatte.geom.G2D;
 import org.geolatte.geom.Point;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.lepric.btservice.exception.ResourceNotFoundException;
@@ -18,6 +20,7 @@ import com.lepric.btservice.model.Role;
 import com.lepric.btservice.model.User;
 import com.lepric.btservice.payload.response.UpdatePasswordModelHelper;
 import com.lepric.btservice.model.Location;
+import com.lepric.btservice.model.Privilege;
 import com.lepric.btservice.repository.UserRepository;
 import com.lepric.btservice.service.UserService;
 
@@ -25,11 +28,11 @@ import com.lepric.btservice.service.UserService;
 @Service
 public class UserServiceImpl implements UserService ,UserDetailsService{
     
+    @Autowired
     private UserRepository userRepository;
-    public UserServiceImpl(UserRepository userRepository) {
-        super();
-        this.userRepository = userRepository;
-    }
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    
 
 
     //Add New User
@@ -37,6 +40,7 @@ public class UserServiceImpl implements UserService ,UserDetailsService{
     public User AddUser(User user) {
         user.setLocation(new Location());
         user.getLocation().setLocation(new Point<G2D>(g(0,0),WGS84));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
@@ -118,7 +122,7 @@ public class UserServiceImpl implements UserService ,UserDetailsService{
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(username).orElseThrow(
             () -> new ResourceNotFoundException("User", "email", username)
-        );;
+        );
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), new ArrayList<>());
     }
 
@@ -130,6 +134,9 @@ public class UserServiceImpl implements UserService ,UserDetailsService{
         );
         
     }
+
+
+    
 
 
     

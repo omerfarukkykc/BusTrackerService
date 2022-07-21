@@ -11,12 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Rols")
+@Table(name = "Role")
 public class Role {
    
     @Id
@@ -24,28 +25,42 @@ public class Role {
     @Column(name = "roleID")
     private long roleID;
 
+    @JsonIgnore
     @ManyToMany(cascade = CascadeType.MERGE)
     private List<User> users;
 
     @Column(name = "rolName", nullable = false,length = 40)
     private String roleName;
 
+    @ManyToMany(cascade = CascadeType.MERGE)
+    private List<Privilege> privileges;
+
+    public Role() {
+    }
+
+    public Role(String roleName, List<Privilege> privileges) {
+        this.roleName = roleName;
+        this.privileges = privileges;
+    }
+
+    /*
     @Column(name = "editRotations", nullable = false)
-    private boolean editRotations;
+    private boolean editRotations = false;
     
     @Column(name = "editStations", nullable = false)
-    private boolean editStations;
+    private boolean editStations = false;
 
     @Column(name = "editBuses", nullable = false)
-    private boolean editBuses;
+    private boolean editBuses = false;
 
     @Column(name = "editUsers", nullable = false)
-    private boolean editUsers;
+    private boolean editUsers = false;
 
     @Column(name = "loadBalance", nullable = false)
-    private boolean loadBalance;
+    private boolean loadBalance = false;
 
     @Column(name = "loadBalanceHimSelf", nullable = false)
-    private boolean loadBalanceHimSelf;
+    private boolean loadBalanceHimSelf = false;
+    */
 
 }

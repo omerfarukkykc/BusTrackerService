@@ -18,7 +18,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Busses")
+@Table(name = "Bus")
 public class Bus {
       
     

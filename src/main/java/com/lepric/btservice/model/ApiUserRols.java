@@ -14,7 +14,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "ApiUserRols")
+@Table(name = "ApiUserRol")
 public class ApiUserRols implements Serializable{
     
     @Id

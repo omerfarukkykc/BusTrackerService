@@ -24,7 +24,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Users")
+@Table(name = "User")
 public class User {
    
     @Id
@@ -41,8 +41,11 @@ public class User {
     @Column(name = "email", nullable = false,length = 50,unique = true)
     private String email;
 
-    @Column(name = "password", nullable = false,length = 40)
+    @Column(name = "password", nullable = false,length = 60)
     private String password;
+
+    @Column(name = "enabled", nullable = false)
+    private boolean enabled = false;
 
     @CreationTimestamp()
     @Column(name = "createdAt", updatable = false, nullable = false)

@@ -7,20 +7,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "BusBrandModel")
-@JsonIgnoreProperties({"hibernateLazyInitializer"})
-public class BusBrandModel {
+@Table(name = "Privilege")
+public class Privilege {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "modelID")
-    private long modelID;
+    @Column(name = "privilegeID")
+    private long privilegeID;
 
-    @Column(name = "modelName")
-    private String modelName;
+    @Column(name = "privilegeName", nullable = false,length = 40)
+    private String privilegeName;
+
+    public Privilege() {
+    }
+
+    public Privilege(String privilegeName) {
+        this.privilegeName = privilegeName;
+    }
+
 }

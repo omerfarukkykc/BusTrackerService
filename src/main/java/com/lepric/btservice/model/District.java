@@ -5,22 +5,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "BusBrandModel")
-@JsonIgnoreProperties({"hibernateLazyInitializer"})
-public class BusBrandModel {
+@Table(name = "District")
+public class District {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "modelID")
-    private long modelID;
+    @Column(name = "districtID")
+    private long districtID;
 
-    @Column(name = "modelName")
-    private String modelName;
+    @Column(name = "districtName",length = 20,nullable = false)
+    private String districtName;
+
 }

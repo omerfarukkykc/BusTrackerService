@@ -24,10 +24,17 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Cities")
+@Table(name = "City")
 public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cityID")
     private long cityID;
+
+    @Column(name = "cityName",length = 20,nullable = false)
+    private String cityName;
+
+    @JoinColumn(name = "districtID")
+    @OneToMany(cascade = CascadeType.MERGE)
+    private List<District> districts;
 }

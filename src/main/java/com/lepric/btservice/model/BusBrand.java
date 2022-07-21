@@ -19,7 +19,7 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "BusBrands")
+@Table(name = "BusBrand")
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class BusBrand {
 

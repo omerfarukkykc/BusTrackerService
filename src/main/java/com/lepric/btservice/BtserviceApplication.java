@@ -16,6 +16,7 @@ public class BtserviceApplication {
 
     @PostConstruct
     public void initUsers() {
+		/*
 		if(userService.GetUsers().size()==0){
 			User user = new User();
 			user.setFirstname("Ömer Faruk");
@@ -24,6 +25,7 @@ public class BtserviceApplication {
 			user.setPassword("123456");
 			userService.AddUser(user);
 		}
+		*/
     }
 	public static void main(String[] args) {
 		SpringApplication.run(BtserviceApplication.class, args);
