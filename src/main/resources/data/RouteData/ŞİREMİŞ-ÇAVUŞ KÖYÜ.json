@@ -1,0 +1,56 @@
+[
+    {
+        "StopId": 63,
+        "StopName": "ANA DURAK",
+        "Sequence": 1,
+        "Latitude": "41.63025589419274",
+        "Longitude": "32.33609865889548",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 24,
+        "StopName": "ÇATMACA",
+        "Sequence": 2,
+        "Latitude": "41.6271",
+        "Longitude": "32.3235",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 53,
+        "StopName": "İGİCİLER",
+        "Sequence": 3,
+        "Latitude": "41.6157",
+        "Longitude": "32.3137",
+        "Direction": null,
+        "HasBusLeaved": 1
+    },
+    {
+        "StopId": 54,
+        "StopName": "SOFUOĞLU",
+        "Sequence": 4,
+        "Latitude": "41.6061",
+        "Longitude": "32.3081",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 55,
+        "StopName": "ŞİREMİR ÇAVUŞ",
+        "Sequence": 5,
+        "Latitude": "41.6051",
+        "Longitude": "32.3188",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 60,
+        "StopName": "HAT BAŞLANGIÇ BİTİŞ(KÖPRÜ)",
+        "Sequence": 6,
+        "Latitude": "41.62947582520126",
+        "Longitude": "32.33753502703321",
+        "Direction": null,
+        "HasBusLeaved": 0
+    }
+]

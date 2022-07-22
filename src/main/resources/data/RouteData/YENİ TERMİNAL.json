@@ -1,0 +1,101 @@
+[
+    {
+        "StopId": 107,
+        "StopName": "ANA DURAK ÇIKIŞ",
+        "Sequence": 1,
+        "Latitude": "41.6303",
+        "Longitude": "32.3369",
+        "Direction": "G",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 108,
+        "StopName": "EMNİYET MÜDÜRLÜĞÜ",
+        "Sequence": 2,
+        "Latitude": "41.6266",
+        "Longitude": "32.3216",
+        "Direction": "G",
+        "HasBusLeaved": 1
+    },
+    {
+        "StopId": 109,
+        "StopName": "MEHMET RIFAT EFENDİ",
+        "Sequence": 3,
+        "Latitude": "41.6123",
+        "Longitude": "32.3225",
+        "Direction": "G",
+        "HasBusLeaved": 1
+    },
+    {
+        "StopId": 110,
+        "StopName": "ÇEŞMİ CİHAN KYK",
+        "Sequence": 4,
+        "Latitude": "41.5719",
+        "Longitude": "32.3234",
+        "Direction": "G",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 111,
+        "StopName": "HACI İBRAHİM PAŞA1",
+        "Sequence": 5,
+        "Latitude": "41.5603",
+        "Longitude": "32.3091",
+        "Direction": "G",
+        "HasBusLeaved": 1
+    },
+    {
+        "StopId": 112,
+        "StopName": "KAMPÜS ÇIKIŞ1",
+        "Sequence": 6,
+        "Latitude": "41.549",
+        "Longitude": "32.2915",
+        "Direction": "D",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 113,
+        "StopName": "NİZAMİYE ÇIKIŞ",
+        "Sequence": 7,
+        "Latitude": "41.5545",
+        "Longitude": "32.2911",
+        "Direction": "D",
+        "HasBusLeaved": 1
+    },
+    {
+        "StopId": 116,
+        "StopName": "POLİS NOKTASI",
+        "Sequence": 8,
+        "Latitude": "41.5727",
+        "Longitude": "32.3236",
+        "Direction": "D",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 114,
+        "StopName": "BALCIOĞLU",
+        "Sequence": 9,
+        "Latitude": "41.6124",
+        "Longitude": "32.3236",
+        "Direction": "D",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 115,
+        "StopName": "ENES OTO GEÇİŞ",
+        "Sequence": 10,
+        "Latitude": "41.627",
+        "Longitude": "32.3236",
+        "Direction": "D",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 60,
+        "StopName": "HAT BAŞLANGIÇ BİTİŞ(KÖPRÜ)",
+        "Sequence": 11,
+        "Latitude": "41.62947582520126",
+        "Longitude": "32.33753502703321",
+        "Direction": "G",
+        "HasBusLeaved": 1
+    }
+]

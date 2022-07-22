@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -34,6 +36,12 @@ public class Station {
     @Column(name = "stationScope")
     private float stationScope;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE)
     private List<Route> routes;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private City city;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private District district;
 }

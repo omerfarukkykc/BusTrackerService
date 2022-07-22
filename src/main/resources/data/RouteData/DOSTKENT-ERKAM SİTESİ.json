@@ -1,0 +1,65 @@
+[
+    {
+        "StopId": 64,
+        "StopName": "2. ANA DURAK",
+        "Sequence": 1,
+        "Latitude": "41.6302",
+        "Longitude": "32.3356",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 40,
+        "StopName": "ASMA KÖPRÜ",
+        "Sequence": 2,
+        "Latitude": "41.6341",
+        "Longitude": "32.3319",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 9,
+        "StopName": "ESKİ TERMİNAL DURAĞI GİRİŞ",
+        "Sequence": 3,
+        "Latitude": "41.6378",
+        "Longitude": "32.3347",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 10,
+        "StopName": "ORDU YERİ(cezaevi)",
+        "Sequence": 4,
+        "Latitude": "41.6407",
+        "Longitude": "32.3437",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 42,
+        "StopName": "DOSTKENT",
+        "Sequence": 5,
+        "Latitude": "41.6442",
+        "Longitude": "32.3354",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 43,
+        "StopName": "ERKAM SİTESİ",
+        "Sequence": 6,
+        "Latitude": "41.64464993921619",
+        "Longitude": "32.347289735126424",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 78,
+        "StopName": "EKONOMİ DURAK",
+        "Sequence": 7,
+        "Latitude": "41.63314726148953",
+        "Longitude": "32.33418759912803",
+        "Direction": "G",
+        "HasBusLeaved": 1
+    }
+]

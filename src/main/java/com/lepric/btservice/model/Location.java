@@ -15,28 +15,41 @@ import org.geolatte.geom.*;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import static org.geolatte.geom.builder.DSL.g;
+import static org.geolatte.geom.crs.CoordinateReferenceSystems.WGS84;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "UserLocation")
+@Table(name = "Location")
 public class Location {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "locationID")
     private long locationID;
-    
+
     @UpdateTimestamp
     @Column(name = "updated_at", updatable = true, nullable = false)
     private LocalDateTime updatedAt;
-    
+
     @JsonIgnore
-    @Column(columnDefinition = "location") 
+    @Column(columnDefinition = "POINT")
     private Point<G2D> location;
 
-    @Column(name = "isActive") 
+    @Column(name = "isActive")
     private boolean isActive;
+
+    @Column(name = "sequence")
+    private int sequence;
+
+    public Location(double latitude, double longitude, boolean isActive, int sequence) {
+        this.isActive = isActive;
+        this.sequence = sequence;
+        this.location = new Point<G2D>(g(longitude, latitude), WGS84);
+    }
+
+    public Location() {
+    }
 
 }

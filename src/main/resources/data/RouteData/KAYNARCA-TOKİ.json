@@ -1,0 +1,74 @@
+[
+    {
+        "StopId": 64,
+        "StopName": "2. ANA DURAK",
+        "Sequence": 1,
+        "Latitude": "41.6302",
+        "Longitude": "32.3356",
+        "Direction": "G",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 9,
+        "StopName": "ESKİ TERMİNAL DURAĞI GİRİŞ",
+        "Sequence": 2,
+        "Latitude": "41.6378",
+        "Longitude": "32.3347",
+        "Direction": "G",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 35,
+        "StopName": "ORDUYERİ(toki)",
+        "Sequence": 3,
+        "Latitude": "41.6408",
+        "Longitude": "32.3435",
+        "Direction": "G",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 36,
+        "StopName": "JANDARMA KOMUTANLIĞI",
+        "Sequence": 4,
+        "Latitude": "41.6465",
+        "Longitude": "32.3356",
+        "Direction": "G",
+        "HasBusLeaved": 1
+    },
+    {
+        "StopId": 37,
+        "StopName": "ÖĞRETMENLER SİTESİ",
+        "Sequence": 5,
+        "Latitude": "41.648",
+        "Longitude": "32.3341",
+        "Direction": "G",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 38,
+        "StopName": "TOKİ C10",
+        "Sequence": 6,
+        "Latitude": "41.654011820928986",
+        "Longitude": "32.333671836805365",
+        "Direction": "G",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 39,
+        "StopName": "TOKİ 2.ETAP",
+        "Sequence": 7,
+        "Latitude": "41.650800340700854",
+        "Longitude": "32.32941440129275",
+        "Direction": "D",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 78,
+        "StopName": "EKONOMİ DURAK",
+        "Sequence": 8,
+        "Latitude": "41.63314726148953",
+        "Longitude": "32.33418759912803",
+        "Direction": "D",
+        "HasBusLeaved": 1
+    }
+]

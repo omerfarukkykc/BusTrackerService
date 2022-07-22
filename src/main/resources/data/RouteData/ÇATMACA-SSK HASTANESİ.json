@@ -1,0 +1,83 @@
+[
+    {
+        "StopId": 63,
+        "StopName": "ANA DURAK",
+        "Sequence": 1,
+        "Latitude": "41.63025589419274",
+        "Longitude": "32.33609865889548",
+        "Direction": "G",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 24,
+        "StopName": "ÇATMACA",
+        "Sequence": 2,
+        "Latitude": "41.6271",
+        "Longitude": "32.3235",
+        "Direction": "G",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 25,
+        "StopName": "EMNİYET",
+        "Sequence": 3,
+        "Latitude": "41.6271",
+        "Longitude": "32.3221",
+        "Direction": "G",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 27,
+        "StopName": "SSK HASTANESİ DURAĞI GİRİŞ",
+        "Sequence": 4,
+        "Latitude": "41.6265",
+        "Longitude": "32.3112",
+        "Direction": "G",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 1,
+        "StopName": "İlk Durak",
+        "Sequence": 5,
+        "Latitude": "40.99501857008773",
+        "Longitude": "28.641635445785493",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 28,
+        "StopName": "SSK HASTANESİ DURAĞI ÇIKIŞ",
+        "Sequence": 6,
+        "Latitude": "41.6263",
+        "Longitude": "32.3128",
+        "Direction": "D",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 26,
+        "StopName": "YILDIZKENT",
+        "Sequence": 7,
+        "Latitude": "41.6268",
+        "Longitude": "32.3162",
+        "Direction": "G",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 69,
+        "StopName": "bayramoğlu durağı",
+        "Sequence": 8,
+        "Latitude": "41.6272",
+        "Longitude": "32.3248",
+        "Direction": null,
+        "HasBusLeaved": 1
+    },
+    {
+        "StopId": 60,
+        "StopName": "HAT BAŞLANGIÇ BİTİŞ(KÖPRÜ)",
+        "Sequence": 9,
+        "Latitude": "41.62947582520126",
+        "Longitude": "32.33753502703321",
+        "Direction": null,
+        "HasBusLeaved": 1
+    }
+]

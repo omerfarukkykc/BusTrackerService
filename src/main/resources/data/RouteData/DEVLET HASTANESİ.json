@@ -1,0 +1,92 @@
+[
+    {
+        "StopId": 64,
+        "StopName": "2. ANA DURAK",
+        "Sequence": 1,
+        "Latitude": "41.6302",
+        "Longitude": "32.3356",
+        "Direction": "G",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 40,
+        "StopName": "ASMA KÖPRÜ",
+        "Sequence": 2,
+        "Latitude": "41.6341",
+        "Longitude": "32.3319",
+        "Direction": "G",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 9,
+        "StopName": "ESKİ TERMİNAL DURAĞI GİRİŞ",
+        "Sequence": 3,
+        "Latitude": "41.6378",
+        "Longitude": "32.3347",
+        "Direction": "G",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 79,
+        "StopName": "MİRAY PANSİYON",
+        "Sequence": 4,
+        "Latitude": "41.6396",
+        "Longitude": "32.3427",
+        "Direction": "G",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 46,
+        "StopName": "DEVLET HASTANESİ DURAĞI GİRİŞ",
+        "Sequence": 5,
+        "Latitude": "41.628",
+        "Longitude": "32.3551",
+        "Direction": "G",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 1,
+        "StopName": "İlk Durak",
+        "Sequence": 6,
+        "Latitude": "40.99501857008773",
+        "Longitude": "28.641635445785493",
+        "Direction": "G",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 47,
+        "StopName": "DEVLET HASTANESİ DURAĞI ÇIKIŞ",
+        "Sequence": 7,
+        "Latitude": "41.6277",
+        "Longitude": "32.3558",
+        "Direction": "D",
+        "HasBusLeaved": 1
+    },
+    {
+        "StopId": 73,
+        "StopName": "DİŞ HASTANESİ",
+        "Sequence": 8,
+        "Latitude": "41.6264",
+        "Longitude": "32.3562",
+        "Direction": "D",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 49,
+        "StopName": "ULUS DURAĞI",
+        "Sequence": 9,
+        "Latitude": "41.6311",
+        "Longitude": "32.3474",
+        "Direction": "D",
+        "HasBusLeaved": 1
+    },
+    {
+        "StopId": 78,
+        "StopName": "EKONOMİ DURAK",
+        "Sequence": 10,
+        "Latitude": "41.63314726148953",
+        "Longitude": "32.33418759912803",
+        "Direction": "D",
+        "HasBusLeaved": 1
+    }
+]

@@ -1,0 +1,74 @@
+[
+    {
+        "StopId": 80,
+        "StopName": "ÖNDEROL İNŞAAT",
+        "Sequence": 1,
+        "Latitude": "41.6299",
+        "Longitude": "32.336",
+        "Direction": "G",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 15,
+        "StopName": "ÖZEL İDARE DURAĞI GİRİŞ",
+        "Sequence": 2,
+        "Latitude": "41.6224",
+        "Longitude": "32.3366",
+        "Direction": "G",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 17,
+        "StopName": "KARAKÖY",
+        "Sequence": 3,
+        "Latitude": "41.617572428443765",
+        "Longitude": "32.3397375509262",
+        "Direction": "G",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 18,
+        "StopName": "AĞDACI(Eski)",
+        "Sequence": 4,
+        "Latitude": "41.610491978301894",
+        "Longitude": "32.33942045184381",
+        "Direction": "G",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 19,
+        "StopName": "ÜNİVERSİTE DURAĞI GİRİŞ",
+        "Sequence": 5,
+        "Latitude": "41.6015",
+        "Longitude": "32.3467",
+        "Direction": "G",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 1,
+        "StopName": "İlk Durak",
+        "Sequence": 6,
+        "Latitude": "40.99501857008773",
+        "Longitude": "28.641635445785493",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 20,
+        "StopName": "ÜNİVERSİTE DURAĞI ÇIKIŞ",
+        "Sequence": 7,
+        "Latitude": "41.6015",
+        "Longitude": "32.3464",
+        "Direction": "D",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 60,
+        "StopName": "HAT BAŞLANGIÇ BİTİŞ(KÖPRÜ)",
+        "Sequence": 8,
+        "Latitude": "41.62947582520126",
+        "Longitude": "32.33753502703321",
+        "Direction": "D",
+        "HasBusLeaved": 0
+    }
+]

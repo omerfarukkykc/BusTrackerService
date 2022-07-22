@@ -1,0 +1,65 @@
+[
+    {
+        "StopId": 80,
+        "StopName": "ÖNDEROL İNŞAAT",
+        "Sequence": 1,
+        "Latitude": "41.6299",
+        "Longitude": "32.336",
+        "Direction": "G",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 15,
+        "StopName": "ÖZEL İDARE DURAĞI GİRİŞ",
+        "Sequence": 2,
+        "Latitude": "41.6224",
+        "Longitude": "32.3366",
+        "Direction": "G",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 44,
+        "StopName": "İMAMHATİP",
+        "Sequence": 3,
+        "Latitude": "41.6194",
+        "Longitude": "32.3486",
+        "Direction": "G",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 65,
+        "StopName": "AĞDACI",
+        "Sequence": 4,
+        "Latitude": "41.6131",
+        "Longitude": "32.3495",
+        "Direction": "G",
+        "HasBusLeaved": 1
+    },
+    {
+        "StopId": 19,
+        "StopName": "ÜNİVERSİTE DURAĞI GİRİŞ",
+        "Sequence": 5,
+        "Latitude": "41.6015",
+        "Longitude": "32.3467",
+        "Direction": "G",
+        "HasBusLeaved": 1
+    },
+    {
+        "StopId": 70,
+        "StopName": "ÜNİVERSİTE DURAĞI ÇIKIŞ-AĞDACI",
+        "Sequence": 6,
+        "Latitude": "41.6019",
+        "Longitude": "32.3469",
+        "Direction": "D",
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 60,
+        "StopName": "HAT BAŞLANGIÇ BİTİŞ(KÖPRÜ)",
+        "Sequence": 7,
+        "Latitude": "41.62947582520126",
+        "Longitude": "32.33753502703321",
+        "Direction": "D",
+        "HasBusLeaved": 1
+    }
+]

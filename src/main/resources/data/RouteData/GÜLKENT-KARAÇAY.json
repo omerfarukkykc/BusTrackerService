@@ -1,0 +1,83 @@
+[
+    {
+        "StopId": 64,
+        "StopName": "2. ANA DURAK",
+        "Sequence": 1,
+        "Latitude": "41.6302",
+        "Longitude": "32.3356",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 40,
+        "StopName": "ASMA KÖPRÜ",
+        "Sequence": 2,
+        "Latitude": "41.6341",
+        "Longitude": "32.3319",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 9,
+        "StopName": "ESKİ TERMİNAL DURAĞI GİRİŞ",
+        "Sequence": 3,
+        "Latitude": "41.6378",
+        "Longitude": "32.3347",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 49,
+        "StopName": "ULUS DURAĞI",
+        "Sequence": 4,
+        "Latitude": "41.6311",
+        "Longitude": "32.3474",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 50,
+        "StopName": "MENEKŞE",
+        "Sequence": 5,
+        "Latitude": "41.6351",
+        "Longitude": "32.351",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 51,
+        "StopName": "GÜLKENT LALEKENT",
+        "Sequence": 6,
+        "Latitude": "41.6378",
+        "Longitude": "32.3529",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 11,
+        "StopName": "MAVİKENT MARTI SİTESİ",
+        "Sequence": 7,
+        "Latitude": "41.6442",
+        "Longitude": "32.3585",
+        "Direction": null,
+        "HasBusLeaved": 1
+    },
+    {
+        "StopId": 52,
+        "StopName": "KARAÇAY",
+        "Sequence": 8,
+        "Latitude": "41.6574",
+        "Longitude": "32.3559",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 60,
+        "StopName": "HAT BAŞLANGIÇ BİTİŞ(KÖPRÜ)",
+        "Sequence": 9,
+        "Latitude": "41.62947582520126",
+        "Longitude": "32.33753502703321",
+        "Direction": null,
+        "HasBusLeaved": 0
+    }
+]

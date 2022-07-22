@@ -1,0 +1,74 @@
+[
+    {
+        "StopId": 64,
+        "StopName": "2. ANA DURAK",
+        "Sequence": 1,
+        "Latitude": "41.6302",
+        "Longitude": "32.3356",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 9,
+        "StopName": "ESKİ TERMİNAL DURAĞI GİRİŞ",
+        "Sequence": 2,
+        "Latitude": "41.6378",
+        "Longitude": "32.3347",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 10,
+        "StopName": "ORDU YERİ(cezaevi)",
+        "Sequence": 3,
+        "Latitude": "41.6407",
+        "Longitude": "32.3437",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 11,
+        "StopName": "MAVİKENT MARTI SİTESİ",
+        "Sequence": 4,
+        "Latitude": "41.6442",
+        "Longitude": "32.3585",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 12,
+        "StopName": "CEZAEVİ",
+        "Sequence": 5,
+        "Latitude": "41.6453",
+        "Longitude": "32.3704",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 13,
+        "StopName": "ÇAM ALTI",
+        "Sequence": 6,
+        "Latitude": "41.6461",
+        "Longitude": "32.3798",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 14,
+        "StopName": "AKPINAR YOLU",
+        "Sequence": 7,
+        "Latitude": "41.6442",
+        "Longitude": "32.388",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 78,
+        "StopName": "EKONOMİ DURAK",
+        "Sequence": 8,
+        "Latitude": "41.63314726148953",
+        "Longitude": "32.33418759912803",
+        "Direction": "G",
+        "HasBusLeaved": 0
+    }
+]

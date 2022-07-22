@@ -1,0 +1,65 @@
+[
+    {
+        "StopId": 63,
+        "StopName": "ANA DURAK",
+        "Sequence": 1,
+        "Latitude": "41.63025589419274",
+        "Longitude": "32.33609865889548",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 3,
+        "StopName": "AKBANK ÖNÜ",
+        "Sequence": 2,
+        "Latitude": "41.63308549508948",
+        "Longitude": "32.33856186623575",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 4,
+        "StopName": "HENDEK YANI",
+        "Sequence": 3,
+        "Latitude": "41.63025565383186",
+        "Longitude": "32.34747107853889",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 44,
+        "StopName": "İMAMHATİP",
+        "Sequence": 4,
+        "Latitude": "41.6194",
+        "Longitude": "32.3486",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 56,
+        "StopName": "48 EVLER",
+        "Sequence": 5,
+        "Latitude": "41.6208",
+        "Longitude": "32.352",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 57,
+        "StopName": "ESENTEPE1",
+        "Sequence": 6,
+        "Latitude": "41.624079450135405",
+        "Longitude": "32.35471131167412",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 61,
+        "StopName": "HAT BAŞLANGIÇ BİTİŞ(YUKARI)",
+        "Sequence": 7,
+        "Latitude": "41.6318",
+        "Longitude": "32.3367",
+        "Direction": null,
+        "HasBusLeaved": 0
+    }
+]

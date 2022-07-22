@@ -1,0 +1,74 @@
+[
+    {
+        "StopId": 63,
+        "StopName": "ANA DURAK",
+        "Sequence": 1,
+        "Latitude": "41.63025589419274",
+        "Longitude": "32.33609865889548",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 3,
+        "StopName": "AKBANK ÖNÜ",
+        "Sequence": 2,
+        "Latitude": "41.63308549508948",
+        "Longitude": "32.33856186623575",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 4,
+        "StopName": "HENDEK YANI",
+        "Sequence": 3,
+        "Latitude": "41.63025565383186",
+        "Longitude": "32.34747107853889",
+        "Direction": null,
+        "HasBusLeaved": 1
+    },
+    {
+        "StopId": 5,
+        "StopName": "ESENTEPE",
+        "Sequence": 4,
+        "Latitude": "41.62602831639",
+        "Longitude": "32.35513312020305",
+        "Direction": null,
+        "HasBusLeaved": 1
+    },
+    {
+        "StopId": 6,
+        "StopName": "YENİ MAHALLE",
+        "Sequence": 5,
+        "Latitude": "41.624",
+        "Longitude": "32.3594",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 7,
+        "StopName": "POTBAŞI",
+        "Sequence": 6,
+        "Latitude": "41.6135",
+        "Longitude": "32.3707",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 8,
+        "StopName": "ÇAYIRLAR",
+        "Sequence": 7,
+        "Latitude": "41.6236",
+        "Longitude": "32.3697",
+        "Direction": null,
+        "HasBusLeaved": 1
+    },
+    {
+        "StopId": 78,
+        "StopName": "EKONOMİ DURAK",
+        "Sequence": 8,
+        "Latitude": "41.63314726148953",
+        "Longitude": "32.33418759912803",
+        "Direction": "G",
+        "HasBusLeaved": 1
+    }
+]

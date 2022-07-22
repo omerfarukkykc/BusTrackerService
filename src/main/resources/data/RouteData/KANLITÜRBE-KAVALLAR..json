@@ -1,0 +1,56 @@
+[
+    {
+        "StopId": 64,
+        "StopName": "2. ANA DURAK",
+        "Sequence": 1,
+        "Latitude": "41.6302",
+        "Longitude": "32.3356",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 24,
+        "StopName": "ÇATMACA",
+        "Sequence": 2,
+        "Latitude": "41.6271",
+        "Longitude": "32.3235",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 25,
+        "StopName": "EMNİYET",
+        "Sequence": 3,
+        "Latitude": "41.6271",
+        "Longitude": "32.3221",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 33,
+        "StopName": "KANLITÜRBE",
+        "Sequence": 4,
+        "Latitude": "41.6308",
+        "Longitude": "32.3159",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 34,
+        "StopName": "KAVALLAR",
+        "Sequence": 5,
+        "Latitude": "41.6242",
+        "Longitude": "32.3078",
+        "Direction": null,
+        "HasBusLeaved": 0
+    },
+    {
+        "StopId": 78,
+        "StopName": "EKONOMİ DURAK",
+        "Sequence": 6,
+        "Latitude": "41.63314726148953",
+        "Longitude": "32.33418759912803",
+        "Direction": "G",
+        "HasBusLeaved": 0
+    }
+]

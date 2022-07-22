@@ -14,12 +14,12 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.geolatte.geom.Polygon;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.geolatte.geom.G2D;
+import org.geolatte.geom.LineString;
 
 import lombok.Data;
 
@@ -37,12 +37,12 @@ public class Route {
     @Column(name = "updated_at", updatable = true, nullable = false)
     private LocalDateTime updatedAt;
     
-    @Column(name = "routeName", columnDefinition = "POLYGON") 
+    @Column(name = "routeName") 
     private String routeName;
 
     @JsonIgnore
-    @Column(name = "route", columnDefinition = "POLYGON") 
-    private Polygon<G2D> route;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Location> routeLine;
 
     @JoinColumn(name = "stationID")
     @ManyToMany(cascade = CascadeType.ALL)
