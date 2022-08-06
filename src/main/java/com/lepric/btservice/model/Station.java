@@ -11,9 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
@@ -36,12 +37,18 @@ public class Station {
     @Column(name = "stationScope")
     private float stationScope;
 
+    @JsonIgnore
+    @JoinColumn(name = "routeID")
     @ManyToMany(cascade = CascadeType.MERGE)
     private List<Route> routes;
 
+    @JsonIgnore
+    @JoinColumn(name = "cityID")
     @ManyToOne(cascade = CascadeType.MERGE)
     private City city;
-
+    
+    @JsonIgnore
+    @JoinColumn(name = "districtID")
     @ManyToOne(cascade = CascadeType.MERGE)
     private District district;
 }

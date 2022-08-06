@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lepric.btservice.payload.response.LocationModelHelper;
+import com.lepric.btservice.service.CityService;
 import com.lepric.btservice.service.LocationService;
 
 @RestController
 @RequestMapping("/location")
 public class LocationController {
     
-
     @Autowired
     private LocationService locationService;
 

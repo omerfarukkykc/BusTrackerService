@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -30,14 +32,17 @@ public class District {
     @Column(name = "isActive")
     private boolean isActive;
 
+    @JsonIgnore
     //@JoinColumn(name = "routeID")
     @ManyToOne(cascade = CascadeType.MERGE)
     private City city;
 
+    @JsonIgnore
     @JoinColumn(name = "routeID")
     @OneToMany(cascade = CascadeType.MERGE)
     private List<Route> routes;
 
+    @JsonIgnore
     @JoinColumn(name = "stationID")
     @OneToMany(cascade = CascadeType.MERGE)
     private List<Station> stations;

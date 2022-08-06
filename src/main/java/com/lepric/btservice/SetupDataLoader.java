@@ -13,7 +13,6 @@ import static org.geolatte.geom.builder.DSL.*;
 import static org.geolatte.geom.crs.CoordinateReferenceSystems.WGS84;
 
 import org.geolatte.geom.G2D;
-import org.geolatte.geom.LineString;
 import org.geolatte.geom.Point;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -46,7 +45,7 @@ import lombok.Data;
 public class SetupDataLoader implements
     ApplicationListener<ContextRefreshedEvent> {
     
-    boolean alreadySetup = false;
+    boolean alreadySetup = true;
 
     @Autowired
     private UserRepository userRepository;
@@ -90,8 +89,8 @@ public class SetupDataLoader implements
             addRoute("ÜNİVERSİTE");
             addRoute("YENİ TERMİNAL");
             addRoute("YENİMAHALLE-ÇAYIRLAR");
-            
-        
+            //cityRepository.getById((long)74).getDistricts().get(0).setRoutes(routeRepository.findAll());
+            //cityRepository.getById((long)74).getDistricts().get(0).setStations(stationRepository.findAll());
         
         Privilege erot = createPrivilegeIfNotFound("EDIT_ROTATIONS");
         Privilege esta = createPrivilegeIfNotFound("EDIT_STATIONS");
@@ -189,12 +188,16 @@ public class SetupDataLoader implements
             route.setStations(new ArrayList<Station>());
             route.setRouteLine(new ArrayList<Location>());
             int i = 1;
+            City city = cityRepository.getById((long)74);
+            District district = city.getDistricts().get(0);
             for (RouteH item : root) {
                 Station station = stationRepository.findByStationName(item.stopName).orElseThrow(
                     () -> new ResourceNotFoundException("Station", "stationName","++"+item.stopName+"++")
                 );
                 route.getRouteLine().add(new Location(Double.parseDouble(item.latitude) ,Double.parseDouble(item.longitude),false,i));
                 route.getStations().add(station);
+                route.setCity(city);
+                route.setDistrict(district);
                 i++;
             }
             routeRepository.save(route);
@@ -271,10 +274,9 @@ public class SetupDataLoader implements
             }
             stationRepository.saveAll(stations);
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
+            // 
             e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

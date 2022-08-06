@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -18,8 +19,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import org.geolatte.geom.G2D;
-import org.geolatte.geom.LineString;
 
 import lombok.Data;
 
@@ -51,6 +50,16 @@ public class Route {
     @JoinColumn(name = "busID")
     @OneToMany(cascade = CascadeType.ALL)
     private List<Bus> busses;
+
+    @JsonIgnore
+    @JoinColumn(name = "districtID")
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private District district;
+
+    @JsonIgnore
+    @JoinColumn(name = "cityID")
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private City city;
 
 
 }

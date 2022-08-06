@@ -1,9 +1,7 @@
 package com.lepric.btservice.controller.User;
 
-import java.util.Collection;
 import java.util.List;
 
-import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 
 import com.lepric.btservice.model.User;
@@ -59,6 +57,7 @@ public class UserController {
     }
     //Update User PUT
     @PutMapping("{userID}")
+    @PreAuthorize("hasAuthority('EDIT_USERS')")
     public ResponseEntity<User> updateUser(@PathVariable("userID") long userID, @RequestBody User user) {
         return new ResponseEntity<User>(userService.UpdateUser(user, userID), HttpStatus.OK);
     }
