@@ -41,12 +41,18 @@ public class Route {
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Location> routeLine;
+    private List<Location> routeLineG;
 
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Location> routeLineD;
+    
+    @JsonIgnore
     @JoinColumn(name = "stationID")
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Station> stations;
 
+    @JsonIgnore
     @JoinColumn(name = "busID")
     @OneToMany(cascade = CascadeType.ALL)
     private List<Bus> busses;

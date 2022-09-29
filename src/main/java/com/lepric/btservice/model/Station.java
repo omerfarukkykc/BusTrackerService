@@ -46,6 +46,9 @@ public class Station {
     @JoinColumn(name = "cityID")
     @ManyToOne(cascade = CascadeType.MERGE)
     private City city;
+
+    @Column(name = "direction")
+    private String direction;
     
     @JsonIgnore
     @JoinColumn(name = "districtID")

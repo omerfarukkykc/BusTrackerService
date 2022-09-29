@@ -1,15 +1,15 @@
 package com.lepric.btservice.service;
 
 
-import com.lepric.btservice.payload.response.LocationModelHelper;
+import com.lepric.btservice.payload.response.LocationResponse;
 
 
 
 public interface LocationService {
 
-    LocationModelHelper UpdateUserLocation(LocationModelHelper location, Long userID);
-    LocationModelHelper GetUserLocation(Long userID);
+    LocationResponse UpdateUserLocation(LocationResponse location, Long userID);
+    LocationResponse GetUserLocation(Long userID);
 
-    LocationModelHelper UpdateBusLocation(LocationModelHelper location, Long busID);
-    LocationModelHelper getBusLocation(Long busID);
+    LocationResponse UpdateBusLocation(LocationResponse location, Long busID);
+    LocationResponse getBusLocation(Long busID);
 }

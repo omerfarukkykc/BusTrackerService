@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lepric.btservice.model.Route;
+import com.lepric.btservice.model.Station;
+import com.lepric.btservice.payload.response.RouteResponse;
+import com.lepric.btservice.payload.response.StationResponse;
 import com.lepric.btservice.repository.RouteRepository;
 import com.lepric.btservice.service.CityService;
 import com.lepric.btservice.service.RouteService;
@@ -35,13 +38,21 @@ public class RouteController {
     private RouteService routeService;
 
     @GetMapping("route/{routeID}")
-    public ResponseEntity<Route> getRoute(@PathVariable("routeID") long routeID){
-        return new ResponseEntity<Route>(routeService.GetRoute(routeID),HttpStatus.OK);
+    public ResponseEntity<RouteResponse> GetRoute(@PathVariable("routeID") long routeID){
+        return new ResponseEntity<RouteResponse>(routeService.GetRoute(routeID),HttpStatus.OK);
         //REq düzenlenecek
     }
     @GetMapping("district/{districtID}/route")
     public ResponseEntity<List<Route>> GetRoutes(@PathVariable("districtID") long districtID){
         return new ResponseEntity<List<Route>>(routeService.GetRoutes(districtID),HttpStatus.OK);
+    }
+    @GetMapping("district/{districtID}/station")
+    public ResponseEntity<List<Station>> GetStations(@PathVariable("districtID") long districtID){
+        return new ResponseEntity<List<Station>>(routeService.GetStations(districtID),HttpStatus.OK);
+    }
+    @GetMapping("station/{stationID}")
+    public ResponseEntity<StationResponse> GetStationInfo(@PathVariable("stationID") long stationID){
+        return new ResponseEntity<StationResponse>(routeService.GetStation(stationID),HttpStatus.OK);
     }
     
 }

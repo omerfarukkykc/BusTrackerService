@@ -1,5 +1,7 @@
 
 package com.lepric.btservice;
+import java.io.Console;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -17,6 +19,8 @@ import org.geolatte.geom.Point;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
@@ -57,6 +61,9 @@ public class SetupDataLoader implements
     private StationRepository stationRepository;
  
  
+    @Autowired
+    ResourceLoader resourceLoader;  
+
     @Autowired
     private RoleRepository roleRepository;
 
@@ -186,7 +193,8 @@ public class SetupDataLoader implements
             RouteH[] root = om.readValue(str, RouteH[].class);
             route.setRouteName(routeName);
             route.setStations(new ArrayList<Station>());
-            route.setRouteLine(new ArrayList<Location>());
+            route.setRouteLineG(new ArrayList<Location>());
+            route.setRouteLineD(new ArrayList<Location>());
             int i = 1;
             City city = cityRepository.getById((long)74);
             District district = city.getDistricts().get(0);
@@ -194,11 +202,45 @@ public class SetupDataLoader implements
                 Station station = stationRepository.findByStationName(item.stopName).orElseThrow(
                     () -> new ResourceNotFoundException("Station", "stationName","++"+item.stopName+"++")
                 );
-                route.getRouteLine().add(new Location(Double.parseDouble(item.latitude) ,Double.parseDouble(item.longitude),false,i));
+                if(item.direction == null){
+                    route.getRouteLineD().add(new Location( Double.parseDouble(item.longitude),Double.parseDouble(item.latitude),false,i));
+                    route.getRouteLineG().add(new Location( Double.parseDouble(item.longitude),Double.parseDouble(item.latitude),false,i));
+                }else if(item.direction.toString() =="D"){
+                    route.getRouteLineD().add(new Location( Double.parseDouble(item.longitude),Double.parseDouble(item.latitude),false,i));
+                }else{
+                    route.getRouteLineG().add(new Location( Double.parseDouble(item.longitude),Double.parseDouble(item.latitude),false,i));
+                }
+                station.setDirection(item.direction == null ? "null":item.direction.toString());
                 route.getStations().add(station);
                 route.setCity(city);
                 route.setDistrict(district);
                 i++;
+            }
+            Resource Gresource = resourceLoader.getResource("classpath:data/RouteLine/"+routeName+"-G.json");
+            if(Gresource.exists()){
+                File file = ResourceUtils.getFile("classpath:data/RouteLine/"+routeName+"-G.json");
+                str = Files.readString(file.toPath());
+                om = new ObjectMapper();
+                RouteLineH routeLine = om.readValue(str, RouteLineH.class);
+                route.getRouteLineG().clear();
+                i = 1;
+                for(ArrayList<Double> point : routeLine.coordinates){
+                    route.getRouteLineG().add(new Location( point.get(0),point.get(1),false,i));
+                    i++;
+                }
+            }
+            Resource Dresource = resourceLoader.getResource("classpath:data/RouteLine/"+routeName+"-D.json");
+            if(Dresource.exists()){
+                File file = ResourceUtils.getFile("classpath:data/RouteLine/"+routeName+"-D.json");
+                str = Files.readString(file.toPath());
+                om = new ObjectMapper();
+                RouteLineH routeLine = om.readValue(str, RouteLineH.class);
+                route.getRouteLineD().clear();
+                i = 1;
+                for(ArrayList<Double> point : routeLine.coordinates){
+                    route.getRouteLineD().add(new Location( point.get(0),point.get(1),false,i));
+                    i++;
+                }
             }
             routeRepository.save(route);
         } catch (FileNotFoundException e) {
@@ -209,6 +251,15 @@ public class SetupDataLoader implements
         
     }
 
+    @Data
+    private static class RouteLineH{
+        public ArrayList<ArrayList<Double>> coordinates;
+        public RouteLineH() {
+        }
+        public RouteLineH(ArrayList<ArrayList<Double>> coordinates) {
+            this.coordinates = coordinates;
+        }
+    }
 
 
 

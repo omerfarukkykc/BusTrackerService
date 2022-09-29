@@ -8,10 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.lepric.btservice.model.Route;
 import com.lepric.btservice.model.Station;
-import com.lepric.btservice.repository.CityRepository;
-import com.lepric.btservice.service.CityService;
 import com.lepric.btservice.service.RouteService;
 
 public class StationController {
@@ -25,12 +22,6 @@ public class StationController {
     @Autowired
     RouteService routeService;
 
-    @GetMapping("station/{stationID}")
-    public ResponseEntity<Station> GetRoutes(@PathVariable("stationID") long stationID){
-        return new ResponseEntity<Station>(routeService.GetStation(stationID),HttpStatus.OK);
-    }
-    @GetMapping("district/{districtID}/station")
-    public ResponseEntity<List<Station>> GetStations(@PathVariable("districtID") long districtID){
-        return new ResponseEntity<List<Station>>(routeService.GetStations(districtID),HttpStatus.OK);
-    }
+   
+    
 }

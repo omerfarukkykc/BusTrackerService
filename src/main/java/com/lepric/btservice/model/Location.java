@@ -43,7 +43,7 @@ public class Location {
     @Column(name = "sequence")
     private int sequence;
 
-    public Location(double latitude, double longitude, boolean isActive, int sequence) {
+    public Location( double longitude,double latitude, boolean isActive, int sequence) {
         this.isActive = isActive;
         this.sequence = sequence;
         this.location = new Point<G2D>(g(longitude, latitude), WGS84);

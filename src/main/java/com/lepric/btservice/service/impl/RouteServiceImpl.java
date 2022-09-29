@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import com.lepric.btservice.exception.ResourceNotFoundException;
 import com.lepric.btservice.model.Route;
 import com.lepric.btservice.model.Station;
+import com.lepric.btservice.payload.response.LocationResponse;
+import com.lepric.btservice.payload.response.RouteResponse;
+import com.lepric.btservice.payload.response.StationResponse;
 import com.lepric.btservice.repository.CityRepository;
 import com.lepric.btservice.repository.RouteRepository;
 import com.lepric.btservice.repository.StationRepository;
@@ -48,11 +51,25 @@ public class RouteServiceImpl implements RouteService{
     }
 
     @Override
-    public Route GetRoute(long routeID) {
+    public RouteResponse GetRoute(long routeID) {
         Route route = routeRepository.findById(routeID).orElseThrow(
             () -> new ResourceNotFoundException("Route", "routeID", routeID)
         );
-        return route;
+        RouteResponse response = new RouteResponse();
+
+        response.setRouteName(route.getRouteName());
+        response.setRouteID(routeID);
+        response.setStations(route.getStations());
+        response.setUpdatedAt(route.getUpdatedAt());
+        response.setRouteLineG(new ArrayList<LocationResponse>());
+        response.setRouteLineD(new ArrayList<LocationResponse>());
+        route.getRouteLineG().forEach((item)->{
+            response.getRouteLineG().add(new LocationResponse(item.getLocation(),item.getUpdatedAt(),item.getSequence()));
+        });
+        route.getRouteLineD().forEach((item)->{
+            response.getRouteLineD().add(new LocationResponse(item.getLocation(),item.getUpdatedAt(),item.getSequence()));
+        });
+        return response;
     }
 
     @Override
@@ -70,11 +87,18 @@ public class RouteServiceImpl implements RouteService{
     }
 
     @Override
-    public Station GetStation(long stationID) {
+    public StationResponse GetStation(long stationID) {
         Station station = stationRepository.findById(stationID).orElseThrow(
             () -> new ResourceNotFoundException("Route", "routeID",stationID)
         );
-        return station;
+        List<Route> routes = new ArrayList<Route>();
+        routeRepository.findAll().forEach(item->{
+            if(item.getStations().contains(station)){
+                routes.add(item);
+            }
+        });
+
+        return new StationResponse(station, routes);
     }
 
     @Override
