@@ -59,8 +59,7 @@ public class SetupDataLoader implements
 
     @Autowired
     private StationRepository stationRepository;
- 
- 
+
     @Autowired
     ResourceLoader resourceLoader;  
 
@@ -79,26 +78,26 @@ public class SetupDataLoader implements
     public void onApplicationEvent(ContextRefreshedEvent event) {
         if (alreadySetup)
             return;
-            createCityAndDistrict();
-            createStations();
-            addRoute("ALADAĞI");
-            addRoute("ÇATMACA-SSK HASTANESİ");
-            addRoute("DEVLET HASTANESİ");
-            addRoute("DOSTKENT-ERKAM SİTESİ");
-            addRoute("ESENTEPE-48 EVLER");//Esentepe 48.62 -> Esentepe1
-            addRoute("GÜLKENT-KARAÇAY");
-            addRoute("İMAMHATİP-AĞDACI");
-            addRoute("KANLITÜRBE-KAVALLAR.");
-            addRoute("KASAPOĞLU");
-            addRoute("KAYNARCA-TOKİ");
-            addRoute("ORDUYERİ-CEZAEVİ");
-            addRoute("ŞİREMİŞ-ÇAVUŞ KÖYÜ");
-            addRoute("ÜNİVERSİTE");
-            addRoute("YENİ TERMİNAL");
-            addRoute("YENİMAHALLE-ÇAYIRLAR");
-            //cityRepository.getById((long)74).getDistricts().get(0).setRoutes(routeRepository.findAll());
-            //cityRepository.getById((long)74).getDistricts().get(0).setStations(stationRepository.findAll());
-        
+        createCityAndDistrict();
+        createStations();
+        addRoute("ALADAĞI");
+        addRoute("ÇATMACA-SSK HASTANESİ");
+        addRoute("DEVLET HASTANESİ");
+        addRoute("DOSTKENT-ERKAM SİTESİ");
+        addRoute("ESENTEPE-48 EVLER");//Esentepe 48.62 -> Esentepe1
+        addRoute("GÜLKENT-KARAÇAY");
+        addRoute("İMAMHATİP-AĞDACI");
+        addRoute("KANLITÜRBE-KAVALLAR.");
+        addRoute("KASAPOĞLU");
+        addRoute("KAYNARCA-TOKİ");
+        addRoute("ORDUYERİ-CEZAEVİ");
+        addRoute("ŞİREMİŞ-ÇAVUŞ KÖYÜ");
+        addRoute("ÜNİVERSİTE");
+        addRoute("YENİ TERMİNAL");
+        addRoute("YENİMAHALLE-ÇAYIRLAR");
+        //cityRepository.getById((long)74).getDistricts().get(0).setRoutes(routeRepository.findAll());
+        //cityRepository.getById((long)74).getDistricts().get(0).setStations(stationRepository.findAll());
+    
         Privilege erot = createPrivilegeIfNotFound("EDIT_ROTATIONS");
         Privilege esta = createPrivilegeIfNotFound("EDIT_STATIONS");
         Privilege ebus = createPrivilegeIfNotFound("EDIT_BUSSES");
