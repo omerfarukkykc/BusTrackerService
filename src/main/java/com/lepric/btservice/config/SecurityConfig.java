@@ -20,7 +20,7 @@ import com.lepric.btservice.service.impl.UserServiceImpl;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled=true,securedEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -33,7 +33,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService);
     }
-   
 
     @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
     @Override
@@ -43,25 +42,37 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests().antMatchers("/auth/authenticate","/users/register","/version","/api-docs/**", "/swagger-ui.html", "/swagger-ui/**")
+        http.csrf().disable().authorizeRequests().antMatchers(
+                "/auth/authenticate",
+                "/users/register",
+                "/version",
+                "/api-docs/**",
+                "/swagger-ui.html",
+                "/swagger-ui/**",
+                "/busses/**/setActive"
+                
+                )
                 .permitAll().anyRequest().authenticated()
                 .and().exceptionHandling().and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);;
+        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+        ;
     }
-    /* 
-    @Bean
-    public RoleHierarchy roleHierarchy() {
-        RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
-        String hierarchy = "ROLE_ADMIN > ROLE_MOD \n ROLE_DEALER > ROLE_USER";
-        roleHierarchy.setHierarchy(hierarchy);
-        return roleHierarchy;
-    }
-    @Bean
-    public DefaultWebSecurityExpressionHandler webSecurityExpressionHandler() {
-        DefaultWebSecurityExpressionHandler expressionHandler = new DefaultWebSecurityExpressionHandler();
-        expressionHandler.setRoleHierarchy(roleHierarchy());
-        return expressionHandler;
-    }
-    */
+    /*
+     * @Bean
+     * public RoleHierarchy roleHierarchy() {
+     * RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
+     * String hierarchy = "ROLE_ADMIN > ROLE_MOD \n ROLE_DEALER > ROLE_USER";
+     * roleHierarchy.setHierarchy(hierarchy);
+     * return roleHierarchy;
+     * }
+     * 
+     * @Bean
+     * public DefaultWebSecurityExpressionHandler webSecurityExpressionHandler() {
+     * DefaultWebSecurityExpressionHandler expressionHandler = new
+     * DefaultWebSecurityExpressionHandler();
+     * expressionHandler.setRoleHierarchy(roleHierarchy());
+     * return expressionHandler;
+     * }
+     */
 }
