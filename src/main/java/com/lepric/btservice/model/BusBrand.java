@@ -31,7 +31,7 @@ public class BusBrand {
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "brandID")
+    @JoinColumn(name = "modelID")
     private List<BusBrandModel> models;
 
     @Column(name = "brandName",nullable = false)

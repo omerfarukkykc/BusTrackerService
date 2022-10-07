@@ -5,7 +5,7 @@ import java.util.List;
 import com.lepric.btservice.model.Bus;
 import com.lepric.btservice.model.BusBrand;
 import com.lepric.btservice.model.BusBrandModel;
-import com.lepric.btservice.payload.response.BusModelHelper;
+import com.lepric.btservice.payload.request.BusRequest;
 
 public interface BusService {
 
@@ -16,20 +16,24 @@ public interface BusService {
 
     List<Bus> GetBusses();
 
-    Bus UpdateBus(BusModelHelper bus, long busID);
+    Bus UpdateBus(BusRequest bus, long busID);
 
-    Bus AddBus(BusModelHelper busHelper);
+    Bus AddBus(BusRequest busHelper);
 
     
     List<BusBrand> getBrands();
-    BusBrand addModel(BusBrand busModel);
-    boolean deleteModel();
-    boolean updateModel();
-
 
     List<BusBrandModel> getBrandModels(long brandID);
     
+    BusBrand addBusBrand(BusBrand busBrand);
     
+    BusBrandModel addBusBrandModel(BusBrandModel busBrandModel);
+    
+    
+    boolean deleteBrandModel();
+    boolean updateBrandModel();
+
+    Boolean setActive(long busID, boolean isActive);
 
     
 

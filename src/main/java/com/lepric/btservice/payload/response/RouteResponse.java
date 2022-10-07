@@ -27,7 +27,13 @@ public class RouteResponse {
 
     private List<StationResponse> stations;
 
-    private List<Bus> busses;
+    private List<BusResponse> busses;
+    public void setBusses(List<Bus> busses){
+        this.busses = new ArrayList<BusResponse>();
+        busses.forEach((item )->{
+            this.busses.add(new BusResponse(item));
+        });
+    }
     public void setStations(List<Station> station){
         this.stations = new ArrayList<StationResponse>();
         int i = 0;
@@ -40,8 +46,6 @@ public class RouteResponse {
             stationResponse.setLocation(new LocationResponse(item.getLocation().getLocation(),i));
             stationResponse.setDirection(item.getDirection());
             this.stations.add(stationResponse);
-
         }
-        
     }
 }

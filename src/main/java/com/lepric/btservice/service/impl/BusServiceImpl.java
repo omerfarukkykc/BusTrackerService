@@ -15,10 +15,12 @@ import com.lepric.btservice.model.Bus;
 import com.lepric.btservice.model.BusBrand;
 import com.lepric.btservice.model.BusBrandModel;
 import com.lepric.btservice.model.Location;
-import com.lepric.btservice.payload.response.BusModelHelper;
+import com.lepric.btservice.model.Route;
+import com.lepric.btservice.payload.request.BusRequest;
 import com.lepric.btservice.repository.BusBrandsRepository;
 import com.lepric.btservice.repository.BusBrandModelRepository;
 import com.lepric.btservice.repository.BusRepository;
+import com.lepric.btservice.repository.RouteRepository;
 import com.lepric.btservice.service.BusService;
 
 @Service
@@ -32,6 +34,9 @@ public class BusServiceImpl implements BusService{
 
     @Autowired
     private BusBrandsRepository busBrandRepository;
+
+    @Autowired
+    private RouteRepository routeRepository;
     
     
     @Override
@@ -52,7 +57,7 @@ public class BusServiceImpl implements BusService{
         return busRepository.findAll();
     }
     @Override
-    public Bus UpdateBus(BusModelHelper busHelper, long busID) {
+    public Bus UpdateBus(BusRequest busHelper, long busID) {
         Bus dbBus =  busRepository.findById(busID).orElseThrow(
             () -> new ResourceNotFoundException("Bus", "ID", busID));
         if(busHelper.getPlate() != null)    
@@ -64,13 +69,18 @@ public class BusServiceImpl implements BusService{
         return busRepository.save(dbBus);
     }
     @Override
-    public Bus AddBus(BusModelHelper busHelper) {
+    public Bus AddBus(BusRequest busHelper) {
         Bus bus = busHelper.toBus();
         bus.setBrand(busBrandRepository.getById(busHelper.getBrandID()));
         bus.setModel(busBrandModelRepository.getById(busHelper.getModelID()));
         bus.setLocation(new Location());
         bus.getLocation().setLocation(new Point<G2D>(g(0,0),WGS84));
-        return busRepository.save(bus);
+        
+        Route route = routeRepository.findById(busHelper.getRouteID()).orElseThrow(
+            () -> new ResourceNotFoundException("Bus", "ID", busHelper.getRouteID()));
+        route.getBusses().add(bus);
+        Route routeResponse = routeRepository.save(route);
+        return routeResponse.getBusses().get(routeResponse.getBusses().size()-1);
     }
 
     @Override
@@ -84,20 +94,34 @@ public class BusServiceImpl implements BusService{
             () -> new ResourceNotFoundException("Brand", "ID", brandID));
         return brand.getModels();
     }
+   
     @Override
-    public BusBrand addModel(BusBrand busModel) {
-         // TODO Auto-generated method stub
-         return null;
-    }
-    @Override
-    public boolean deleteModel() {
+    public boolean deleteBrandModel() {
         // TODO Auto-generated method stub
         return false;
     }
     @Override
-    public boolean updateModel() {
+    public boolean updateBrandModel() {
         // TODO Auto-generated method stub
         return false;
     }
+    @Override
+    public BusBrand addBusBrand(BusBrand busBrand) {
+        return busBrandRepository.save(busBrand);
+    }
+    @Override
+    public BusBrandModel addBusBrandModel(BusBrandModel busBrandModel) {
+        return busBrandModelRepository.save(busBrandModel);
+    }
+    @Override
+    public Boolean setActive(long busID,boolean isActive) {
+        Bus bus =busRepository.findById(busID).orElseThrow(
+            () -> new ResourceNotFoundException("Bus", "busID", busID)
+        );
+        bus.setIsActive(isActive);
+        Bus response = busRepository.save(bus);
+        return response.getIsActive();
+    }
+    
     
 }

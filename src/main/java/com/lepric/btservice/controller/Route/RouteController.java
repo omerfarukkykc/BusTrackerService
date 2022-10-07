@@ -1,5 +1,6 @@
 package com.lepric.btservice.controller.Route;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lepric.btservice.model.Bus;
 import com.lepric.btservice.model.Route;
 import com.lepric.btservice.model.Station;
+import com.lepric.btservice.payload.response.BusResponse;
 import com.lepric.btservice.payload.response.RouteResponse;
 import com.lepric.btservice.payload.response.StationResponse;
 import com.lepric.btservice.repository.RouteRepository;
@@ -54,5 +57,13 @@ public class RouteController {
     public ResponseEntity<StationResponse> GetStationInfo(@PathVariable("stationID") long stationID){
         return new ResponseEntity<StationResponse>(routeService.GetStation(stationID),HttpStatus.OK);
     }
-    
+    @GetMapping("route/realTimeData/{routeID}")
+    public ResponseEntity<List<BusResponse>> getRealTimeData(@PathVariable("routeID") long routeID){
+        List<Bus> dbresponse = routeService.GetRouteRealTimeData(routeID);
+        List<BusResponse> response = new ArrayList<BusResponse>(); 
+        dbresponse.forEach((item) ->{
+            response.add(new BusResponse(item));
+        });
+        return new ResponseEntity<List<BusResponse>>(response,HttpStatus.OK);      
+    }
 }

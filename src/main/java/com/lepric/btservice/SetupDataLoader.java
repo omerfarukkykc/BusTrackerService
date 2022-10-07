@@ -28,6 +28,9 @@ import org.springframework.util.ResourceUtils;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lepric.btservice.exception.ResourceNotFoundException;
+import com.lepric.btservice.model.Bus;
+import com.lepric.btservice.model.BusBrand;
+import com.lepric.btservice.model.BusBrandModel;
 import com.lepric.btservice.model.City;
 import com.lepric.btservice.model.District;
 import com.lepric.btservice.model.Location;
@@ -36,6 +39,9 @@ import com.lepric.btservice.model.Role;
 import com.lepric.btservice.model.Route;
 import com.lepric.btservice.model.Station;
 import com.lepric.btservice.model.User;
+import com.lepric.btservice.repository.BusBrandModelRepository;
+import com.lepric.btservice.repository.BusBrandsRepository;
+import com.lepric.btservice.repository.BusRepository;
 import com.lepric.btservice.repository.CityRepository;
 import com.lepric.btservice.repository.PrivilegeRepository;
 import com.lepric.btservice.repository.RoleRepository;
@@ -73,6 +79,12 @@ public class SetupDataLoader implements
     private CityRepository cityRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    BusRepository busRepository;
+    @Autowired
+    BusBrandsRepository busBrandRepository;
+    @Autowired
+    BusBrandModelRepository busBrandModelRepository;
     @Override
     @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -144,7 +156,22 @@ public class SetupDataLoader implements
         user.setPassword(passwordEncoder.encode("123456"));
         userRepository.save(user);
         
-        
+        BusBrand busBrand = new BusBrand();
+        busBrand.setBrandName("Mersedes");
+        BusBrandModel busBrandModel = new BusBrandModel();
+        busBrandModel.setBusBrand(busBrand);
+        busBrandModel.setModelName("A300"); 
+        busBrandRepository.save(busBrand);
+        busBrandModelRepository.save(busBrandModel);
+
+        Bus defaultBus = new Bus();
+        defaultBus.setBrand(busBrand);
+        defaultBus.setIsActive(true);
+        defaultBus.setPlate("74AC001");
+        defaultBus.setRoute(routeRepository.findById((long)14).orElseThrow());
+        defaultBus.setLocation(new Location());
+        defaultBus.setModel(busBrandModel);
+        busRepository.save(defaultBus);
         alreadySetup = true;
     }
     // import com.fasterxml.jackson.databind.ObjectMapper; // version 2.11.1

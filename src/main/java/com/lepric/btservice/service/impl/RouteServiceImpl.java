@@ -7,11 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lepric.btservice.exception.ResourceNotFoundException;
+import com.lepric.btservice.model.Bus;
 import com.lepric.btservice.model.Route;
 import com.lepric.btservice.model.Station;
 import com.lepric.btservice.payload.response.LocationResponse;
 import com.lepric.btservice.payload.response.RouteResponse;
 import com.lepric.btservice.payload.response.StationResponse;
+import com.lepric.btservice.repository.BusRepository;
 import com.lepric.btservice.repository.CityRepository;
 import com.lepric.btservice.repository.RouteRepository;
 import com.lepric.btservice.repository.StationRepository;
@@ -26,6 +28,8 @@ public class RouteServiceImpl implements RouteService{
     StationRepository stationRepository;
     @Autowired
     CityRepository cityRepository;
+    @Autowired
+    BusRepository busRepository;
 
     @Override
     public List<Route> GetRoutes() {
@@ -53,10 +57,16 @@ public class RouteServiceImpl implements RouteService{
     @Override
     public RouteResponse GetRoute(long routeID) {
         Route route = routeRepository.findById(routeID).orElseThrow(
-            () -> new ResourceNotFoundException("Route", "routeID", routeID)
+           
         );
+        List<Bus> busses = new ArrayList<Bus>();
+        busRepository.findAll().forEach((item)->{
+            if(item.getRoute().getRouteID()==route.getRouteID()){
+                busses.add(item);
+            }
+        });
         RouteResponse response = new RouteResponse();
-
+        response.setBusses(busses);
         response.setRouteName(route.getRouteName());
         response.setRouteID(routeID);
         response.setStations(route.getStations());
@@ -81,9 +91,17 @@ public class RouteServiceImpl implements RouteService{
     }
 
     @Override
-    public List<Route> GetRouteRealTimeData(long routeID) {
-        // TODO Auto-generated method stub
-        return null;
+    public List<Bus> GetRouteRealTimeData(long routeID) {
+        Route route = routeRepository.findById(routeID).orElseThrow(
+           
+        );
+        List<Bus> busses = new ArrayList<Bus>();
+        busRepository.findAll().forEach((item)->{
+            if(item.getRoute().getRouteID()==route.getRouteID()){
+                busses.add(item);
+            }
+        });
+        return busses;
     }
 
     @Override

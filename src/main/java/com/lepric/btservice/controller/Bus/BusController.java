@@ -2,6 +2,7 @@ package com.lepric.btservice.controller.Bus;
 
 import java.util.List;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lepric.btservice.model.Bus;
-import com.lepric.btservice.model.BusBrand;
-import com.lepric.btservice.model.BusBrandModel;
-import com.lepric.btservice.payload.response.BusModelHelper;
+import com.lepric.btservice.payload.request.BusRequest;
 import com.lepric.btservice.service.BusService;
 
 
@@ -30,7 +29,7 @@ public class BusController {
     BusService busService;
      //Create a new bus
     @PostMapping()
-    public ResponseEntity<Bus> Addbus(@RequestBody BusModelHelper bus) {
+    public ResponseEntity<Bus> Addbus(@RequestBody BusRequest bus) {
         
         return new ResponseEntity<Bus>(busService.AddBus(bus), HttpStatus.OK);
     }
@@ -54,18 +53,16 @@ public class BusController {
     }
      //Update bus PUT
     @PutMapping("{busID}")
-    public ResponseEntity<Bus> updateBus(@PathVariable("busID") long busID, @RequestBody BusModelHelper bus) {
+    public ResponseEntity<Bus> updateBus(@PathVariable("busID") long busID, @RequestBody BusRequest bus) {
 
         return new ResponseEntity<Bus>(busService.UpdateBus(bus, busID), HttpStatus.OK);
     }
-    
-    
-    @GetMapping("/brands")
-    public ResponseEntity<List<BusBrand>> getBrands() {
-        return new ResponseEntity<List<BusBrand>>(busService.getBrands(), HttpStatus.OK);
+
+    @PutMapping("{busID}/setActive")
+    public ResponseEntity<Boolean> setActive(@PathVariable("busID") long busID,@RequestBody boolean isActive ){
+
+        
+        return new ResponseEntity<Boolean>(busService.setActive(busID,isActive), HttpStatus.OK);
     }
-    @GetMapping("/brands/{brandID}")
-    public ResponseEntity<List<BusBrandModel>> getBrandsModels(@PathVariable long brandID) {
-        return new ResponseEntity<List<BusBrandModel>>(busService.getBrandModels(brandID), HttpStatus.OK);
-    }
+
 }

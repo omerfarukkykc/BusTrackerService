@@ -8,7 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -42,7 +44,11 @@ public class Bus {
     @JoinColumn(name = "locationID",nullable = false,unique = true,updatable = false)
     private Location location;
 
-    @JoinColumn(name = "routeID")
-    @ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
+    @JoinColumn(name = "routeID",unique = false)
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Route route;
+    
+    @Column(name = "isActive") 
+    private Boolean isActive;
 }
