@@ -64,5 +64,10 @@ public class BusController {
         
         return new ResponseEntity<Boolean>(busService.setActive(busID,isActive), HttpStatus.OK);
     }
+    @GetMapping("{busID}/getActive")
+    public ResponseEntity<Boolean> getActive(@PathVariable("busID") long busID){
+
+        return new ResponseEntity<Boolean>(busService.getActive(busID), HttpStatus.OK);
+    }
 
 }

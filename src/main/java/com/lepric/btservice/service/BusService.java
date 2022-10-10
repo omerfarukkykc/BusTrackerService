@@ -35,6 +35,8 @@ public interface BusService {
 
     Boolean setActive(long busID, boolean isActive);
 
+    Boolean getActive(long busID);
+
     
 
     

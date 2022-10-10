@@ -61,7 +61,7 @@ public class RouteServiceImpl implements RouteService{
         );
         List<Bus> busses = new ArrayList<Bus>();
         busRepository.findAll().forEach((item)->{
-            if(item.getRoute().getRouteID()==route.getRouteID()){
+            if(item.getRoute().getRouteID()==route.getRouteID()&&item.getIsActive()){
                 busses.add(item);
             }
         });
@@ -97,7 +97,7 @@ public class RouteServiceImpl implements RouteService{
         );
         List<Bus> busses = new ArrayList<Bus>();
         busRepository.findAll().forEach((item)->{
-            if(item.getRoute().getRouteID()==route.getRouteID()){
+            if(item.getRoute().getRouteID()==route.getRouteID()&&item.getIsActive()){
                 busses.add(item);
             }
         });

@@ -122,6 +122,13 @@ public class BusServiceImpl implements BusService{
         Bus response = busRepository.save(bus);
         return response.getIsActive();
     }
+    @Override
+    public Boolean getActive(long busID) {
+        Bus bus =busRepository.findById(busID).orElseThrow(
+            () -> new ResourceNotFoundException("Bus", "busID", busID)
+        );
+        return bus.getIsActive();
+    }
     
     
 }

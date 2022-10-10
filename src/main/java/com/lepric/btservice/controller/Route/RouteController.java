@@ -43,7 +43,6 @@ public class RouteController {
     @GetMapping("route/{routeID}")
     public ResponseEntity<RouteResponse> GetRoute(@PathVariable("routeID") long routeID){
         return new ResponseEntity<RouteResponse>(routeService.GetRoute(routeID),HttpStatus.OK);
-        //REq düzenlenecek
     }
     @GetMapping("district/{districtID}/route")
     public ResponseEntity<List<Route>> GetRoutes(@PathVariable("districtID") long districtID){
