@@ -6,7 +6,7 @@ docker run --name BusTrackerService -d -p 8080:8080 elledian/bus_tracker_service
 or 
 
 run run.sh script on the cloud server
-<a src="https://github.com/omerfarukkykc/React-Bus-Tracker"> Mobil Uygulama için Tıklanyın</a>
+[I'm an inline-style link]([https://www.google.com](https://github.com/omerfarukkykc/React-Bus-Tracker))
 ![image](https://user-images.githubusercontent.com/54690370/196819339-f826753e-ebbc-4082-9dbc-2ae47033521b.png)
 Nesneye dayalı ve ilişkili veri tabanı kullanılarak anahtar değer eşleştirmeleri ile daha az yer kaplayan ve daha anlaşılır bir veri tabanı oluşturulmuştur. İlişkili veri tabanı temelde, tekrar tekrar kullanılacak verilerin bir kere hafızada oluşturulduktan sonra aynı verinin kullanılacağı diğer kısımlarda hafızada halihazırla oluşturulmuş veriye referans verme işini yapar. Görselde oluşturulan veri tabanı yapısı projede oluşturulacak veri tabanının taslağı olmakla birlikte geliştirilmesi hedeflenmektedir. Projede yer alması beklenen tablolar ve ilişki tanımları;
 
