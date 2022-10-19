@@ -7,7 +7,7 @@ or
 
 run run.sh script on the cloud server
 
-![Mobil Uygulama]([))
+
  <a href ="[https://www.java.com](https://www.google.com](https://github.com/omerfarukkykc/React-Bus-Tracker" target ="_blank"> Mobil Uygulama</a>
 
 ![image](https://user-images.githubusercontent.com/54690370/196819339-f826753e-ebbc-4082-9dbc-2ae47033521b.png)
