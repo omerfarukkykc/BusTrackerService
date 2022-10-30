@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lepric.btservice.model.Bus;
+import com.lepric.btservice.model.Fee;
 import com.lepric.btservice.model.Route;
+import com.lepric.btservice.model.RouteTime;
 import com.lepric.btservice.model.Station;
 import com.lepric.btservice.payload.response.BusResponse;
 import com.lepric.btservice.payload.response.RouteResponse;
@@ -42,7 +44,11 @@ public class RouteController {
 
     @GetMapping("route/{routeID}")
     public ResponseEntity<RouteResponse> GetRoute(@PathVariable("routeID") long routeID){
-        return new ResponseEntity<RouteResponse>(routeService.GetRoute(routeID),HttpStatus.OK);
+        return new ResponseEntity<RouteResponse>(routeService.GetRouteResponse(routeID),HttpStatus.OK);
+    }
+    @GetMapping("route/{routeID}/times")
+    public ResponseEntity<List<RouteTime>> GetRouteTimes(@PathVariable("routeID") long routeID){
+        return new ResponseEntity<List<RouteTime>>(routeService.GetRouteTimes(routeID),HttpStatus.OK);
     }
     @GetMapping("district/{districtID}/route")
     public ResponseEntity<List<Route>> GetRoutes(@PathVariable("districtID") long districtID){
@@ -65,4 +71,10 @@ public class RouteController {
         });
         return new ResponseEntity<List<BusResponse>>(response,HttpStatus.OK);      
     }
+    @GetMapping("route/{routeID}/fee")
+    public ResponseEntity<Fee> GetRouteFee(@PathVariable("routeID") long routeID){
+        Route route = routeService.GetRoute(routeID);
+        return new ResponseEntity<Fee>(route.getFee(),HttpStatus.OK);
+    }
+
 }

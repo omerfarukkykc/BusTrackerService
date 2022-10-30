@@ -1,11 +1,11 @@
 
 package com.lepric.btservice;
-import java.io.Console;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -33,16 +33,19 @@ import com.lepric.btservice.model.BusBrand;
 import com.lepric.btservice.model.BusBrandModel;
 import com.lepric.btservice.model.City;
 import com.lepric.btservice.model.District;
+import com.lepric.btservice.model.Fee;
 import com.lepric.btservice.model.Location;
 import com.lepric.btservice.model.Privilege;
 import com.lepric.btservice.model.Role;
 import com.lepric.btservice.model.Route;
+import com.lepric.btservice.model.RouteTime;
 import com.lepric.btservice.model.Station;
 import com.lepric.btservice.model.User;
 import com.lepric.btservice.repository.BusBrandModelRepository;
 import com.lepric.btservice.repository.BusBrandsRepository;
 import com.lepric.btservice.repository.BusRepository;
 import com.lepric.btservice.repository.CityRepository;
+import com.lepric.btservice.repository.FeeRepository;
 import com.lepric.btservice.repository.PrivilegeRepository;
 import com.lepric.btservice.repository.RoleRepository;
 import com.lepric.btservice.repository.RouteRepository;
@@ -78,6 +81,8 @@ public class SetupDataLoader implements
     @Autowired
     private CityRepository cityRepository;
     @Autowired
+    private FeeRepository feeRepository;
+    @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
     BusRepository busRepository;
@@ -92,6 +97,8 @@ public class SetupDataLoader implements
             return;
         createCityAndDistrict();
         createStations();
+        Fee fee = new Fee();
+        feeRepository.save(fee);
         addRoute("ALADAĞI");
         addRoute("ÇATMACA-SSK HASTANESİ");
         addRoute("DEVLET HASTANESİ");
@@ -134,7 +141,9 @@ public class SetupDataLoader implements
         admin.setLastname("Kayıkcı");
         admin.setEmail("omer.twd@gmail.com");
         admin.setRoles(Arrays.asList(adminRole));
+        admin.setCardID("17 B3 55 62");
         admin.setCity(city);
+        admin.setBalance(200.0);
         admin.setDistrict(district);
         admin.setEnabled(true);
         admin.setLocation(new Location());
@@ -165,6 +174,7 @@ public class SetupDataLoader implements
         busBrandModelRepository.save(busBrandModel);
 
         Bus defaultBus = new Bus();
+        defaultBus.setCurrentStation(routeRepository.findById((long)14).orElseThrow().getStations().get(0));
         defaultBus.setBrand(busBrand);
         defaultBus.setIsActive(true);
         defaultBus.setPlate("74AC001");
@@ -268,7 +278,15 @@ public class SetupDataLoader implements
                     i++;
                 }
             }
+            List<RouteTime> times =  new ArrayList<RouteTime>();
+            for (int j = 7; j < 23; j++) {
+                times.add(new RouteTime(LocalTime.of(j, 0, 0),LocalTime.of(j+1, 0, 0)));
+            }
+            route.setRouteTimes(times);
+
+            route.setFee(feeRepository.findAll().get(0));
             routeRepository.save(route);
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

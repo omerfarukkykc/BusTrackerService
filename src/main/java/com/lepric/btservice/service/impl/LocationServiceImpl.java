@@ -10,6 +10,7 @@ import org.geolatte.geom.Point;
 
 import com.lepric.btservice.exception.ResourceNotFoundException;
 import com.lepric.btservice.model.Bus;
+import com.lepric.btservice.model.Station;
 import com.lepric.btservice.model.User;
 import com.lepric.btservice.payload.response.LocationResponse;
 import com.lepric.btservice.repository.BusRepository;
@@ -46,6 +47,27 @@ public class LocationServiceImpl implements LocationService{
         Bus bus =  busRepository.findById(busID).orElseThrow(
             () -> new ResourceNotFoundException("Bus", "ID", busID));
         bus.getLocation().setLocation(new Point<G2D>(g(location.getLatitude(),location.getLongitude()),WGS84));
+        double minimumDistance=0.0;
+        Station nearestStation = null;
+        LocationResponse nearestStationLocation = null;
+        for(Station station : bus.getRoute().getStations()){
+            if(nearestStation == null){
+                nearestStation = station;
+                nearestStationLocation = new LocationResponse(station.getLocation().getLocation());
+                minimumDistance =  distance(nearestStationLocation.getLatitude(),nearestStationLocation.getLongitude(),location.getLatitude(),location.getLongitude()); 
+            }else{
+                nearestStationLocation = new LocationResponse(station.getLocation().getLocation());
+                double distance = distance(nearestStationLocation.getLatitude(),nearestStationLocation.getLongitude(),location.getLatitude(),location.getLongitude());
+                if(distance < minimumDistance){
+                    nearestStation = station;
+                    nearestStationLocation = new LocationResponse(station.getLocation().getLocation());
+                    minimumDistance = distance;
+                }
+            }
+        }
+        if (minimumDistance < (double)nearestStation.getStationScope()){
+            bus.setCurrentStation(nearestStation);
+        }
         busRepository.save(bus);
         return new LocationResponse(bus);
     }
@@ -55,5 +77,21 @@ public class LocationServiceImpl implements LocationService{
         Bus bus =  busRepository.findById(busID).orElseThrow(
             () -> new ResourceNotFoundException("Bus", "ID", busID));
         return new LocationResponse(bus);
+    }
+    
+    private double distance(double lat1, double lon1,double lat2,double lon2) {
+        lon1 = Math.toRadians(lon1);
+        lon2 = Math.toRadians(lon2);
+        lat1 = Math.toRadians(lat1);
+        lat2 = Math.toRadians(lat2);
+        // Haversine formula
+        double dlon = lon2 - lon1;
+        double dlat = lat2 - lat1;
+        double a = Math.pow(Math.sin(dlat / 2), 2)
+                + Math.cos(lat1) * Math.cos(lat2)
+                        * Math.pow(Math.sin(dlon / 2), 2);
+        double c = 2 * Math.asin(Math.sqrt(a));
+        double r = 6371;
+        return (c * r)*1000;
     }
 }

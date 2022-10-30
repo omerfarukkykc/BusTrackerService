@@ -49,6 +49,12 @@ public class User {
     @Column(name = "enabled", nullable = false)
     private boolean enabled = false;
 
+    @Column(name = "balance")
+    private Double balance = 0.0;
+
+    @Column(name = "cardID",unique = true)
+    private String cardID;
+
     @CreationTimestamp()
     @Column(name = "createdAt", updatable = false, nullable = false)
     private LocalDateTime createdAt; 
@@ -76,6 +82,14 @@ public class User {
     @JoinColumn(name = "districtID")
     @ManyToOne(cascade = CascadeType.MERGE)
     private District district;
+
+    @JoinColumn(name = "stationID")
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private Station startStation;
+
+    @JoinColumn(name = "routeID")
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private Route activeRoute;
     
     /*
     @OneToMany(mappedBy = "apiRole")

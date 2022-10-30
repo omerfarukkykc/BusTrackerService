@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -67,6 +66,18 @@ public class Route {
     @JoinColumn(name = "cityID")
     @ManyToOne(cascade = CascadeType.MERGE)
     private City city;
+
+    @JsonIgnore
+    @JoinColumn(name = "routeID")
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<RouteTime> routeTimes;
+    
+    @JsonIgnore
+    @JoinColumn(name = "feeID")
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private Fee fee ;
+
+    
 
     
 }

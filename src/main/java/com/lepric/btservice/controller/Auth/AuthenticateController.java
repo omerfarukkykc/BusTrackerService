@@ -29,7 +29,6 @@ public class AuthenticateController {
     @GetMapping("/")
     public String welcome() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipalName = authentication.getName();
         return authentication.getName();   
     }
 

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.lepric.btservice.model.User;
+import com.lepric.btservice.payload.response.AmountResponse;
 import com.lepric.btservice.payload.response.UpdatePasswordModelHelper;
 import com.lepric.btservice.service.UserService;
 
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
 @RequestMapping("/users")
@@ -66,4 +68,32 @@ public class UserController {
         return new ResponseEntity<Boolean>(userService.ChangePassword(userID,updatePassword), HttpStatus.OK);
     }
 
+   
+    @GetMapping("{cardOrUserID}/balance")
+    public ResponseEntity<Double> getBalance(@PathVariable("cardOrUserID") String cardOrUserID) {
+        try {
+            long userID = Long.parseLong(cardOrUserID);
+            return new ResponseEntity<Double>(userService.getBalance(userID), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<Double>(userService.getBalance(cardOrUserID), HttpStatus.OK);
+        }
+    }
+    @GetMapping("{cardOrUserID}/balance/{amount}")
+    public ResponseEntity<Double> loadBalance(@PathVariable("cardOrUserID") String cardOrUserID,@PathVariable("amount") double amount) {
+        try {
+            long userID = Long.parseLong(cardOrUserID);
+            return new ResponseEntity<Double>(userService.loadBalance(userID,amount), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<Double>(userService.loadBalance(cardOrUserID,amount), HttpStatus.OK);
+        }
+    }
+    @GetMapping("/payment/{cardID}/bus/{busID}")
+    public ResponseEntity<AmountResponse> getPayment(@PathVariable("cardID") String cardID,@PathVariable("busID") long busID) {
+        return new ResponseEntity<AmountResponse>(userService.getPayment(cardID, busID), HttpStatus.OK);
+    }
+
+    @GetMapping("/payment/{cardID}/station/{stationID}")
+    public ResponseEntity<Double> getRefund(@PathVariable("cardID") String cardID,@PathVariable("stationID") long stationID) {
+        return new ResponseEntity<Double>(userService.getRefund(cardID,stationID), HttpStatus.OK);
+    }
 }

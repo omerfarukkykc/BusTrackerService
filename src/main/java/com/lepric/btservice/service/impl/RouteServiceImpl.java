@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.lepric.btservice.exception.ResourceNotFoundException;
 import com.lepric.btservice.model.Bus;
 import com.lepric.btservice.model.Route;
+import com.lepric.btservice.model.RouteTime;
 import com.lepric.btservice.model.Station;
 import com.lepric.btservice.payload.response.LocationResponse;
 import com.lepric.btservice.payload.response.RouteResponse;
@@ -55,7 +56,7 @@ public class RouteServiceImpl implements RouteService{
     }
 
     @Override
-    public RouteResponse GetRoute(long routeID) {
+    public RouteResponse GetRouteResponse(long routeID) {
         Route route = routeRepository.findById(routeID).orElseThrow(
            
         );
@@ -130,6 +131,23 @@ public class RouteServiceImpl implements RouteService{
             }
         }
         return response;
+    }
+
+    @Override
+    public List<RouteTime> GetRouteTimes(long routeID) {
+        Route route = routeRepository.findById(routeID).orElseThrow(
+            () -> new ResourceNotFoundException("Route", "routeID", routeID)
+        );
+        
+        return route.getRouteTimes();
+    }
+
+    @Override
+    public Route GetRoute(long routeID) {
+        Route route = routeRepository.findById(routeID).orElseThrow(
+            () -> new ResourceNotFoundException("Route", "routeID", routeID)
+        );
+        return route;
     }
     
 }

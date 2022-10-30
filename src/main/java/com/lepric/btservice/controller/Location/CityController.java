@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lepric.btservice.model.City;
 import com.lepric.btservice.model.District;
-import com.lepric.btservice.model.Route;
 import com.lepric.btservice.service.CityService;
-import com.lepric.btservice.service.RouteService;
 
 @RestController
 @RequestMapping("/city")
@@ -22,8 +20,6 @@ public class CityController {
     @Autowired
     private CityService cityService;
 
-    @Autowired
-    private RouteService routeService;
     
     @GetMapping()
     public ResponseEntity<List<City>> getCities() {

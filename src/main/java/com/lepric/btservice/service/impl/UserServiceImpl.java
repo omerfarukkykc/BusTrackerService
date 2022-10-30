@@ -8,24 +8,29 @@ import static org.geolatte.geom.crs.CoordinateReferenceSystems.WGS84;
 import org.geolatte.geom.G2D;
 import org.geolatte.geom.Point;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lepric.btservice.exception.ResourceNotFoundException;
 import com.lepric.btservice.model.Role;
+import com.lepric.btservice.model.Route;
+import com.lepric.btservice.model.Station;
 import com.lepric.btservice.model.User;
+import com.lepric.btservice.payload.response.AmountResponse;
 import com.lepric.btservice.payload.response.UpdatePasswordModelHelper;
+import com.lepric.btservice.model.Bus;
 import com.lepric.btservice.model.Location;
 import com.lepric.btservice.model.Privilege;
+import com.lepric.btservice.repository.BusRepository;
 import com.lepric.btservice.repository.RoleRepository;
+import com.lepric.btservice.repository.RouteRepository;
+import com.lepric.btservice.repository.StationRepository;
 import com.lepric.btservice.repository.UserRepository;
 import com.lepric.btservice.service.UserService;
 
@@ -38,6 +43,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private RouteRepository routeRepository;
+    @Autowired
+    private BusRepository busRepository;
+    @Autowired
+    private StationRepository stationRepository;
     
 
     // Add New User
@@ -157,6 +168,127 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             authorities.add(new SimpleGrantedAuthority(privilege));
         }
         return authorities;
+    }
+
+    @Override
+    public AmountResponse getPayment(String cardID,long busID) {
+        User user = userRepository.findByCardID(cardID).orElseThrow(
+                () -> new ResourceNotFoundException("User", "cardID", cardID));
+
+        Bus bus = busRepository.findById(busID).orElseThrow(
+                () -> new ResourceNotFoundException("Bus", "ID", busID));
+        Route route = bus.getRoute();
+        
+        if(user.getBalance()>=route.getFee().getFullFeeValue()) {
+            user.setBalance(user.getBalance()-route.getFee().getFullFeeValue());
+            user.setStartStation(bus.getCurrentStation());
+            user.setActiveRoute(route);
+            userRepository.save(user);
+            return new AmountResponse(true,user.getBalance(),route.getFee().getFullFeeValue());
+        }else{
+            return new AmountResponse(false,user.getBalance(),route.getFee().getFullFeeValue());
+        }   
+    }
+
+    @Override
+    public double loadBalance(String cardID,double amount) {
+        User user = userRepository.findByCardID(cardID).orElseThrow(
+                () -> new ResourceNotFoundException("User", "cardID", cardID));
+        user.setBalance(user.getBalance()+amount);
+        userRepository.save(user);
+        return user.getBalance();
+    }
+
+    @Override
+    public double getBalance(String cardID) {
+        User user = userRepository.findByCardID(cardID).orElseThrow(
+                () -> new ResourceNotFoundException("User", "cardID", cardID));
+        return user.getBalance();
+    }
+
+    @Override
+    public double getBalance(long userID) {
+        User user = userRepository.findById(userID).orElseThrow(
+                () -> new ResourceNotFoundException("User", "ID", userID));
+        return user.getBalance();
+    }
+
+    @Override
+    public double loadBalance(long userID, double amount) {
+        User user = userRepository.findById(userID).orElseThrow(
+                () -> new ResourceNotFoundException("User", "ID", userID));
+        user.setBalance(user.getBalance()+amount);
+        userRepository.save(user);
+        return user.getBalance();
+    }
+
+    @Override
+    public Double getRefund(String cardID, long stationID) {
+        User user = userRepository.findByCardID(cardID).orElseThrow(
+                () -> new ResourceNotFoundException("User", "cardID", cardID));
+        if(user.getActiveRoute()==null||user.getStartStation()==null) {
+            return 0.0;
+        }
+        
+        Station endStation = stationRepository.findById(stationID).orElseThrow(
+                () -> new ResourceNotFoundException("Staton", "ID", stationID));
+        int count = 0;
+        boolean countFlag = false;
+        for (Station station : user.getActiveRoute().getStations()) {
+            if(station.getStationID()==user.getStartStation().getStationID()) {
+                countFlag = true;
+            }else if(station.getStationID()==endStation.getStationID()) {
+                countFlag = false;
+            }
+            if(countFlag){
+                count++;
+            }
+        }
+        if(count*user.getActiveRoute().getFee().getStationFeeValue()>user.getActiveRoute().getFee().getFullFeeValue()) {
+            return 0.0;
+        }else{
+            double refund = user.getActiveRoute().getFee().getFullFeeValue()-count*user.getActiveRoute().getFee().getStationFeeValue();
+            user.setBalance(user.getBalance()+refund);
+            user.setActiveRoute(null);
+            user.setStartStation(null);
+            userRepository.save(user);
+            return refund;
+        }//Todo : add response for this and add newbalance and refund amount to response
+    }
+
+    @Override
+    public Double getRefund(long userID, long stationID) {
+        User user = userRepository.findById(userID).orElseThrow(
+                () -> new ResourceNotFoundException("User", "userID", userID));
+        if(user.getActiveRoute()==null||user.getStartStation()==null) {
+            return 0.0;
+        }
+        
+        Station endStation = stationRepository.findById(stationID).orElseThrow(
+                () -> new ResourceNotFoundException("Staton", "ID", stationID));
+        int count = 0;
+        boolean countFlag = false;
+        for (Station station : user.getActiveRoute().getStations()) {
+            if(station.getStationID()==user.getStartStation().getStationID()) {
+                countFlag = true;
+            }else if(station.getStationID()==endStation.getStationID()) {
+                countFlag = false;
+            }
+            if(countFlag){
+                count++;
+            }
+        }
+        if(count*user.getActiveRoute().getFee().getStationFeeValue()>user.getActiveRoute().getFee().getFullFeeValue()) {
+            return 0.0;
+        }else{
+            double refund = user.getActiveRoute().getFee().getFullFeeValue()-count*user.getActiveRoute().getFee().getStationFeeValue();
+            user.setBalance(user.getBalance()+refund);
+            user.setActiveRoute(null);
+            user.setStartStation(null);
+            userRepository.save(user);
+            return refund;
+        }//Todo : add response for this and add newbalance and refund amount to response
+        
     }
 
 }
