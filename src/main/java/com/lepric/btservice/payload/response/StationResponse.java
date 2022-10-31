@@ -40,10 +40,7 @@ public class StationResponse {
         for (com.lepric.btservice.model.Route route : routes) {
             for(Bus bus : route.getBusses()){
                 if(bus.getIsActive()){
-
-
                     List<LocationResponse> locationResponses = new ArrayList<LocationResponse>();
-                    
                     boolean flag = false;
                     for (Station item : route.getStations()){
                         if(item.getStationID() == bus.getCurrentStation().getStationID()){
@@ -56,8 +53,9 @@ public class StationResponse {
                         }
                     }
                     double remainingTime = CalcRemainingTime(locationResponses, bus.getSpeed());
-
-                    this.activeRoutes.add(new Route(route.getRouteID(),route.getRouteName(),remainingTime,route.getActiveBusses()));
+                    double remainingTimeMinute = 60*remainingTime;
+                    remainingTimeMinute = Math.ceil(remainingTimeMinute);
+                    this.activeRoutes.add(new Route(route.getRouteID(),route.getRouteName(),remainingTimeMinute,route.getActiveBusses()));
                     break;
                 }
             }

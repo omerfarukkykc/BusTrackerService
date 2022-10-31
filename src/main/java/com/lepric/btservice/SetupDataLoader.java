@@ -58,7 +58,7 @@ import lombok.Data;
 public class SetupDataLoader implements
     ApplicationListener<ContextRefreshedEvent> {
     
-    boolean alreadySetup = false;
+    boolean alreadySetup = true;
 
     @Autowired
     private UserRepository userRepository;
@@ -176,6 +176,7 @@ public class SetupDataLoader implements
         Bus defaultBus = new Bus();
         defaultBus.setCurrentStation(routeRepository.findById((long)14).orElseThrow().getStations().get(0));
         defaultBus.setBrand(busBrand);
+        defaultBus.setSpeed(50);
         defaultBus.setIsActive(true);
         defaultBus.setPlate("74AC001");
         defaultBus.setRoute(routeRepository.findById((long)14).orElseThrow());
