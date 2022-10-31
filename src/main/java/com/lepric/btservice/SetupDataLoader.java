@@ -58,7 +58,7 @@ import lombok.Data;
 public class SetupDataLoader implements
     ApplicationListener<ContextRefreshedEvent> {
     
-    boolean alreadySetup = true;
+    boolean alreadySetup = false;
 
     @Autowired
     private UserRepository userRepository;

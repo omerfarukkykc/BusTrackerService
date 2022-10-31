@@ -1,6 +1,7 @@
 package com.lepric.btservice.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -77,7 +78,15 @@ public class Route {
     @ManyToOne(cascade = CascadeType.MERGE)
     private Fee fee ;
 
+    public List<Bus> getActiveBusses(){
+        List<Bus> activeBusses = new ArrayList<Bus>();
+        for(Bus bus : this.busses){
+            if(bus.getIsActive()){
+                activeBusses.add(bus);
+            }
+        }
+        return activeBusses;
     
-
+    }
     
 }

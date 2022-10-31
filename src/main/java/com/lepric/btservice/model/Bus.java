@@ -31,6 +31,9 @@ public class Bus {
     @Column(name = "plate",nullable = false,unique = true)
     private String plate;
 
+    @Column(name = "speed")
+    private double speed;   
+
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "brandID")
     private BusBrand brand;

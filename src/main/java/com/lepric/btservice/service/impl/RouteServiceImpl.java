@@ -116,7 +116,7 @@ public class RouteServiceImpl implements RouteService{
                 routes.add(item);
             }
         });
-
+        
         return new StationResponse(station, routes);
     }
 
