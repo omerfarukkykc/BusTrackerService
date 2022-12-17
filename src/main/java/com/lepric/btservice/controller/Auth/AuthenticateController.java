@@ -1,6 +1,8 @@
 package com.lepric.btservice.controller.Auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lepric.btservice.config.SecurityConfig;
 import com.lepric.btservice.payload.request.AuthRequest;
 import com.lepric.btservice.service.UserService;
 import com.lepric.btservice.util.JwtUtil;
@@ -26,10 +29,12 @@ public class AuthenticateController {
     private AuthenticationManager authenticationManager;
     @Autowired
     private UserService userService;
-    @GetMapping("/")
-    public String welcome() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return authentication.getName();   
+    @Autowired
+    private SecurityConfig securityConfig;
+
+    @GetMapping("/user")
+    public ResponseEntity<Long> getAuthUserID() {
+        return new ResponseEntity<Long>(securityConfig.GetAuthenticatedUser().getUserID(), HttpStatus.OK);
     }
 
     @PostMapping("/authenticate")

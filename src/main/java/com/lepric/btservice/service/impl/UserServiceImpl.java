@@ -24,10 +24,15 @@ import com.lepric.btservice.model.Station;
 import com.lepric.btservice.model.User;
 import com.lepric.btservice.payload.response.AmountResponse;
 import com.lepric.btservice.payload.response.UpdatePasswordModelHelper;
+import com.lepric.btservice.model.BalanceLog;
 import com.lepric.btservice.model.Bus;
+import com.lepric.btservice.model.Favorite;
 import com.lepric.btservice.model.Location;
 import com.lepric.btservice.model.Privilege;
+import com.lepric.btservice.repository.BalanceLogRepository;
+import com.lepric.btservice.repository.BalanceLogTypeRepository;
 import com.lepric.btservice.repository.BusRepository;
+import com.lepric.btservice.repository.FavoriteRepository;
 import com.lepric.btservice.repository.RoleRepository;
 import com.lepric.btservice.repository.RouteRepository;
 import com.lepric.btservice.repository.StationRepository;
@@ -49,6 +54,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private BusRepository busRepository;
     @Autowired
     private StationRepository stationRepository;
+    @Autowired
+    private FavoriteRepository favoriteRepository;
+    @Autowired
+    private BalanceLogRepository balanceLogRepository;
+    @Autowired
+    private BalanceLogTypeRepository balanceLogTypeRepository;
+
     
 
     // Add New User
@@ -171,6 +183,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    @Transactional
     public AmountResponse getPayment(String cardID,long busID) {
         User user = userRepository.findByCardID(cardID).orElseThrow(
                 () -> new ResourceNotFoundException("User", "cardID", cardID));
@@ -179,23 +192,44 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 () -> new ResourceNotFoundException("Bus", "ID", busID));
         Route route = bus.getRoute();
         
-        if(user.getBalance()>=route.getFee().getFullFeeValue()) {
-            user.setBalance(user.getBalance()-route.getFee().getFullFeeValue());
+        Station currentStation  = bus.getCurrentStation();
+        int currentStationIndex = route.getStations().indexOf(currentStation)+1;
+        int totalStationSize = route.getStations().size();
+        int stationLeft = totalStationSize - currentStationIndex;
+        double price = 0.0;
+        if(route.getFee().getStationFeeValue()*stationLeft<route.getFee().getFullFeeValue()){
+            price = route.getFee().getStationFeeValue()*stationLeft;
+        }else{
+            price = route.getFee().getFullFeeValue();
+        }
+        if(user.getBalance()>=price) {
+            user.setBalance(user.getBalance()-price);
             user.setStartStation(bus.getCurrentStation());
             user.setActiveRoute(route);
             userRepository.save(user);
-            return new AmountResponse(true,user.getBalance(),route.getFee().getFullFeeValue());
+            BalanceLog balanceLog = new BalanceLog();
+            balanceLog.setLogAmount(price);
+            balanceLog.setLogType(balanceLogTypeRepository.findAll().stream().filter(x->x.getLogTypeName().equals("Pay")).findFirst().get());
+            balanceLog.setUser(user);
+            balanceLogRepository.save(balanceLog);
+            return new AmountResponse(true,user.getBalance(),price);
         }else{
-            return new AmountResponse(false,user.getBalance(),route.getFee().getFullFeeValue());
+            return new AmountResponse(false,user.getBalance(),price);
         }   
     }
 
     @Override
+    @Transactional
     public double loadBalance(String cardID,double amount) {
         User user = userRepository.findByCardID(cardID).orElseThrow(
                 () -> new ResourceNotFoundException("User", "cardID", cardID));
         user.setBalance(user.getBalance()+amount);
         userRepository.save(user);
+        BalanceLog balanceLog = new BalanceLog();
+        balanceLog.setLogAmount(amount);
+        balanceLog.setLogType(balanceLogTypeRepository.findAll().stream().filter(x->x.getLogTypeName().equals("Load")).findFirst().get());
+        balanceLog.setUser(user);
+        balanceLogRepository.save(balanceLog);
         return user.getBalance();
     }
 
@@ -214,15 +248,22 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    @Transactional
     public double loadBalance(long userID, double amount) {
         User user = userRepository.findById(userID).orElseThrow(
                 () -> new ResourceNotFoundException("User", "ID", userID));
         user.setBalance(user.getBalance()+amount);
         userRepository.save(user);
+        BalanceLog balanceLog = new BalanceLog();
+        balanceLog.setLogAmount(amount);
+        balanceLog.setLogType(balanceLogTypeRepository.findAll().stream().filter(x->x.getLogTypeName().equals("Load")).findFirst().get());
+        balanceLog.setUser(user);
+        balanceLogRepository.save(balanceLog);
         return user.getBalance();
     }
 
     @Override
+    @Transactional
     public Double getRefund(String cardID, long stationID) {
         User user = userRepository.findByCardID(cardID).orElseThrow(
                 () -> new ResourceNotFoundException("User", "cardID", cardID));
@@ -252,11 +293,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             user.setActiveRoute(null);
             user.setStartStation(null);
             userRepository.save(user);
+            BalanceLog balanceLog = new BalanceLog();
+            balanceLog.setLogAmount(refund);
+            balanceLog.setLogType(balanceLogTypeRepository.findAll().stream().filter(x->x.getLogTypeName().equals("Refund")).findFirst().get());
+            balanceLog.setUser(user);
+            balanceLogRepository.save(balanceLog);
             return refund;
         }//Todo : add response for this and add newbalance and refund amount to response
     }
 
     @Override
+    @Transactional
     public Double getRefund(long userID, long stationID) {
         User user = userRepository.findById(userID).orElseThrow(
                 () -> new ResourceNotFoundException("User", "userID", userID));
@@ -281,14 +328,70 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         if(count*user.getActiveRoute().getFee().getStationFeeValue()>user.getActiveRoute().getFee().getFullFeeValue()) {
             return 0.0;
         }else{
+
+
             double refund = user.getActiveRoute().getFee().getFullFeeValue()-count*user.getActiveRoute().getFee().getStationFeeValue();
             user.setBalance(user.getBalance()+refund);
             user.setActiveRoute(null);
             user.setStartStation(null);
             userRepository.save(user);
+            BalanceLog balanceLog = new BalanceLog();
+            balanceLog.setLogAmount(refund);
+            balanceLog.setLogType(balanceLogTypeRepository.findAll().stream().filter(x->x.getLogTypeName().equals("Refund")).findFirst().get());
+            balanceLog.setUser(user);
+            balanceLogRepository.save(balanceLog);
             return refund;
         }//Todo : add response for this and add newbalance and refund amount to response
         
     }
 
+    @Override
+    public List<Favorite> GetFavorites(long userID) {
+        User user = userRepository.findById(userID).orElseThrow(
+                () -> new ResourceNotFoundException("User", "ID", userID));
+        return user.getFavorites();
+    }
+
+    
+
+    @Override
+    public Favorite AddFavoriteRoute(long userID, long routeID) {
+        User user = userRepository.findById(userID).orElseThrow(
+            () -> new ResourceNotFoundException("User", "ID", userID));
+        Route route = routeRepository.findById(routeID).orElseThrow(
+                () -> new ResourceNotFoundException("Route", "ID", routeID));
+        Favorite favorite = new Favorite();
+        favorite.setRoute(route);
+        favorite.setUser(user);
+        return favoriteRepository.save(favorite);
+    }
+
+    @Override
+    public Favorite AddFavoriteStation(long userID, long stationID) {
+        User user = userRepository.findById(userID).orElseThrow(
+                () -> new ResourceNotFoundException("User", "ID", userID));
+        Station station = stationRepository.findById(stationID).orElseThrow(
+                () -> new ResourceNotFoundException("Station", "ID", stationID));
+        Favorite favorite = new Favorite();
+        favorite.setStation(station);
+        favorite.setUser(user);
+        return favoriteRepository.save(favorite);
+    }
+
+    @Override
+    public boolean DeleteFavorite(long userID, long favoriteID) {
+        try{
+            favoriteRepository.deleteById(null);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    @Override
+    public List<BalanceLog> GetBalanceLogs(long userID) {
+        User user = userRepository.findById(userID).orElseThrow(
+                () -> new ResourceNotFoundException("User", "ID", userID));
+        return user.getBalanceLogs();
+    }
 }

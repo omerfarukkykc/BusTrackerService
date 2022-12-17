@@ -42,6 +42,7 @@ public class RouteController {
     @Autowired
     private RouteService routeService;
 
+
     @GetMapping("route/{routeID}")
     public ResponseEntity<RouteResponse> GetRoute(@PathVariable("routeID") long routeID){
         return new ResponseEntity<RouteResponse>(routeService.GetRouteResponse(routeID),HttpStatus.OK);
@@ -50,18 +51,8 @@ public class RouteController {
     public ResponseEntity<List<RouteTime>> GetRouteTimes(@PathVariable("routeID") long routeID){
         return new ResponseEntity<List<RouteTime>>(routeService.GetRouteTimes(routeID),HttpStatus.OK);
     }
-    @GetMapping("district/{districtID}/route")
-    public ResponseEntity<List<Route>> GetRoutes(@PathVariable("districtID") long districtID){
-        return new ResponseEntity<List<Route>>(routeService.GetRoutes(districtID),HttpStatus.OK);
-    }
-    @GetMapping("district/{districtID}/station")
-    public ResponseEntity<List<Station>> GetStations(@PathVariable("districtID") long districtID){
-        return new ResponseEntity<List<Station>>(routeService.GetStations(districtID),HttpStatus.OK);
-    }
-    @GetMapping("station/{stationID}")
-    public ResponseEntity<StationResponse> GetStationInfo(@PathVariable("stationID") long stationID){
-        return new ResponseEntity<StationResponse>(routeService.GetStation(stationID),HttpStatus.OK);
-    }
+    
+
     @GetMapping("route/realTimeData/{routeID}")
     public ResponseEntity<List<BusResponse>> getRealTimeData(@PathVariable("routeID") long routeID){
         List<Bus> dbresponse = routeService.GetRouteRealTimeData(routeID);
