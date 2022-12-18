@@ -28,6 +28,8 @@ import org.springframework.util.ResourceUtils;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lepric.btservice.exception.ResourceNotFoundException;
+import com.lepric.btservice.model.BalanceLog;
+import com.lepric.btservice.model.BalanceLogType;
 import com.lepric.btservice.model.Bus;
 import com.lepric.btservice.model.BusBrand;
 import com.lepric.btservice.model.BusBrandModel;
@@ -35,17 +37,21 @@ import com.lepric.btservice.model.City;
 import com.lepric.btservice.model.District;
 import com.lepric.btservice.model.Fee;
 import com.lepric.btservice.model.Location;
+import com.lepric.btservice.model.Pano;
 import com.lepric.btservice.model.Privilege;
 import com.lepric.btservice.model.Role;
 import com.lepric.btservice.model.Route;
 import com.lepric.btservice.model.RouteTime;
 import com.lepric.btservice.model.Station;
 import com.lepric.btservice.model.User;
+import com.lepric.btservice.repository.BalanceLogRepository;
+import com.lepric.btservice.repository.BalanceLogTypeRepository;
 import com.lepric.btservice.repository.BusBrandModelRepository;
 import com.lepric.btservice.repository.BusBrandsRepository;
 import com.lepric.btservice.repository.BusRepository;
 import com.lepric.btservice.repository.CityRepository;
 import com.lepric.btservice.repository.FeeRepository;
+import com.lepric.btservice.repository.PanoRepository;
 import com.lepric.btservice.repository.PrivilegeRepository;
 import com.lepric.btservice.repository.RoleRepository;
 import com.lepric.btservice.repository.RouteRepository;
@@ -58,10 +64,14 @@ import lombok.Data;
 public class SetupDataLoader implements
     ApplicationListener<ContextRefreshedEvent> {
     
-    boolean alreadySetup = true;
+    
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private BalanceLogRepository balanceLogRepository;
+    @Autowired
+    private BalanceLogTypeRepository balanceLogTypeRepository;
 
     @Autowired
     private RouteRepository routeRepository;
@@ -90,9 +100,13 @@ public class SetupDataLoader implements
     BusBrandsRepository busBrandRepository;
     @Autowired
     BusBrandModelRepository busBrandModelRepository;
+    @Autowired
+    PanoRepository panoRepository;
     @Override
     @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
+
+        boolean alreadySetup  = userRepository.findAll().size() != 0;
         if (alreadySetup)
             return;
         createCityAndDistrict();
@@ -136,6 +150,7 @@ public class SetupDataLoader implements
         Role adminRole = roleRepository.findByRoleName("ROLE_ADMIN");
         City city = cityRepository.getById((long)74);
         District district = city.getDistricts().get(0);
+        createBalanceLogTypes();
         User admin = new User();
         admin.setFirstname("Ömer Faruk");
         admin.setLastname("Kayıkcı");
@@ -150,6 +165,12 @@ public class SetupDataLoader implements
         admin.getLocation().setLocation(new Point<G2D>(g(0, 0), WGS84));
         admin.setPassword(passwordEncoder.encode("123456"));
         userRepository.save(admin);
+
+        BalanceLog balanceLog = new BalanceLog();
+        balanceLog.setLogAmount(200);
+        balanceLog.setLogType(balanceLogTypeRepository.findAll().stream().filter(x->x.getLogTypeName().equals("Load")).findFirst().get());
+        balanceLog.setUser(admin);
+        balanceLogRepository.save(balanceLog);
         
         Role userRole = roleRepository.findByRoleName("ROLE_USER");
         User user = new User();
@@ -157,6 +178,7 @@ public class SetupDataLoader implements
         user.setLastname("Test");
         user.setEmail("test@gmail.com");
         user.setCity(city);
+        user.setBalance(200.0);
         user.setDistrict(district);
         user.setRoles(Arrays.asList(userRole));
         user.setEnabled(true);
@@ -165,6 +187,15 @@ public class SetupDataLoader implements
         user.setPassword(passwordEncoder.encode("123456"));
         userRepository.save(user);
         
+
+        balanceLog = new BalanceLog();
+        balanceLog.setLogAmount(200);
+        balanceLog.setLogType(balanceLogTypeRepository.findAll().stream().filter(x->x.getLogTypeName().equals("Load")).findFirst().get());
+        balanceLog.setUser(user);
+        balanceLogRepository.save(balanceLog);
+
+
+
         BusBrand busBrand = new BusBrand();
         busBrand.setBrandName("Mersedes");
         BusBrandModel busBrandModel = new BusBrandModel();
@@ -183,11 +214,32 @@ public class SetupDataLoader implements
         defaultBus.setLocation(new Location());
         defaultBus.setModel(busBrandModel);
         busRepository.save(defaultBus);
+
+        Pano pano = new Pano();
+        pano.setMessage("Bu mesaj almanya üzerindeki sunucu üzerinden spring boot web servisi tarafından çekilmiştir");
+        pano.setMessageHeader("Test Pano Header");
+        panoRepository.save(pano);
         alreadySetup = true;
     }
-    // import com.fasterxml.jackson.databind.ObjectMapper; // version 2.11.1
-// import com.fasterxml.jackson.annotation.JsonProperty; // version 2.11.1
-/*  */
+    private void createBalanceLogTypes(){
+        BalanceLogType balanceLogType = new BalanceLogType();
+        balanceLogType.setLogTypeName("Load");
+        balanceLogType.setDirection(true);
+        balanceLogTypeRepository.save(balanceLogType);
+        balanceLogType = new BalanceLogType();
+        balanceLogType.setLogTypeName("Pay");
+        balanceLogType.setDirection(false);
+        balanceLogTypeRepository.save(balanceLogType);
+        balanceLogType = new BalanceLogType();
+        balanceLogType.setLogTypeName("Refund");
+        balanceLogType.setDirection(true);
+        balanceLogTypeRepository.save(balanceLogType);
+    }
+
+
+
+
+
     @Data
     private static class RouteH{
         @JsonProperty("StopId") 

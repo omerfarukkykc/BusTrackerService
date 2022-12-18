@@ -1,11 +1,16 @@
 package com.lepric.btservice.controller.User;
 
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.lepric.btservice.model.BalanceLog;
+import com.lepric.btservice.model.Favorite;
 import com.lepric.btservice.model.User;
 import com.lepric.btservice.payload.response.AmountResponse;
+import com.lepric.btservice.payload.response.FavoritesResponse;
 import com.lepric.btservice.payload.response.UpdatePasswordModelHelper;
 import com.lepric.btservice.service.UserService;
 
@@ -95,5 +100,36 @@ public class UserController {
     @GetMapping("/payment/{cardID}/station/{stationID}")
     public ResponseEntity<Double> getRefund(@PathVariable("cardID") String cardID,@PathVariable("stationID") long stationID) {
         return new ResponseEntity<Double>(userService.getRefund(cardID,stationID), HttpStatus.OK);
+    }
+    @GetMapping("/{userID}/favorites")
+    public ResponseEntity<FavoritesResponse> getFavorites(@PathVariable("userID") long userID) {
+        List<Favorite> favoriteRoutes = userService.GetFavorites(userID).stream().filter(item -> item.getRoute()!= null).collect(Collectors.toList());
+        List<Favorite> favoriteStations = userService.GetFavorites(userID).stream().filter(item -> item.getStation()!= null).collect(Collectors.toList());
+        FavoritesResponse favoritesResponse = new FavoritesResponse();
+        favoritesResponse.setRoutes(favoriteRoutes);
+        favoritesResponse.setStations(favoriteStations);
+        return new ResponseEntity<FavoritesResponse>(favoritesResponse, HttpStatus.OK);
+    }
+    @PostMapping("/{userID}/favorites/station/{stationID}")
+    public ResponseEntity<Favorite> addFavoriteStation(@PathVariable("userID") long userID,@PathVariable("stationID") long stationID) {
+        
+        return new ResponseEntity<Favorite>(userService.AddFavoriteStation(userID, stationID), HttpStatus.OK);
+    }
+    @PostMapping("/{userID}/favorites/route/{routeID}")
+    public ResponseEntity<Favorite> addFavoriteRoute(@PathVariable("userID") long userID,@PathVariable("routeID") long routeID) {
+        return new ResponseEntity<Favorite>(userService.AddFavoriteRoute(userID, routeID), HttpStatus.OK);
+    }
+    @DeleteMapping("/{userID}/favorites/{favoriteID}")
+    public ResponseEntity<Boolean> deleteFavorite(@PathVariable("userID") long userID,@PathVariable("favoriteID") long favoriteID) {
+        return new ResponseEntity<Boolean>(userService.DeleteFavorite(userID, favoriteID), HttpStatus.OK);
+    }
+
+    @GetMapping("/{userID}/balanceLogs/")
+    public ResponseEntity<List<BalanceLog>> getBalanceLogs(@PathVariable("userID") long userID) {
+        return new ResponseEntity<List<BalanceLog>>(userService.GetBalanceLogs(userID), HttpStatus.OK);
+    }
+    @GetMapping("/{userID}/balanceLogs/{logType}")
+    public ResponseEntity<List<BalanceLog>> getBalanceLogs(@PathVariable("userID") long userID,@PathVariable("logType") String logType) {
+        return new ResponseEntity<List<BalanceLog>>(userService.GetBalanceLogs(userID).stream().filter(x->x.getLogType().getLogTypeName().equals(logType)).collect(Collectors.toList()), HttpStatus.OK);
     }
 }

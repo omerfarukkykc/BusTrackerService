@@ -1,5 +1,7 @@
 package com.lepric.btservice.service;
 
+import com.lepric.btservice.model.BalanceLog;
+import com.lepric.btservice.model.Favorite;
 import com.lepric.btservice.model.Role;
 import com.lepric.btservice.model.User;
 import com.lepric.btservice.payload.response.AmountResponse;
@@ -24,8 +26,18 @@ public interface UserService {
     double getBalance(long userID);
     Double getRefund(String cardID,long stationID);
     Double getRefund(long userID,long stationID);
-
-
+    
     List<Role> GetUserRols(long userID);
 
+    List<Favorite> GetFavorites(long userID);
+    Favorite AddFavoriteRoute(long userID,long routeID);
+    Favorite AddFavoriteStation(long userID,long stationID);
+    boolean DeleteFavorite(long userID,long favoriteID);
+
+    List<BalanceLog> GetBalanceLogs(long userID);
+
+
+
+
 }
+

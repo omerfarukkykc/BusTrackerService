@@ -20,7 +20,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
@@ -90,6 +90,18 @@ public class User {
     @JoinColumn(name = "routeID")
     @ManyToOne(cascade = CascadeType.MERGE)
     private Route activeRoute;
+
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "userID")
+    private List<Favorite> favorites;
+
+    @JsonIgnore
+    @JoinColumn(name = "userID")
+    @OneToMany(cascade = CascadeType.MERGE)
+    private List<BalanceLog> balanceLogs;
+
+
     
     /*
     @OneToMany(mappedBy = "apiRole")

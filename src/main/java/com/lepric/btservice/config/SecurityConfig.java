@@ -11,9 +11,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.lepric.btservice.filter.JwtFilter;
+import com.lepric.btservice.model.User;
 import com.lepric.btservice.service.impl.UserServiceImpl;
 
 @Configuration
@@ -36,6 +38,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
+    }
+    public User GetAuthenticatedUser() {
+        return userDetailsService.GetUser(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 
     @Override

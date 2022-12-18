@@ -13,7 +13,6 @@ import com.lepric.btservice.model.RouteTime;
 import com.lepric.btservice.model.Station;
 import com.lepric.btservice.payload.response.LocationResponse;
 import com.lepric.btservice.payload.response.RouteResponse;
-import com.lepric.btservice.payload.response.StationResponse;
 import com.lepric.btservice.repository.BusRepository;
 import com.lepric.btservice.repository.CityRepository;
 import com.lepric.btservice.repository.RouteRepository;
@@ -105,33 +104,7 @@ public class RouteServiceImpl implements RouteService{
         return busses;
     }
 
-    @Override
-    public StationResponse GetStation(long stationID) {
-        Station station = stationRepository.findById(stationID).orElseThrow(
-            () -> new ResourceNotFoundException("Route", "routeID",stationID)
-        );
-        List<Route> routes = new ArrayList<Route>();
-        routeRepository.findAll().forEach(item->{
-            if(item.getStations().contains(station)){
-                routes.add(item);
-            }
-        });
-        
-        return new StationResponse(station, routes);
-    }
-
-    @Override
-    public List<Station> GetStations(long districtID) {
-        //Todo iyileştiriebilir.
-        List<Station> stations= stationRepository.findAll();
-        List<Station> response= new ArrayList<Station>();
-        for (Station station : stations) {
-            if(station.getDistrict().getDistrictID() == districtID){
-                response.add(station);
-            }
-        }
-        return response;
-    }
+    
 
     @Override
     public List<RouteTime> GetRouteTimes(long routeID) {
