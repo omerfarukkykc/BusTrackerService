@@ -92,7 +92,7 @@ public class User {
     private Route activeRoute;
 
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.MERGE)
     @JoinColumn(name = "userID")
     private List<Favorite> favorites;
 

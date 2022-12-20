@@ -2,6 +2,7 @@ package com.lepric.btservice.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.geolatte.geom.builder.DSL.*;
 import static org.geolatte.geom.crs.CoordinateReferenceSystems.WGS84;
@@ -17,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lepric.btservice.exception.ResourceAlreadyExistsException;
 import com.lepric.btservice.exception.ResourceNotFoundException;
 import com.lepric.btservice.model.Role;
 import com.lepric.btservice.model.Route;
@@ -60,8 +62,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private BalanceLogRepository balanceLogRepository;
     @Autowired
     private BalanceLogTypeRepository balanceLogTypeRepository;
-
-    
 
     // Add New User
     @Override
@@ -184,50 +184,52 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional
-    public AmountResponse getPayment(String cardID,long busID) {
+    public AmountResponse getPayment(String cardID, long busID) {
         User user = userRepository.findByCardID(cardID).orElseThrow(
                 () -> new ResourceNotFoundException("User", "cardID", cardID));
 
         Bus bus = busRepository.findById(busID).orElseThrow(
                 () -> new ResourceNotFoundException("Bus", "ID", busID));
         Route route = bus.getRoute();
-        
-        Station currentStation  = bus.getCurrentStation();
-        int currentStationIndex = route.getStations().indexOf(currentStation)+1;
+
+        Station currentStation = bus.getCurrentStation();
+        int currentStationIndex = route.getStations().indexOf(currentStation) + 1;
         int totalStationSize = route.getStations().size();
         int stationLeft = totalStationSize - currentStationIndex;
         double price = 0.0;
-        if(route.getFee().getStationFeeValue()*stationLeft<route.getFee().getFullFeeValue()){
-            price = route.getFee().getStationFeeValue()*stationLeft;
-        }else{
+        if (route.getFee().getStationFeeValue() * stationLeft < route.getFee().getFullFeeValue()) {
+            price = route.getFee().getStationFeeValue() * stationLeft;
+        } else {
             price = route.getFee().getFullFeeValue();
         }
-        if(user.getBalance()>=price) {
-            user.setBalance(user.getBalance()-price);
+        if (user.getBalance() >= price) {
+            user.setBalance(user.getBalance() - price);
             user.setStartStation(bus.getCurrentStation());
             user.setActiveRoute(route);
             userRepository.save(user);
             BalanceLog balanceLog = new BalanceLog();
             balanceLog.setLogAmount(price);
-            balanceLog.setLogType(balanceLogTypeRepository.findAll().stream().filter(x->x.getLogTypeName().equals("Pay")).findFirst().get());
+            balanceLog.setLogType(balanceLogTypeRepository.findAll().stream()
+                    .filter(x -> x.getLogTypeName().equals("Pay")).findFirst().get());
             balanceLog.setUser(user);
             balanceLogRepository.save(balanceLog);
-            return new AmountResponse(true,user.getBalance(),price);
-        }else{
-            return new AmountResponse(false,user.getBalance(),price);
-        }   
+            return new AmountResponse(true, user.getBalance(), price);
+        } else {
+            return new AmountResponse(false, user.getBalance(), price);
+        }
     }
 
     @Override
     @Transactional
-    public double loadBalance(String cardID,double amount) {
+    public double loadBalance(String cardID, double amount) {
         User user = userRepository.findByCardID(cardID).orElseThrow(
                 () -> new ResourceNotFoundException("User", "cardID", cardID));
-        user.setBalance(user.getBalance()+amount);
+        user.setBalance(user.getBalance() + amount);
         userRepository.save(user);
         BalanceLog balanceLog = new BalanceLog();
         balanceLog.setLogAmount(amount);
-        balanceLog.setLogType(balanceLogTypeRepository.findAll().stream().filter(x->x.getLogTypeName().equals("Load")).findFirst().get());
+        balanceLog.setLogType(balanceLogTypeRepository.findAll().stream().filter(x -> x.getLogTypeName().equals("Load"))
+                .findFirst().get());
         balanceLog.setUser(user);
         balanceLogRepository.save(balanceLog);
         return user.getBalance();
@@ -252,11 +254,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public double loadBalance(long userID, double amount) {
         User user = userRepository.findById(userID).orElseThrow(
                 () -> new ResourceNotFoundException("User", "ID", userID));
-        user.setBalance(user.getBalance()+amount);
+        user.setBalance(user.getBalance() + amount);
         userRepository.save(user);
         BalanceLog balanceLog = new BalanceLog();
         balanceLog.setLogAmount(amount);
-        balanceLog.setLogType(balanceLogTypeRepository.findAll().stream().filter(x->x.getLogTypeName().equals("Load")).findFirst().get());
+        balanceLog.setLogType(balanceLogTypeRepository.findAll().stream().filter(x -> x.getLogTypeName().equals("Load"))
+                .findFirst().get());
         balanceLog.setUser(user);
         balanceLogRepository.save(balanceLog);
         return user.getBalance();
@@ -267,39 +270,42 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public Double getRefund(String cardID, long stationID) {
         User user = userRepository.findByCardID(cardID).orElseThrow(
                 () -> new ResourceNotFoundException("User", "cardID", cardID));
-        if(user.getActiveRoute()==null||user.getStartStation()==null) {
+        if (user.getActiveRoute() == null || user.getStartStation() == null) {
             return 0.0;
         }
-        
+
         Station endStation = stationRepository.findById(stationID).orElseThrow(
                 () -> new ResourceNotFoundException("Staton", "ID", stationID));
         int count = 0;
         boolean countFlag = false;
         for (Station station : user.getActiveRoute().getStations()) {
-            if(station.getStationID()==user.getStartStation().getStationID()) {
+            if (station.getStationID() == user.getStartStation().getStationID()) {
                 countFlag = true;
-            }else if(station.getStationID()==endStation.getStationID()) {
+            } else if (station.getStationID() == endStation.getStationID()) {
                 countFlag = false;
             }
-            if(countFlag){
+            if (countFlag) {
                 count++;
             }
         }
-        if(count*user.getActiveRoute().getFee().getStationFeeValue()>user.getActiveRoute().getFee().getFullFeeValue()) {
+        if (count * user.getActiveRoute().getFee().getStationFeeValue() > user.getActiveRoute().getFee()
+                .getFullFeeValue()) {
             return 0.0;
-        }else{
-            double refund = user.getActiveRoute().getFee().getFullFeeValue()-count*user.getActiveRoute().getFee().getStationFeeValue();
-            user.setBalance(user.getBalance()+refund);
+        } else {
+            double refund = user.getActiveRoute().getFee().getFullFeeValue()
+                    - count * user.getActiveRoute().getFee().getStationFeeValue();
+            user.setBalance(user.getBalance() + refund);
             user.setActiveRoute(null);
             user.setStartStation(null);
             userRepository.save(user);
             BalanceLog balanceLog = new BalanceLog();
             balanceLog.setLogAmount(refund);
-            balanceLog.setLogType(balanceLogTypeRepository.findAll().stream().filter(x->x.getLogTypeName().equals("Refund")).findFirst().get());
+            balanceLog.setLogType(balanceLogTypeRepository.findAll().stream()
+                    .filter(x -> x.getLogTypeName().equals("Refund")).findFirst().get());
             balanceLog.setUser(user);
             balanceLogRepository.save(balanceLog);
             return refund;
-        }//Todo : add response for this and add newbalance and refund amount to response
+        } // Todo : add response for this and add newbalance and refund amount to response
     }
 
     @Override
@@ -307,42 +313,44 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public Double getRefund(long userID, long stationID) {
         User user = userRepository.findById(userID).orElseThrow(
                 () -> new ResourceNotFoundException("User", "userID", userID));
-        if(user.getActiveRoute()==null||user.getStartStation()==null) {
+        if (user.getActiveRoute() == null || user.getStartStation() == null) {
             return 0.0;
         }
-        
+
         Station endStation = stationRepository.findById(stationID).orElseThrow(
                 () -> new ResourceNotFoundException("Staton", "ID", stationID));
         int count = 0;
         boolean countFlag = false;
         for (Station station : user.getActiveRoute().getStations()) {
-            if(station.getStationID()==user.getStartStation().getStationID()) {
+            if (station.getStationID() == user.getStartStation().getStationID()) {
                 countFlag = true;
-            }else if(station.getStationID()==endStation.getStationID()) {
+            } else if (station.getStationID() == endStation.getStationID()) {
                 countFlag = false;
             }
-            if(countFlag){
+            if (countFlag) {
                 count++;
             }
         }
-        if(count*user.getActiveRoute().getFee().getStationFeeValue()>user.getActiveRoute().getFee().getFullFeeValue()) {
+        if (count * user.getActiveRoute().getFee().getStationFeeValue() > user.getActiveRoute().getFee()
+                .getFullFeeValue()) {
             return 0.0;
-        }else{
+        } else {
 
-
-            double refund = user.getActiveRoute().getFee().getFullFeeValue()-count*user.getActiveRoute().getFee().getStationFeeValue();
-            user.setBalance(user.getBalance()+refund);
+            double refund = user.getActiveRoute().getFee().getFullFeeValue()
+                    - count * user.getActiveRoute().getFee().getStationFeeValue();
+            user.setBalance(user.getBalance() + refund);
             user.setActiveRoute(null);
             user.setStartStation(null);
             userRepository.save(user);
             BalanceLog balanceLog = new BalanceLog();
             balanceLog.setLogAmount(refund);
-            balanceLog.setLogType(balanceLogTypeRepository.findAll().stream().filter(x->x.getLogTypeName().equals("Refund")).findFirst().get());
+            balanceLog.setLogType(balanceLogTypeRepository.findAll().stream()
+                    .filter(x -> x.getLogTypeName().equals("Refund")).findFirst().get());
             balanceLog.setUser(user);
             balanceLogRepository.save(balanceLog);
             return refund;
-        }//Todo : add response for this and add newbalance and refund amount to response
-        
+        } // Todo : add response for this and add newbalance and refund amount to response
+
     }
 
     @Override
@@ -352,15 +360,28 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return user.getFavorites();
     }
 
-    
-
     @Override
     public Favorite AddFavoriteRoute(long userID, long routeID) {
         User user = userRepository.findById(userID).orElseThrow(
-            () -> new ResourceNotFoundException("User", "ID", userID));
+                () -> new ResourceNotFoundException("User", "ID", userID));
         Route route = routeRepository.findById(routeID).orElseThrow(
                 () -> new ResourceNotFoundException("Route", "ID", routeID));
-        Favorite favorite = new Favorite();
+
+        Favorite favorite = null;
+        List<Favorite> favoriteRoutes = user.getFavorites().stream().filter(x -> x.getRoute() != null)
+                .collect(Collectors.toList());
+
+        for (Favorite favoriteRoute : favoriteRoutes) {
+            if (favoriteRoute.getRoute().getRouteID() == routeID) {
+                favorite = favoriteRoute;
+            }
+        }
+
+        if (favorite != null) {
+            favoriteRepository.delete(favorite);
+            return null;
+        }
+        favorite = new Favorite();
         favorite.setRoute(route);
         favorite.setUser(user);
         return favoriteRepository.save(favorite);
@@ -372,7 +393,20 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 () -> new ResourceNotFoundException("User", "ID", userID));
         Station station = stationRepository.findById(stationID).orElseThrow(
                 () -> new ResourceNotFoundException("Station", "ID", stationID));
-        Favorite favorite = new Favorite();
+        Favorite favorite = null;
+        List<Favorite> favoriteStations = user.getFavorites().stream().filter(x -> x.getStation() != null)
+                .collect(Collectors.toList());
+
+        for (Favorite favoriteStation: favoriteStations) {
+            if (favoriteStation.getStation().getStationID() == stationID) {
+                favorite = favoriteStation;
+            }
+        }
+        if (favorite != null) {
+            favoriteRepository.delete(favorite);
+            return null;
+        }
+        favorite = new Favorite();
         favorite.setStation(station);
         favorite.setUser(user);
         return favoriteRepository.save(favorite);
@@ -380,10 +414,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public boolean DeleteFavorite(long userID, long favoriteID) {
-        try{
+        try {
             favoriteRepository.deleteById(null);
+            
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
