@@ -72,9 +72,10 @@ public class LocationServiceImpl implements LocationService {
                 }
             }
         }
+       
         if (minimumDistance < (double) nearestStation.getStationScope()) {
             bus.setCurrentStation(nearestStation);
-        }
+        }   
         busRepository.save(bus);
         return new LocationResponse(bus);
     }
