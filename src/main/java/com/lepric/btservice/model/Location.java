@@ -52,5 +52,7 @@ public class Location {
     public Location() {
         this.location = new Point<G2D>(g(0, 0), WGS84);
     }
-
+    public Location(double longitude,double latitude) {
+        this.location = new Point<G2D>(g(longitude, latitude), WGS84);
+    }
 }

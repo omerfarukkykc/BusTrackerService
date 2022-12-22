@@ -34,6 +34,7 @@ import com.lepric.btservice.model.Bus;
 import com.lepric.btservice.model.BusBrand;
 import com.lepric.btservice.model.BusBrandModel;
 import com.lepric.btservice.model.City;
+import com.lepric.btservice.model.Dealer;
 import com.lepric.btservice.model.District;
 import com.lepric.btservice.model.Fee;
 import com.lepric.btservice.model.Location;
@@ -50,6 +51,7 @@ import com.lepric.btservice.repository.BusBrandModelRepository;
 import com.lepric.btservice.repository.BusBrandsRepository;
 import com.lepric.btservice.repository.BusRepository;
 import com.lepric.btservice.repository.CityRepository;
+import com.lepric.btservice.repository.DealerRepository;
 import com.lepric.btservice.repository.FeeRepository;
 import com.lepric.btservice.repository.PanoRepository;
 import com.lepric.btservice.repository.PrivilegeRepository;
@@ -102,6 +104,8 @@ public class SetupDataLoader implements
     BusBrandModelRepository busBrandModelRepository;
     @Autowired
     PanoRepository panoRepository;
+    @Autowired
+    DealerRepository dealerRepository;
     @Override
     @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -219,6 +223,21 @@ public class SetupDataLoader implements
         pano.setMessage("Bu mesaj almanya üzerindeki sunucu üzerinden spring boot web servisi tarafından çekilmiştir");
         pano.setMessageHeader("Test Pano Header");
         panoRepository.save(pano);
+
+        Dealer dealer = new Dealer();
+        dealer.setDealerName("Merkez Durak");
+        dealer.setLocation(new Location(41.630409, 32.336245));
+        dealerRepository.save(dealer);
+        Dealer dealer1 = new Dealer();
+        dealer1.setDealerName("Yıldız Market");
+        dealer1.setLocation(new Location(41.610887, 32.322179));
+        dealerRepository.save(dealer1);
+        Dealer dealer2 = new Dealer();
+        dealer2.setDealerName("Toksözler Market");
+        dealer2.setLocation(new Location(41.600188, 32.355275));
+        dealerRepository.save(dealer2);
+
+
         alreadySetup = true;
     }
     private void createBalanceLogTypes(){
