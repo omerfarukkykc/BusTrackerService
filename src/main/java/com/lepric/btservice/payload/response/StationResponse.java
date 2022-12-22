@@ -4,6 +4,7 @@ package com.lepric.btservice.payload.response;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lepric.btservice.model.Bus;
 import com.lepric.btservice.model.Station;
 
@@ -11,12 +12,13 @@ import lombok.Data;
 
 @Data
 public class StationResponse {
+    @JsonIgnore
     private long stationID;
 
     private String stationName;
 
     private LocationResponse location;
-
+    @JsonIgnore
     private float stationScope;
     
     private String direction;

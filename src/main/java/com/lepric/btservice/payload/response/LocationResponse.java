@@ -9,6 +9,7 @@ import org.geolatte.geom.G2D;
 import org.geolatte.geom.Point;
 import org.geolatte.geom.codec.Wkt;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lepric.btservice.model.Bus;
 import com.lepric.btservice.model.User;
 
@@ -18,7 +19,9 @@ import lombok.Data;
 public class LocationResponse {
     private float latitude;
     private float longitude;
+
     private int sequence;
+    @JsonIgnore
     private LocalDateTime updated_at;
 
     public LocationResponse() {

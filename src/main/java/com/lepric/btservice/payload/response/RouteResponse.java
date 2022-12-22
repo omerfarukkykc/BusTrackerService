@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lepric.btservice.model.Bus;
 import com.lepric.btservice.model.Station;
 
@@ -14,8 +14,9 @@ import lombok.Data;
 @Data
 public class RouteResponse {
 
+    @JsonIgnore
     private long routeID;
-    
+    @JsonIgnore
     private LocalDateTime updatedAt;
     
     private String routeName;
