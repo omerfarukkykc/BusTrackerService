@@ -31,12 +31,15 @@ public class Station {
     @Column(name = "stationName")
     private String stationName;
 
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "locationID",nullable = false,unique = true,updatable = false)
     private Location location;
 
+    @JsonIgnore
     @Column(name = "stationScope")
     private float stationScope;
+
 
     @JsonIgnore
     @JoinColumn(name = "routeID")
@@ -48,6 +51,7 @@ public class Station {
     @ManyToOne(cascade = CascadeType.MERGE)
     private City city;
 
+    @JsonIgnore
     @Column(name = "direction")
     private String direction;
     
