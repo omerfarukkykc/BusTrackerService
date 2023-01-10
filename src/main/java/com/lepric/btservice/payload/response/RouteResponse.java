@@ -27,7 +27,8 @@ public class RouteResponse {
     private List<LocationResponse> routeLineD;
 
     private List<StationResponse> stations;
-
+    
+    @JsonIgnore
     private List<BusResponse> busses;
     public void setBusses(List<Bus> busses){
         this.busses = new ArrayList<BusResponse>();

@@ -77,7 +77,7 @@ public class Route {
     @JoinColumn(name = "feeID")
     @ManyToOne(cascade = CascadeType.MERGE)
     private Fee fee ;
-
+    @JsonIgnore
     public List<Bus> getActiveBusses(){
         List<Bus> activeBusses = new ArrayList<Bus>();
         for(Bus bus : this.busses){
